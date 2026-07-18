@@ -1,0 +1,21 @@
+struct _anonymous_31// Size=0x8 (Id=31)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=63)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _anonymous_31 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _SECURE_CHANNEL_DATA// Size=0x20 (Id=456)
+{
+    struct WDFCOMPANIONTARGET__ * WdfCompanionTarget;// Offset=0x0 Size=0x8
+    void * DeviceHandle;// Offset=0x8 Size=0x8
+    union _LARGE_INTEGER PerformanceFrequency;// Offset=0x10 Size=0x8
+    long OutstandingRequestCount;// Offset=0x18 Size=0x4
+};

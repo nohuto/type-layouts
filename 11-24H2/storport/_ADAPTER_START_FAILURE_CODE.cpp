@@ -1,0 +1,21 @@
+enum _ADAPTER_START_FAILURE_CODE
+{
+    AdapterStartFailureNone=0,
+    AdapterStartFailureLowerLevelComponent=1,
+    AdapterStartFailureInitializeConfiguration=2,
+    AdapterStartFailureInvalidHwInitializationData=3,
+    AdapterStartFailureConfigureResources=4,
+    AdapterStartFailureInitializeMiniport=5,
+    AdapterStartFailureFindAdapter=6,
+    AdapterStartFailureConnectInterrupt=7,
+    AdapterStartFailurePreInitializePerfOpts=8,
+    AdapterStartFailureHwInitialize=9,
+    AdapterStartFailureHwPassiveInitialize=10,
+    AdapterStartFailureInitializeBusesWithVmLunsBitmap=11,
+    AdapterStartFailureAllocateWorkItemForWaitWakeIrp=12,
+    AdapterStartFailureCreateIoGateway=13,
+    AdapterStartFailureGatewayInitialize=14,
+    AdapterStartFailureInitializeDma=15,
+    AdapterStartFailureCreateSymbolicLink=16,
+    AdapterStartFailureIdentifyController=17
+};

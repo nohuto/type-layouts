@@ -1,0 +1,23 @@
+enum RequestDIrpReason
+{
+    RequestDIrpReasonInvalid=0,
+    RequestDIrpFailed=1,
+    RequestD0ForS0=2,
+    RequestDxForSx=3,
+    RequestD0ForSx=4,
+    RequestD0ForOther=5,
+    RequestD0ForDeviceWake=6,
+    RequestD0ForArmWakeFail=7,
+    RequestDxForIdleOut=8,
+    RequestDxForPnpStop=9,
+    RequestD0ForPnpStop=10,
+    RequestD0ForIoPresent=11,
+    RequestD0ForStopIdle=12,
+    RequestD0ForDfxPowerUp=13,
+    RequestD0ForUsbSs=14,
+    RequestD0ForWakeFailed=15,
+    RequestD0ForSpecialFile=16,
+    RequestD0ForChildDevice=17,
+    RequestD0ForS0IdlePolicy=18,
+    RequestD0ForPowerReqCb=19
+};

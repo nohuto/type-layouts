@@ -1,0 +1,19 @@
+struct _MMVAD_FLAGS2// Size=0x4 (Id=1676)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long FileOffset:24;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x18
+        unsigned long Large:1;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x1
+        unsigned long TrimBehind:1;// Offset=0x0 Size=0x4 BitOffset=0x19 BitSize=0x1
+        unsigned long Inherit:1;// Offset=0x0 Size=0x4 BitOffset=0x1a BitSize=0x1
+        unsigned long NoValidationNeeded:1;// Offset=0x0 Size=0x4 BitOffset=0x1b BitSize=0x1
+        unsigned long PrivateDemandZero:1;// Offset=0x0 Size=0x4 BitOffset=0x1c BitSize=0x1
+        unsigned long Spare:3;// Offset=0x0 Size=0x4 BitOffset=0x1d BitSize=0x3
+    };
+};
+
+union _anonymous_1677// Size=0x4 (Id=1677)
+{
+    unsigned long LongFlags2;// Offset=0x0 Size=0x4
+    struct _MMVAD_FLAGS2 VadFlags2;// Offset=0x0 Size=0x4
+};

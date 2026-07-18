@@ -1,0 +1,7 @@
+struct _PCW_COUNTER_DESCRIPTOR// Size=0x8 (Id=2230)
+{
+    unsigned short Id;// Offset=0x0 Size=0x2
+    unsigned short StructIndex;// Offset=0x2 Size=0x2
+    unsigned short Offset;// Offset=0x4 Size=0x2
+    unsigned short Size;// Offset=0x6 Size=0x2
+};

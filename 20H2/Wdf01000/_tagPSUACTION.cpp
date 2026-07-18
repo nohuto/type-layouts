@@ -1,0 +1,5 @@
+enum _tagPSUACTION
+{
+    PSU_DEFAULT=1,
+    PSU_SECURITY_URL_ONLY=2
+};

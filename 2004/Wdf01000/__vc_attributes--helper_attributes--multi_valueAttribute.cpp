@@ -1,0 +1,4 @@
+struct __vc_attributes::helper_attributes::multi_valueAttribute// Size=0x1 (Id=1940)
+{
+    void multi_valueAttribute();
+};

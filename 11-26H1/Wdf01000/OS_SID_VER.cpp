@@ -1,0 +1,5 @@
+enum OS_SID_VER
+{
+    WIN2K_OR_LATER=0,
+    WINXP_OR_LATER=1
+};

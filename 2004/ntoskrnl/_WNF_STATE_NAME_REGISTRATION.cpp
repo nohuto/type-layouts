@@ -1,0 +1,6 @@
+struct _WNF_STATE_NAME_REGISTRATION// Size=0x18 (Id=1088)
+{
+    unsigned long MaxStateSize;// Offset=0x0 Size=0x4
+    struct _WNF_TYPE_ID * TypeId;// Offset=0x8 Size=0x8
+    struct _SECURITY_DESCRIPTOR * SecurityDescriptor;// Offset=0x10 Size=0x8
+};

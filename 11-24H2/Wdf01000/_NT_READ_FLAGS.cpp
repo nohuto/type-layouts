@@ -1,0 +1,4 @@
+enum _NT_READ_FLAGS
+{
+    NT_READ_FLAG_NONE=0
+};

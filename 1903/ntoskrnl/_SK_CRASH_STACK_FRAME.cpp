@@ -1,0 +1,9 @@
+struct _SK_CRASH_STACK_FRAME// Size=0x8 (Id=748)
+{
+    union // Size=0x8 (Id=0)
+    {
+        unsigned long ModuleId;// Offset=0x0 Size=0x4
+        unsigned long Rva;// Offset=0x4 Size=0x4
+        unsigned long long Pc;// Offset=0x0 Size=0x8
+    };
+};

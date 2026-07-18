@@ -1,0 +1,21 @@
+enum _WHEA_RECOVERY_FAILURE_REASON
+{
+    WheaRecoveryFailureReasonKernelCouldNotMarkMemoryBad=1,
+    WheaRecoveryFailureReasonKernelMarkMemoryBadTimedOut=2,
+    WheaRecoveryFailureReasonNoRecoveryContext=3,
+    WheaRecoveryFailureReasonNotContinuable=4,
+    WheaRecoveryFailureReasonPcc=5,
+    WheaRecoveryFailureReasonOverflow=6,
+    WheaRecoveryFailureReasonNotSupported=7,
+    WheaRecoveryFailureReasonMiscOrAddrNotValid=8,
+    WheaRecoveryFailureReasonInvalidAddressMode=9,
+    WheaRecoveryFailureReasonHighIrql=10,
+    WheaRecoveryFailureReasonInsufficientAltContextWrappers=11,
+    WheaRecoveryFailureReasonInterruptsDisabled=12,
+    WheaRecoveryFailureReasonSwapBusy=13,
+    WheaRecoveryFailureReasonStackOverflow=14,
+    WheaRecoveryFailureReasonUnexpectedFailure=15,
+    WheaRecoveryFailureReasonKernelWillPageFaultBCAtCurrentIrql=16,
+    WheaRecoveryFailureReasonFarNotValid=17,
+    WheaRecoveryFailureReasonMax=18
+};

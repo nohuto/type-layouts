@@ -1,0 +1,3 @@
+struct _KI_COOPERATIVE_IDLE_SEARCH_GENERATION// Size=0x0 (Id=63)
+{
+};

@@ -1,0 +1,59 @@
+struct _unnamed_28// Size=0x8 (Id=28)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=29)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_28 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _GEN_ADDR// Size=0xc (Id=436)
+{
+    unsigned char AddressSpaceID;// Offset=0x0 Size=0x1
+    unsigned char BitWidth;// Offset=0x1 Size=0x1
+    unsigned char BitOffset;// Offset=0x2 Size=0x1
+    unsigned char AccessSize;// Offset=0x3 Size=0x1
+    union _LARGE_INTEGER Address;// Offset=0x4 Size=0x8
+};
+
+struct _RUNTIME_IDLE_CONTEXT// Size=0x18 (Id=492)
+{
+    union // Size=0xc (Id=0)
+    {
+        struct _GEN_ADDR Register;// Offset=0x0 Size=0xc
+        struct MWAIT_CONTEXT MwaitContext;// Offset=0x0 Size=0x18
+    };
+};
+
+struct _RUNTIME_IDLE_STATE// Size=0x48 (Id=454)
+{
+    struct ACPI_CST_STATE * CstState;// Offset=0x0 Size=0x8
+    struct _IDLE_DOMAIN_ENTRY * IdleDomain;// Offset=0x8 Size=0x8
+    long  ( * Check)(struct _RUNTIME_IDLE_CONTEXT * );// Offset=0x10 Size=0x8
+    void  ( * Handler)(struct _RUNTIME_IDLE_CONTEXT * ,unsigned long );// Offset=0x18 Size=0x8
+    struct _RUNTIME_IDLE_CONTEXT Context;// Offset=0x20 Size=0x18
+    struct _IDLE_STATE_ENTRY * IdleStateEntry;// Offset=0x38 Size=0x8
+    unsigned char Native;// Offset=0x40 Size=0x1
+    unsigned char Autonomous;// Offset=0x41 Size=0x1
+};
+
+struct _RUNTIME_IDLE_STATES// Size=0x88 (Id=427)
+{
+    struct POHANDLE__ * FxHandle;// Offset=0x0 Size=0x8
+    unsigned long SelectedState;// Offset=0x8 Size=0x4
+    unsigned long TargetState;// Offset=0xc Size=0x4
+    unsigned long PreferredState;// Offset=0x10 Size=0x4
+    unsigned char PreferredStateCount;// Offset=0x14 Size=0x1
+    unsigned char PreferredStates[3];// Offset=0x15 Size=0x3
+    unsigned long long IdleTime;// Offset=0x18 Size=0x8
+    unsigned long long TotalTime;// Offset=0x20 Size=0x8
+    unsigned long MaximumDependencies;// Offset=0x28 Size=0x4
+    struct _PEP_PROCESSOR_IDLE_DEPENDENCY * DependencyArray;// Offset=0x30 Size=0x8
+    unsigned long Count;// Offset=0x38 Size=0x4
+    struct _RUNTIME_IDLE_STATE State[1];// Offset=0x40 Size=0x48
+};

@@ -1,0 +1,3 @@
+struct _DEVICE_OBJECT_POWER_EXTENSION// Size=0x0 (Id=898)
+{
+};

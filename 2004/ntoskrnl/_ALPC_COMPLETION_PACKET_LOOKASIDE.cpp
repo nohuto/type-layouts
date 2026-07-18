@@ -1,0 +1,25 @@
+struct _SINGLE_LIST_ENTRY// Size=0x8 (Id=838)
+{
+    struct _SINGLE_LIST_ENTRY * Next;// Offset=0x0 Size=0x8
+};
+
+struct _ALPC_COMPLETION_PACKET_LOOKASIDE_ENTRY// Size=0x18 (Id=1419)
+{
+    struct _SINGLE_LIST_ENTRY ListEntry;// Offset=0x0 Size=0x8
+    struct _IO_MINI_COMPLETION_PACKET_USER * Packet;// Offset=0x8 Size=0x8
+    struct _ALPC_COMPLETION_PACKET_LOOKASIDE * Lookaside;// Offset=0x10 Size=0x8
+};
+
+struct _ALPC_COMPLETION_PACKET_LOOKASIDE// Size=0x50 (Id=1160)
+{
+    unsigned long long Lock;// Offset=0x0 Size=0x8
+    unsigned long Size;// Offset=0x8 Size=0x4
+    unsigned long ActiveCount;// Offset=0xc Size=0x4
+    unsigned long PendingNullCount;// Offset=0x10 Size=0x4
+    unsigned long PendingCheckCompletionListCount;// Offset=0x14 Size=0x4
+    unsigned long PendingDelete;// Offset=0x18 Size=0x4
+    struct _SINGLE_LIST_ENTRY FreeListHead;// Offset=0x20 Size=0x8
+    void * CompletionPort;// Offset=0x28 Size=0x8
+    void * CompletionKey;// Offset=0x30 Size=0x8
+    struct _ALPC_COMPLETION_PACKET_LOOKASIDE_ENTRY Entry[1];// Offset=0x38 Size=0x18
+};

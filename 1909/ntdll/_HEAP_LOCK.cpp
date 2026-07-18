@@ -1,0 +1,19 @@
+struct _RTL_CRITICAL_SECTION// Size=0x28 (Id=232)
+{
+    struct _RTL_CRITICAL_SECTION_DEBUG * DebugInfo;// Offset=0x0 Size=0x8
+    long LockCount;// Offset=0x8 Size=0x4
+    long RecursionCount;// Offset=0xc Size=0x4
+    void * OwningThread;// Offset=0x10 Size=0x8
+    void * LockSemaphore;// Offset=0x18 Size=0x8
+    unsigned long long SpinCount;// Offset=0x20 Size=0x8
+};
+
+union _anonymous_230// Size=0x28 (Id=230)
+{
+    struct _RTL_CRITICAL_SECTION CriticalSection;// Offset=0x0 Size=0x28
+};
+
+struct _HEAP_LOCK// Size=0x28 (Id=231)
+{
+    union _anonymous_230 Lock;// Offset=0x0 Size=0x28
+};

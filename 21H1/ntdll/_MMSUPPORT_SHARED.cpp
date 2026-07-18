@@ -1,0 +1,14 @@
+struct _MMSUPPORT_SHARED// Size=0x80 (Id=495)
+{
+    long WorkingSetLock;// Offset=0x0 Size=0x4
+    long GoodCitizenWaiting;// Offset=0x4 Size=0x4
+    unsigned long ReleasedCommitDebt;// Offset=0x8 Size=0x4
+    unsigned long ResetPagesRepurposedCount;// Offset=0xc Size=0x4
+    void * WsSwapSupport;// Offset=0x10 Size=0x4
+    void * CommitReleaseContext;// Offset=0x14 Size=0x4
+    void * AccessLog;// Offset=0x18 Size=0x4
+    unsigned long ChargedWslePages;// Offset=0x1c Size=0x4
+    unsigned long ActualWslePages;// Offset=0x20 Size=0x4
+    unsigned long WorkingSetCoreLock;// Offset=0x40 Size=0x4
+    void * ShadowMapping;// Offset=0x44 Size=0x4
+};

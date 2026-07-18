@@ -1,0 +1,183 @@
+struct _LIST_ENTRY// Size=0x10 (Id=4)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+enum _KINTERRUPT_POLARITY
+{
+    InterruptPolarityUnknown=0,
+    InterruptActiveHigh=1,
+    InterruptRisingEdge=1,
+    InterruptActiveLow=2,
+    InterruptFallingEdge=2,
+    InterruptActiveBoth=3,
+    InterruptActiveBothTriggerLow=3,
+    InterruptActiveBothTriggerHigh=4
+};
+
+enum _KINTERRUPT_MODE
+{
+    LevelSensitive=0,
+    Latched=1
+};
+
+struct _GROUP_AFFINITY// Size=0x10 (Id=296)
+{
+    unsigned long long Mask;// Offset=0x0 Size=0x8
+    unsigned short Group;// Offset=0x8 Size=0x2
+    unsigned short Reserved[3];// Offset=0xa Size=0x6
+};
+
+struct _unnamed_2199// Size=0xc (Id=2199)
+{
+    unsigned long MessageAddressHigh;// Offset=0x0 Size=0x4
+    unsigned long MessageAddressLow;// Offset=0x4 Size=0x4
+    unsigned long MessageData;// Offset=0x8 Size=0x4
+};
+
+union _unnamed_2200// Size=0xc (Id=2200)
+{
+    struct _unnamed_2199 Msi;// Offset=0x0 Size=0xc
+};
+
+struct _INTERRUPT_REMAPPING_INFO// Size=0x10 (Id=2201)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long IrtIndex:30;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1e
+        unsigned long FlagHalInternal:1;// Offset=0x0 Size=0x4 BitOffset=0x1e BitSize=0x1
+        unsigned long FlagTranslated:1;// Offset=0x0 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+    union _unnamed_2200 u;// Offset=0x4 Size=0xc
+};
+
+struct _unnamed_1307// Size=0x8 (Id=1307)
+{
+    unsigned long Gsiv;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long WakeInterrupt:1;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long ReservedFlags:31;// Offset=0x4 Size=0x4 BitOffset=0x1 BitSize=0x1f
+    };
+};
+
+struct _unnamed_9// Size=0x8 (Id=9)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=252)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_9 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _unnamed_1308// Size=0x10 (Id=1308)
+{
+    union _LARGE_INTEGER Address;// Offset=0x0 Size=0x8
+    unsigned long DataPayload;// Offset=0x8 Size=0x4
+};
+
+struct _unnamed_1595// Size=0x4 (Id=1595)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Mask:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long Polarity:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long MessageType:3;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x3
+        unsigned long RequestEOI:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long DestinationMode:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long MessageType3:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long Destination:8;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x8
+        unsigned long Vector:8;// Offset=0x0 Size=0x4 BitOffset=0x10 BitSize=0x8
+        unsigned long ExtendedAddress:8;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x8
+    };
+};
+
+union _unnamed_1596// Size=0x4 (Id=1596)
+{
+    struct _unnamed_1595 bits;// Offset=0x0 Size=0x4
+    unsigned long AsULONG;// Offset=0x0 Size=0x4
+};
+
+struct _unnamed_1597// Size=0x4 (Id=1597)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long ExtendedDestination:24;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x18
+        unsigned long Reserved:6;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x6
+        unsigned long PassPW:1;// Offset=0x0 Size=0x4 BitOffset=0x1e BitSize=0x1
+        unsigned long WaitingForEOI:1;// Offset=0x0 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+};
+
+union _unnamed_1598// Size=0x4 (Id=1598)
+{
+    struct _unnamed_1597 bits;// Offset=0x0 Size=0x4
+    unsigned long AsULONG;// Offset=0x0 Size=0x4
+};
+
+struct _INTERRUPT_HT_INTR_INFO// Size=0x8 (Id=1599)
+{
+    union _unnamed_1596 LowPart;// Offset=0x0 Size=0x4
+    union _unnamed_1598 HighPart;// Offset=0x4 Size=0x4
+};
+
+struct _unnamed_1309// Size=0x8 (Id=1309)
+{
+    struct _INTERRUPT_HT_INTR_INFO IntrInfo;// Offset=0x0 Size=0x8
+};
+
+struct _unnamed_1311// Size=0x4 (Id=1311)
+{
+    enum HAL_APIC_DESTINATION_MODE DestinationMode;// Offset=0x0 Size=0x4
+};
+
+struct _INTERRUPT_VECTOR_DATA// Size=0x58 (Id=1312)
+{
+    enum INTERRUPT_CONNECTION_TYPE Type;// Offset=0x0 Size=0x4
+    unsigned long Vector;// Offset=0x4 Size=0x4
+    unsigned char Irql;// Offset=0x8 Size=0x1
+    enum _KINTERRUPT_POLARITY Polarity;// Offset=0xc Size=0x4
+    enum _KINTERRUPT_MODE Mode;// Offset=0x10 Size=0x4
+    struct _GROUP_AFFINITY TargetProcessors;// Offset=0x18 Size=0x10
+    struct _INTERRUPT_REMAPPING_INFO IntRemapInfo;// Offset=0x28 Size=0x10
+    struct _unnamed_1307 ControllerInput;// Offset=0x38 Size=0x8
+    unsigned long long HvDeviceId;// Offset=0x40 Size=0x8
+    union // Size=0x58 (Id=0)
+    {
+        struct _unnamed_1308 XapicMessage;// Offset=0x48 Size=0x10
+        struct _unnamed_1309 Hypertransport;// Offset=0x48 Size=0x8
+        struct _unnamed_1308 GenericMessage;// Offset=0x48 Size=0x10
+        struct _unnamed_1311 MessageRequest;// Offset=0x48 Size=0x4
+    };
+};
+
+enum _INTERRUPT_STEERING_MODE
+{
+    IntSteerModeNone=0,
+    IntSteerModeController=1,
+    IntSteerModeRedirect=2,
+    IntSteerModeControllerFixed=3
+};
+
+struct _INTERRUPT_TRACKING_ROOT// Size=0xe0 (Id=1589)
+{
+    struct _LIST_ENTRY ListEntry;// Offset=0x0 Size=0x10
+    struct _LIST_ENTRY TrackingEntryList;// Offset=0x10 Size=0x10
+    unsigned long Gsiv;// Offset=0x20 Size=0x4
+    struct _INTERRUPT_VECTOR_DATA VectorData;// Offset=0x28 Size=0x58
+    enum _INTERRUPT_STEERING_MODE SteeringMode;// Offset=0x80 Size=0x4
+    unsigned char EnableSteering;// Offset=0x84 Size=0x1
+    struct _GROUP_AFFINITY CpuSetMask;// Offset=0x88 Size=0x10
+    unsigned long long AffinityEpoch;// Offset=0x98 Size=0x8
+    struct _GROUP_AFFINITY CurrentTarget;// Offset=0xa0 Size=0x10
+    struct _GROUP_AFFINITY NextTarget;// Offset=0xb0 Size=0x10
+    unsigned long long TimeDelta;// Offset=0xc0 Size=0x8
+    void * RedirectHandle;// Offset=0xc8 Size=0x8
+    struct _LIST_ENTRY SteerQueueLink;// Offset=0xd0 Size=0x10
+};

@@ -1,0 +1,10 @@
+struct _RTL_HASH_TABLE// Size=0x10 (Id=218)
+{
+    unsigned long EntryCount;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long MaskBitCount:5;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x5
+        unsigned long BucketCount:27;// Offset=0x4 Size=0x4 BitOffset=0x5 BitSize=0x1b
+    };
+    struct _SINGLE_LIST_ENTRY * Buckets;// Offset=0x8 Size=0x8
+};

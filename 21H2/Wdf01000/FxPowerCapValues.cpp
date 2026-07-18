@@ -1,0 +1,27 @@
+enum FxPowerCapValues
+{
+    FxPowerCapDeviceD1False=0,
+    FxPowerCapDeviceD1True=1,
+    FxPowerCapDeviceD1UseDefault=2,
+    FxPowerCapDeviceD1Mask=3,
+    FxPowerCapDeviceD2False=0,
+    FxPowerCapDeviceD2True=4,
+    FxPowerCapDeviceD2UseDefault=8,
+    FxPowerCapDeviceD2Mask=12,
+    FxPowerCapWakeFromD0False=0,
+    FxPowerCapWakeFromD0True=16,
+    FxPowerCapWakeFromD0UseDefault=32,
+    FxPowerCapWakeFromD0Mask=48,
+    FxPowerCapWakeFromD1False=0,
+    FxPowerCapWakeFromD1True=64,
+    FxPowerCapWakeFromD1UseDefault=128,
+    FxPowerCapWakeFromD1Mask=192,
+    FxPowerCapWakeFromD2False=0,
+    FxPowerCapWakeFromD2True=256,
+    FxPowerCapWakeFromD2UseDefault=512,
+    FxPowerCapWakeFromD2Mask=768,
+    FxPowerCapWakeFromD3False=0,
+    FxPowerCapWakeFromD3True=1024,
+    FxPowerCapWakeFromD3UseDefault=2048,
+    FxPowerCapWakeFromD3Mask=3072
+};

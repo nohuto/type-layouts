@@ -1,0 +1,82 @@
+union _PPM_POLICY_SETTINGS_MASK// Size=0x10 (Id=863)
+{
+    unsigned long long Buffer[2];// Offset=0x0 Size=0x10
+    struct // Size=0x10 (Id=0)
+    {
+        unsigned long long PerfDecreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x1
+        unsigned long long PerfIncreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x1 BitSize=0x1
+        unsigned long long PerfDecreasePolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x2 BitSize=0x1
+        unsigned long long PerfIncreasePolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x3 BitSize=0x1
+        unsigned long long PerfDecreaseThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x4 BitSize=0x1
+        unsigned long long PerfIncreaseThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x5 BitSize=0x1
+        unsigned long long PerfMinPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x6 BitSize=0x1
+        unsigned long long PerfMaxPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x7 BitSize=0x1
+        unsigned long long PerfTimeCheck:1;// Offset=0x0 Size=0x8 BitOffset=0x8 BitSize=0x1
+        unsigned long long PerfBoostPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x9 BitSize=0x1
+        unsigned long long PerfBoostMode:1;// Offset=0x0 Size=0x8 BitOffset=0xa BitSize=0x1
+        unsigned long long ThrottlingPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0xb BitSize=0x1
+        unsigned long long PerfHistoryCount:1;// Offset=0x0 Size=0x8 BitOffset=0xc BitSize=0x1
+        unsigned long long ParkingPerfState:1;// Offset=0x0 Size=0x8 BitOffset=0xd BitSize=0x1
+        unsigned long long LatencyHintPerf:1;// Offset=0x0 Size=0x8 BitOffset=0xe BitSize=0x1
+        unsigned long long LatencyHintFreq:1;// Offset=0x0 Size=0x8 BitOffset=0xf BitSize=0x1
+        unsigned long long LatencyHintEpp:1;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x1
+        unsigned long long LatencyHintUnpark:1;// Offset=0x0 Size=0x8 BitOffset=0x11 BitSize=0x1
+        unsigned long long CPMinCores:1;// Offset=0x0 Size=0x8 BitOffset=0x12 BitSize=0x1
+        unsigned long long CPMaxCores:1;// Offset=0x0 Size=0x8 BitOffset=0x13 BitSize=0x1
+        unsigned long long CPDecreasePolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x14 BitSize=0x1
+        unsigned long long CPIncreasePolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x15 BitSize=0x1
+        unsigned long long CPDecreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x16 BitSize=0x1
+        unsigned long long CPIncreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x17 BitSize=0x1
+        unsigned long long CPOverUtilizationThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x18 BitSize=0x1
+        unsigned long long CPDistributeUtility:1;// Offset=0x0 Size=0x8 BitOffset=0x19 BitSize=0x1
+        unsigned long long CPConcurrencyThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x1a BitSize=0x1
+        unsigned long long CPHeadroomThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x1b BitSize=0x1
+        unsigned long long CPDistributeThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x1c BitSize=0x1
+        unsigned long long IdleAllowScaling:1;// Offset=0x0 Size=0x8 BitOffset=0x1d BitSize=0x1
+        unsigned long long IdleDisabled:1;// Offset=0x0 Size=0x8 BitOffset=0x1e BitSize=0x1
+        unsigned long long IdleTimeCheck:1;// Offset=0x0 Size=0x8 BitOffset=0x1f BitSize=0x1
+        unsigned long long IdleDemoteThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x20 BitSize=0x1
+        unsigned long long IdlePromoteThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x21 BitSize=0x1
+        unsigned long long EnergyPerfPreference:1;// Offset=0x0 Size=0x8 BitOffset=0x22 BitSize=0x1
+        unsigned long long AutonomousActivityWindow:1;// Offset=0x0 Size=0x8 BitOffset=0x23 BitSize=0x1
+        unsigned long long AutonomousMode:1;// Offset=0x0 Size=0x8 BitOffset=0x24 BitSize=0x1
+        unsigned long long DutyCycling:1;// Offset=0x0 Size=0x8 BitOffset=0x25 BitSize=0x1
+        unsigned long long FrequencyCap:1;// Offset=0x0 Size=0x8 BitOffset=0x26 BitSize=0x1
+        unsigned long long FrequencyMin:1;// Offset=0x0 Size=0x8 BitOffset=0x27 BitSize=0x1
+        unsigned long long IdleStateMax:1;// Offset=0x0 Size=0x8 BitOffset=0x28 BitSize=0x1
+        unsigned long long ResponsivenessDisableThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x29 BitSize=0x1
+        unsigned long long ResponsivenessEnableThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x2a BitSize=0x1
+        unsigned long long ResponsivenessDisableTime:1;// Offset=0x0 Size=0x8 BitOffset=0x2b BitSize=0x1
+        unsigned long long ResponsivenessEnableTime:1;// Offset=0x0 Size=0x8 BitOffset=0x2c BitSize=0x1
+        unsigned long long ResponsivenessEppCeiling:1;// Offset=0x0 Size=0x8 BitOffset=0x2d BitSize=0x1
+        unsigned long long ResponsivenessPerfFloor:1;// Offset=0x0 Size=0x8 BitOffset=0x2e BitSize=0x1
+        unsigned long long SoftParkLatency:1;// Offset=0x0 Size=0x8 BitOffset=0x2f BitSize=0x1
+        unsigned long long ModuleUnparkPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x30 BitSize=0x1
+        unsigned long long ComplexUnparkPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x31 BitSize=0x1
+        unsigned long long SmtUnparkPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x32 BitSize=0x1
+        unsigned long long RestrictionCount:1;// Offset=0x0 Size=0x8 BitOffset=0x33 BitSize=0x1
+        unsigned long long ResourcePriority:1;// Offset=0x0 Size=0x8 BitOffset=0x34 BitSize=0x1
+        unsigned long long HeteroDecreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x35 BitSize=0x1
+        unsigned long long HeteroIncreaseTime:1;// Offset=0x0 Size=0x8 BitOffset=0x36 BitSize=0x1
+        unsigned long long HeteroDecreaseThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x37 BitSize=0x1
+        unsigned long long HeteroIncreaseThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x38 BitSize=0x1
+        unsigned long long Class0FloorPerformance:1;// Offset=0x0 Size=0x8 BitOffset=0x39 BitSize=0x1
+        unsigned long long Class1InitialPerformance:1;// Offset=0x0 Size=0x8 BitOffset=0x3a BitSize=0x1
+        unsigned long long SchedulingPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x1
+        unsigned long long ShortSchedulingPolicy:1;// Offset=0x0 Size=0x8 BitOffset=0x3c BitSize=0x1
+        unsigned long long ShortThreadRuntimeThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x1
+        unsigned long long ShortThreadArchClassUpperThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x1
+        unsigned long long ShortThreadArchClassLowerThreshold:1;// Offset=0x0 Size=0x8 BitOffset=0x3f BitSize=0x1
+        unsigned long long LongThreadArchClassUpperThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x0 BitSize=0x1
+        unsigned long long LongThreadArchClassLowerThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x1 BitSize=0x1
+        unsigned long long HeteroPolicy:1;// Offset=0x8 Size=0x8 BitOffset=0x2 BitSize=0x1
+        unsigned long long HeteroContainmentIncreaseTime:1;// Offset=0x8 Size=0x8 BitOffset=0x3 BitSize=0x1
+        unsigned long long HeteroContainmentDecreaseTime:1;// Offset=0x8 Size=0x8 BitOffset=0x4 BitSize=0x1
+        unsigned long long HeteroEfficiencyContainmentThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x5 BitSize=0x1
+        unsigned long long HeteroHybridContainmentThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x6 BitSize=0x1
+        unsigned long long HeteroContainmentPolicy:1;// Offset=0x8 Size=0x8 BitOffset=0x7 BitSize=0x1
+        unsigned long long WpsMinEfficiencyThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x8 BitSize=0x1
+        unsigned long long HeteroContainmentEfficiencyImpUtilThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0x9 BitSize=0x1
+        unsigned long long HeteroContainmentHybridImpUtilThreshold:1;// Offset=0x8 Size=0x8 BitOffset=0xa BitSize=0x1
+    };
+};

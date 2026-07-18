@@ -1,0 +1,6 @@
+enum _MFND_QOS_POLICY
+{
+    MFND_QOS_RESERVE=1,
+    MFND_QOS_LIMIT=2,
+    MFND_QOS_MIX=3
+};

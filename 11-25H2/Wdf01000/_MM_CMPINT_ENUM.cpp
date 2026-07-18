@@ -1,0 +1,10 @@
+enum _MM_CMPINT_ENUM
+{
+    _MM_CMPINT_EQ=0,
+    _MM_CMPINT_LT=1,
+    _MM_CMPINT_LE=2,
+    _MM_CMPINT_UNUSED=3,
+    _MM_CMPINT_NE=4,
+    _MM_CMPINT_NLT=5,
+    _MM_CMPINT_NLE=6
+};

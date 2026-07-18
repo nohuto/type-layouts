@@ -1,0 +1,7 @@
+struct _anonymous_82// Size=0x20 (Id=82)
+{
+    unsigned long WhichSpace;// Offset=0x0 Size=0x4
+    void * Buffer;// Offset=0x8 Size=0x8
+    unsigned long Offset;// Offset=0x10 Size=0x4
+    unsigned long Length;// Offset=0x18 Size=0x4
+};

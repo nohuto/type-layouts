@@ -1,0 +1,80 @@
+struct _unnamed_43// Size=0x8 (Id=43)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=363)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_43 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _unnamed_779// Size=0x8 (Id=779)
+{
+    unsigned short McaErrorCode;// Offset=0x0 Size=0x2
+    unsigned short ModelErrorCode;// Offset=0x2 Size=0x2
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long OtherInformation:25;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x19
+        unsigned long ContextCorrupt:1;// Offset=0x4 Size=0x4 BitOffset=0x19 BitSize=0x1
+        unsigned long AddressValid:1;// Offset=0x4 Size=0x4 BitOffset=0x1a BitSize=0x1
+        unsigned long MiscValid:1;// Offset=0x4 Size=0x4 BitOffset=0x1b BitSize=0x1
+        unsigned long ErrorEnabled:1;// Offset=0x4 Size=0x4 BitOffset=0x1c BitSize=0x1
+        unsigned long UncorrectedError:1;// Offset=0x4 Size=0x4 BitOffset=0x1d BitSize=0x1
+        unsigned long StatusOverFlow:1;// Offset=0x4 Size=0x4 BitOffset=0x1e BitSize=0x1
+        unsigned long Valid:1;// Offset=0x4 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+};
+
+union _MCI_STATS// Size=0x8 (Id=780)
+{
+    struct _unnamed_779 MciStatus;// Offset=0x0 Size=0x8
+    unsigned long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+union _MCI_ADDR// Size=0x8 (Id=769)
+{
+    unsigned long Address;// Offset=0x0 Size=0x4
+    unsigned long Reserved;// Offset=0x4 Size=0x4
+    unsigned long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _unnamed_676// Size=0x20 (Id=676)
+{
+    unsigned char BankNumber;// Offset=0x0 Size=0x1
+    unsigned char Reserved2[7];// Offset=0x1 Size=0x7
+    union _MCI_STATS Status;// Offset=0x8 Size=0x8
+    union _MCI_ADDR Address;// Offset=0x10 Size=0x8
+    unsigned long long Misc;// Offset=0x18 Size=0x8
+};
+
+struct _unnamed_677// Size=0x10 (Id=677)
+{
+    unsigned long long Address;// Offset=0x0 Size=0x8
+    unsigned long long Type;// Offset=0x8 Size=0x8
+};
+
+union _unnamed_678// Size=0x20 (Id=678)
+{
+    union // Size=0x20 (Id=0)
+    {
+        struct _unnamed_676 Mca;// Offset=0x0 Size=0x20
+        struct _unnamed_677 Mce;// Offset=0x0 Size=0x10
+    };
+};
+
+struct _MCA_EXCEPTION// Size=0x100 (Id=679)
+{
+    unsigned long VersionNumber;// Offset=0x0 Size=0x4
+    enum MCA_EXCEPTION_TYPE ExceptionType;// Offset=0x4 Size=0x4
+    union _LARGE_INTEGER TimeStamp;// Offset=0x8 Size=0x8
+    unsigned long ProcessorNumber;// Offset=0x10 Size=0x4
+    unsigned long Reserved1;// Offset=0x14 Size=0x4
+    union _unnamed_678 u;// Offset=0x18 Size=0x20
+    unsigned long ExtCnt;// Offset=0x38 Size=0x4
+    unsigned long Reserved3;// Offset=0x3c Size=0x4
+    unsigned long long ExtReg[24];// Offset=0x40 Size=0xc0
+};

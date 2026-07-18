@@ -1,0 +1,26 @@
+struct _unnamed_680// Size=0x4 (Id=680)
+{
+    unsigned long PollInterval;// Offset=0x0 Size=0x4
+};
+
+struct _unnamed_681// Size=0x18 (Id=681)
+{
+    unsigned long PollInterval;// Offset=0x0 Size=0x4
+    unsigned long Vector;// Offset=0x4 Size=0x4
+    unsigned long SwitchToPollingThreshold;// Offset=0x8 Size=0x4
+    unsigned long SwitchToPollingWindow;// Offset=0xc Size=0x4
+    unsigned long ErrorThreshold;// Offset=0x10 Size=0x4
+    unsigned long ErrorThresholdWindow;// Offset=0x14 Size=0x4
+};
+
+union _unnamed_682// Size=0x18 (Id=682)
+{
+    struct _unnamed_680 Polled;// Offset=0x0 Size=0x4
+    struct _unnamed_681 Interrupt;// Offset=0x0 Size=0x18
+    struct _unnamed_681 LocalInterrupt;// Offset=0x0 Size=0x18
+    struct _unnamed_681 Sci;// Offset=0x0 Size=0x18
+    struct _unnamed_681 Nmi;// Offset=0x0 Size=0x18
+    struct _unnamed_681 Sea;// Offset=0x0 Size=0x18
+    struct _unnamed_681 Sei;// Offset=0x0 Size=0x18
+    struct _unnamed_681 Gsiv;// Offset=0x0 Size=0x18
+};

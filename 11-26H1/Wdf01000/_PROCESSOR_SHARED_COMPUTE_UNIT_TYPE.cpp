@@ -1,0 +1,4 @@
+enum _PROCESSOR_SHARED_COMPUTE_UNIT_TYPE
+{
+    SharedComputeUnitArm64SMCU=0
+};

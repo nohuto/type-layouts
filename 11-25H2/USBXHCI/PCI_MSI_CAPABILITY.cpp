@@ -1,0 +1,63 @@
+struct _PCI_CAPABILITIES_HEADER// Size=0x2 (Id=1075)
+{
+    unsigned char CapabilityID;// Offset=0x0 Size=0x1
+    unsigned char Next;// Offset=0x1 Size=0x1
+};
+
+union _PCI_MSI_MESSAGE_CONTROL// Size=0x2 (Id=1072)
+{
+    struct // Size=0x2 (Id=0)
+    {
+        unsigned short MSIEnable:1;// Offset=0x0 Size=0x2 BitOffset=0x0 BitSize=0x1
+        unsigned short MultipleMessageCapable:3;// Offset=0x0 Size=0x2 BitOffset=0x1 BitSize=0x3
+        unsigned short MultipleMessageEnable:3;// Offset=0x0 Size=0x2 BitOffset=0x4 BitSize=0x3
+        unsigned short CapableOf64Bits:1;// Offset=0x0 Size=0x2 BitOffset=0x7 BitSize=0x1
+        unsigned short PerVectorMaskCapable:1;// Offset=0x0 Size=0x2 BitOffset=0x8 BitSize=0x1
+        unsigned short Reserved:7;// Offset=0x0 Size=0x2 BitOffset=0x9 BitSize=0x7
+    };
+    unsigned short AsUSHORT;// Offset=0x0 Size=0x2
+};
+
+struct _PCI_MSI_MESSAGE_ADDRESS// Size=0x4 (Id=1081)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Reserved:2;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x2
+        unsigned long Address:30;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1e
+    };
+};
+
+union _unnamed_1015// Size=0x4 (Id=1015)
+{
+    struct _PCI_MSI_MESSAGE_ADDRESS Register;// Offset=0x0 Size=0x4
+    unsigned long Raw;// Offset=0x0 Size=0x4
+};
+
+struct _unnamed_1016// Size=0xc (Id=1016)
+{
+    unsigned short MessageData;// Offset=0x0 Size=0x2
+    unsigned short Reserved;// Offset=0x2 Size=0x2
+    unsigned long MaskBits;// Offset=0x4 Size=0x4
+    unsigned long PendingBits;// Offset=0x8 Size=0x4
+};
+
+struct _unnamed_1017// Size=0x10 (Id=1017)
+{
+    unsigned long MessageAddressUpper;// Offset=0x0 Size=0x4
+    unsigned short MessageData;// Offset=0x4 Size=0x2
+    unsigned short Reserved;// Offset=0x6 Size=0x2
+    unsigned long MaskBits;// Offset=0x8 Size=0x4
+    unsigned long PendingBits;// Offset=0xc Size=0x4
+};
+
+struct PCI_MSI_CAPABILITY// Size=0x18 (Id=1018)
+{
+    struct _PCI_CAPABILITIES_HEADER Header;// Offset=0x0 Size=0x2
+    union _PCI_MSI_MESSAGE_CONTROL MessageControl;// Offset=0x2 Size=0x2
+    union _unnamed_1015 MessageAddressLower;// Offset=0x4 Size=0x4
+    union // Size=0xc (Id=0)
+    {
+        struct _unnamed_1016 Option32Bit;// Offset=0x8 Size=0xc
+        struct _unnamed_1017 Option64Bit;// Offset=0x8 Size=0x10
+    };
+};

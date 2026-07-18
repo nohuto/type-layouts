@@ -1,0 +1,11 @@
+enum _FS_FILTER_STREAM_FO_NOTIFICATION_TYPE
+{
+    NotifyTypeCreate=0,
+    NotifyTypeRetired=1
+};
+
+struct _unnamed_1537// Size=0x10 (Id=1537)
+{
+    enum _FS_FILTER_STREAM_FO_NOTIFICATION_TYPE NotificationType;// Offset=0x0 Size=0x4
+    unsigned char SafeToRecurse;// Offset=0x8 Size=0x1
+};

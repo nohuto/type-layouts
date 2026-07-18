@@ -1,0 +1,11 @@
+struct _VF_TRACKER_STAMP// Size=0x10 (Id=1213)
+{
+    void * Thread;// Offset=0x0 Size=0x8
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned char Flags:8;// Offset=0x8 Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char OldIrql:8;// Offset=0x9 Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char NewIrql:8;// Offset=0xa Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char Processor:8;// Offset=0xb Size=0x1 BitOffset=0x0 BitSize=0x8
+    };
+};

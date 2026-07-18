@@ -1,0 +1,3 @@
+struct _PCW_REGISTRATION// Size=0x0 (Id=174)
+{
+};

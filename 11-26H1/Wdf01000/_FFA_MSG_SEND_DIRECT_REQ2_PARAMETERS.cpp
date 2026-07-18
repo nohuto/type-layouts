@@ -1,0 +1,3 @@
+struct _FFA_MSG_SEND_DIRECT_REQ2_PARAMETERS// Size=0x0 (Id=3467)
+{
+};

@@ -1,0 +1,27 @@
+enum _SCSI_NOTIFICATION_TYPE
+{
+    RequestComplete=0,
+    NextRequest=1,
+    NextLuRequest=2,
+    ResetDetected=3,
+    _obsolete1=4,
+    _obsolete2=5,
+    RequestTimerCall=6,
+    BusChangeDetected=7,
+    WMIEvent=8,
+    WMIReregister=9,
+    LinkUp=10,
+    LinkDown=11,
+    QueryTickCount=12,
+    BufferOverrunDetected=13,
+    TraceNotification=14,
+    GetExtendedFunctionTable=15,
+    EnablePassiveInitialization=4096,
+    InitializeDpc=4097,
+    IssueDpc=4098,
+    AcquireSpinLock=4099,
+    ReleaseSpinLock=4100,
+    StateChangeDetectedCall=4101,
+    IoTargetRequestServiceTime=4102,
+    AsyncNotificationDetected=4103
+};

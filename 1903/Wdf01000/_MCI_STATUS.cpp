@@ -1,0 +1,66 @@
+struct _MCI_STATUS_BITS_COMMON// Size=0x8 (Id=3537)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long McaErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x10
+        unsigned long long ModelErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x10
+        unsigned long long Reserved:25;// Offset=0x0 Size=0x8 BitOffset=0x20 BitSize=0x19
+        unsigned long long ContextCorrupt:1;// Offset=0x0 Size=0x8 BitOffset=0x39 BitSize=0x1
+        unsigned long long AddressValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3a BitSize=0x1
+        unsigned long long MiscValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x1
+        unsigned long long ErrorEnabled:1;// Offset=0x0 Size=0x8 BitOffset=0x3c BitSize=0x1
+        unsigned long long UncorrectedError:1;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x1
+        unsigned long long StatusOverFlow:1;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x1
+        unsigned long long Valid:1;// Offset=0x0 Size=0x8 BitOffset=0x3f BitSize=0x1
+    };
+};
+
+struct _MCI_STATUS_AMD_BITS// Size=0x8 (Id=2379)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long McaErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x10
+        unsigned long long ModelErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x10
+        unsigned long long ImplementationSpecific2:11;// Offset=0x0 Size=0x8 BitOffset=0x20 BitSize=0xb
+        unsigned long long Poison:1;// Offset=0x0 Size=0x8 BitOffset=0x2b BitSize=0x1
+        unsigned long long Deferred:1;// Offset=0x0 Size=0x8 BitOffset=0x2c BitSize=0x1
+        unsigned long long ImplementationSpecific1:12;// Offset=0x0 Size=0x8 BitOffset=0x2d BitSize=0xc
+        unsigned long long ContextCorrupt:1;// Offset=0x0 Size=0x8 BitOffset=0x39 BitSize=0x1
+        unsigned long long AddressValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3a BitSize=0x1
+        unsigned long long MiscValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x1
+        unsigned long long ErrorEnabled:1;// Offset=0x0 Size=0x8 BitOffset=0x3c BitSize=0x1
+        unsigned long long UncorrectedError:1;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x1
+        unsigned long long StatusOverFlow:1;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x1
+        unsigned long long Valid:1;// Offset=0x0 Size=0x8 BitOffset=0x3f BitSize=0x1
+    };
+};
+
+struct _MCI_STATUS_INTEL_BITS// Size=0x8 (Id=1778)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long McaErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x10
+        unsigned long long ModelErrorCode:16;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x10
+        unsigned long long OtherInfo:5;// Offset=0x0 Size=0x8 BitOffset=0x20 BitSize=0x5
+        unsigned long long FirmwareUpdateError:1;// Offset=0x0 Size=0x8 BitOffset=0x25 BitSize=0x1
+        unsigned long long CorrectedErrorCount:15;// Offset=0x0 Size=0x8 BitOffset=0x26 BitSize=0xf
+        unsigned long long ThresholdErrorStatus:2;// Offset=0x0 Size=0x8 BitOffset=0x35 BitSize=0x2
+        unsigned long long ActionRequired:1;// Offset=0x0 Size=0x8 BitOffset=0x37 BitSize=0x1
+        unsigned long long Signalling:1;// Offset=0x0 Size=0x8 BitOffset=0x38 BitSize=0x1
+        unsigned long long ContextCorrupt:1;// Offset=0x0 Size=0x8 BitOffset=0x39 BitSize=0x1
+        unsigned long long AddressValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3a BitSize=0x1
+        unsigned long long MiscValid:1;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x1
+        unsigned long long ErrorEnabled:1;// Offset=0x0 Size=0x8 BitOffset=0x3c BitSize=0x1
+        unsigned long long UncorrectedError:1;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x1
+        unsigned long long StatusOverFlow:1;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x1
+        unsigned long long Valid:1;// Offset=0x0 Size=0x8 BitOffset=0x3f BitSize=0x1
+    };
+};
+
+union _MCI_STATUS// Size=0x8 (Id=2170)
+{
+    struct _MCI_STATUS_BITS_COMMON CommonBits;// Offset=0x0 Size=0x8
+    struct _MCI_STATUS_AMD_BITS AmdBits;// Offset=0x0 Size=0x8
+    struct _MCI_STATUS_INTEL_BITS IntelBits;// Offset=0x0 Size=0x8
+    unsigned long long QuadPart;// Offset=0x0 Size=0x8
+};

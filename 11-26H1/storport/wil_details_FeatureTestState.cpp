@@ -1,0 +1,10 @@
+struct wil_details_FeatureTestState// Size=0x20 (Id=168)
+{
+    enum wil_details_FeatureTestStateKind kind;// Offset=0x0 Size=0x4
+    unsigned int featureId;// Offset=0x4 Size=0x4
+    enum wil_FeatureEnabledState state;// Offset=0x8 Size=0x4
+    unsigned char variant;// Offset=0xc Size=0x1
+    unsigned int payload;// Offset=0x10 Size=0x4
+    enum wil_FeatureVariantPayloadKind payloadKind;// Offset=0x14 Size=0x4
+    struct wil_details_FeatureTestState * next;// Offset=0x18 Size=0x8
+};

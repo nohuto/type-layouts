@@ -1,0 +1,12 @@
+union _PPM_COORDINATED_SYNCHRONIZATION// Size=0x4 (Id=1694)
+{
+    long AsLong;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long EnterProcessor:12;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0xc
+        unsigned long ExitProcessor:12;// Offset=0x0 Size=0x4 BitOffset=0xc BitSize=0xc
+        unsigned long Transition:2;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x2
+        unsigned long Entered:1;// Offset=0x0 Size=0x4 BitOffset=0x1a BitSize=0x1
+        unsigned long EntryPriority:5;// Offset=0x0 Size=0x4 BitOffset=0x1b BitSize=0x5
+    };
+};

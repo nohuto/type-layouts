@@ -1,0 +1,29 @@
+struct _MMSECURE_FLAGS// Size=0x4 (Id=1953)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long ReadOnly:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long ReadWrite:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long SecNoChange:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long NoDelete:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long RequiresPteReversal:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long ExclusiveSecure:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long UserModeOnly:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long NoInherit:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long CheckVad:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long Spare:3;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x3
+    };
+};
+
+union _anonymous_1783// Size=0x8 (Id=1783)
+{
+    struct _MMSECURE_FLAGS Flags;// Offset=0x0 Size=0x4
+    unsigned long FlagsLong;// Offset=0x0 Size=0x4
+    void * StartVa;// Offset=0x0 Size=0x8
+};
+
+struct _MMADDRESS_LIST// Size=0x10 (Id=1784)
+{
+    union _anonymous_1783 u1;// Offset=0x0 Size=0x8
+    void * EndVa;// Offset=0x8 Size=0x8
+};

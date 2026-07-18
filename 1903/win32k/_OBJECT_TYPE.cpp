@@ -1,0 +1,125 @@
+struct _LIST_ENTRY// Size=0x10 (Id=29)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _UNICODE_STRING// Size=0x10 (Id=214)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short MaximumLength;// Offset=0x2 Size=0x2
+    wchar_t * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _GENERIC_MAPPING// Size=0x10 (Id=457)
+{
+    unsigned long GenericRead;// Offset=0x0 Size=0x4
+    unsigned long GenericWrite;// Offset=0x4 Size=0x4
+    unsigned long GenericExecute;// Offset=0x8 Size=0x4
+    unsigned long GenericAll;// Offset=0xc Size=0x4
+};
+
+enum _POOL_TYPE
+{
+    NonPagedPool=0,
+    NonPagedPoolExecute=0,
+    PagedPool=1,
+    NonPagedPoolMustSucceed=2,
+    DontUseThisType=3,
+    NonPagedPoolCacheAligned=4,
+    PagedPoolCacheAligned=5,
+    NonPagedPoolCacheAlignedMustS=6,
+    MaxPoolType=7,
+    NonPagedPoolBase=0,
+    NonPagedPoolBaseMustSucceed=2,
+    NonPagedPoolBaseCacheAligned=4,
+    NonPagedPoolBaseCacheAlignedMustS=6,
+    NonPagedPoolSession=32,
+    PagedPoolSession=33,
+    NonPagedPoolMustSucceedSession=34,
+    DontUseThisTypeSession=35,
+    NonPagedPoolCacheAlignedSession=36,
+    PagedPoolCacheAlignedSession=37,
+    NonPagedPoolCacheAlignedMustSSession=38,
+    NonPagedPoolNx=512,
+    NonPagedPoolNxCacheAligned=516,
+    NonPagedPoolSessionNx=544
+};
+
+struct _OBJECT_TYPE_INITIALIZER// Size=0x78 (Id=212)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    union // Size=0x2 (Id=0)
+    {
+        unsigned short ObjectTypeFlags;// Offset=0x2 Size=0x2
+        struct // Size=0x2 (Id=0)
+        {
+            unsigned char CaseInsensitive:1;// Offset=0x2 Size=0x1 BitOffset=0x0 BitSize=0x1
+            unsigned char UnnamedObjectsOnly:1;// Offset=0x2 Size=0x1 BitOffset=0x1 BitSize=0x1
+            unsigned char UseDefaultObject:1;// Offset=0x2 Size=0x1 BitOffset=0x2 BitSize=0x1
+            unsigned char SecurityRequired:1;// Offset=0x2 Size=0x1 BitOffset=0x3 BitSize=0x1
+            unsigned char MaintainHandleCount:1;// Offset=0x2 Size=0x1 BitOffset=0x4 BitSize=0x1
+            unsigned char MaintainTypeList:1;// Offset=0x2 Size=0x1 BitOffset=0x5 BitSize=0x1
+            unsigned char SupportsObjectCallbacks:1;// Offset=0x2 Size=0x1 BitOffset=0x6 BitSize=0x1
+            unsigned char CacheAligned:1;// Offset=0x2 Size=0x1 BitOffset=0x7 BitSize=0x1
+            unsigned char UseExtendedParameters:1;// Offset=0x3 Size=0x1 BitOffset=0x0 BitSize=0x1
+            unsigned char Reserved:7;// Offset=0x3 Size=0x1 BitOffset=0x1 BitSize=0x7
+        };
+    };
+    unsigned long ObjectTypeCode;// Offset=0x4 Size=0x4
+    unsigned long InvalidAttributes;// Offset=0x8 Size=0x4
+    struct _GENERIC_MAPPING GenericMapping;// Offset=0xc Size=0x10
+    unsigned long ValidAccessMask;// Offset=0x1c Size=0x4
+    unsigned long RetainAccess;// Offset=0x20 Size=0x4
+    enum _POOL_TYPE PoolType;// Offset=0x24 Size=0x4
+    unsigned long DefaultPagedPoolCharge;// Offset=0x28 Size=0x4
+    unsigned long DefaultNonPagedPoolCharge;// Offset=0x2c Size=0x4
+    void  ( * DumpProcedure)(void * ,struct _OBJECT_DUMP_CONTROL * );// Offset=0x30 Size=0x8
+    long  ( * OpenProcedure)(enum _OB_OPEN_REASON ,char ,struct _EPROCESS * ,void * ,unsigned long * ,unsigned long );// Offset=0x38 Size=0x8
+    void  ( * CloseProcedure)(struct _EPROCESS * ,void * ,unsigned long long ,unsigned long long );// Offset=0x40 Size=0x8
+    void  ( * DeleteProcedure)(void * );// Offset=0x48 Size=0x8
+    union // Size=0x8 (Id=0)
+    {
+        long  ( * ParseProcedure)(void * ,void * ,struct _ACCESS_STATE * ,char ,unsigned long ,struct _UNICODE_STRING * ,struct _UNICODE_STRING * ,void * ,struct _SECURITY_QUALITY_OF_SERVICE * ,void ** );// Offset=0x50 Size=0x8
+        long  ( * ParseProcedureEx)(void * ,void * ,struct _ACCESS_STATE * ,char ,unsigned long ,struct _UNICODE_STRING * ,struct _UNICODE_STRING * ,void * ,struct _SECURITY_QUALITY_OF_SERVICE * ,struct _OB_EXTENDED_PARSE_PARAMETERS * ,void ** );// Offset=0x50 Size=0x8
+    };
+    long  ( * SecurityProcedure)(void * ,enum _SECURITY_OPERATION_CODE ,unsigned long * ,void * ,unsigned long * ,void ** ,enum _POOL_TYPE ,struct _GENERIC_MAPPING * ,char );// Offset=0x58 Size=0x8
+    long  ( * QueryNameProcedure)(void * ,unsigned char ,struct _OBJECT_NAME_INFORMATION * ,unsigned long ,unsigned long * ,char );// Offset=0x60 Size=0x8
+    unsigned char  ( * OkayToCloseProcedure)(struct _EPROCESS * ,void * ,void * ,char );// Offset=0x68 Size=0x8
+    unsigned long WaitObjectFlagMask;// Offset=0x70 Size=0x4
+    unsigned short WaitObjectFlagOffset;// Offset=0x74 Size=0x2
+    unsigned short WaitObjectPointerOffset;// Offset=0x76 Size=0x2
+};
+
+struct _EX_PUSH_LOCK// Size=0x8 (Id=84)
+{
+    union // Size=0x8 (Id=0)
+    {
+        struct // Size=0x8 (Id=0)
+        {
+            unsigned long long Locked:1;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x1
+            unsigned long long Waiting:1;// Offset=0x0 Size=0x8 BitOffset=0x1 BitSize=0x1
+            unsigned long long Waking:1;// Offset=0x0 Size=0x8 BitOffset=0x2 BitSize=0x1
+            unsigned long long MultipleShared:1;// Offset=0x0 Size=0x8 BitOffset=0x3 BitSize=0x1
+            unsigned long long Shared:60;// Offset=0x0 Size=0x8 BitOffset=0x4 BitSize=0x3c
+        };
+        unsigned long long Value;// Offset=0x0 Size=0x8
+        void * Ptr;// Offset=0x0 Size=0x8
+    };
+};
+
+struct _OBJECT_TYPE// Size=0xd8 (Id=121)
+{
+    struct _LIST_ENTRY TypeList;// Offset=0x0 Size=0x10
+    struct _UNICODE_STRING Name;// Offset=0x10 Size=0x10
+    void * DefaultObject;// Offset=0x20 Size=0x8
+    unsigned char Index;// Offset=0x28 Size=0x1
+    unsigned long TotalNumberOfObjects;// Offset=0x2c Size=0x4
+    unsigned long TotalNumberOfHandles;// Offset=0x30 Size=0x4
+    unsigned long HighWaterNumberOfObjects;// Offset=0x34 Size=0x4
+    unsigned long HighWaterNumberOfHandles;// Offset=0x38 Size=0x4
+    struct _OBJECT_TYPE_INITIALIZER TypeInfo;// Offset=0x40 Size=0x78
+    struct _EX_PUSH_LOCK TypeLock;// Offset=0xb8 Size=0x8
+    unsigned long Key;// Offset=0xc0 Size=0x4
+    struct _LIST_ENTRY CallbackList;// Offset=0xc8 Size=0x10
+};

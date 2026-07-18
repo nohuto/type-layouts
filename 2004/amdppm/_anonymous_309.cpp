@@ -1,0 +1,5 @@
+union _anonymous_309// Size=0x8 (Id=309)
+{
+    void * Ptr;// Offset=0x0 Size=0x8
+    unsigned long long Value;// Offset=0x0 Size=0x8
+};

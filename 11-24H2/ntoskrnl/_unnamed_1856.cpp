@@ -1,0 +1,23 @@
+struct _MMPAGE_FILE_EXPANSION_FLAGS// Size=0x4 (Id=2397)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned char PageFileNumber:8;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char Spare1:8;// Offset=0x1 Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char Spare2:8;// Offset=0x2 Size=0x1 BitOffset=0x0 BitSize=0x8
+        unsigned char IgnoreCurrentCommit:1;// Offset=0x3 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char IncreaseMinimumSize:1;// Offset=0x3 Size=0x1 BitOffset=0x1 BitSize=0x1
+        unsigned char AttemptForCantExtend:1;// Offset=0x3 Size=0x1 BitOffset=0x2 BitSize=0x1
+        unsigned char UnusedSegmentDeletion:1;// Offset=0x3 Size=0x1 BitOffset=0x3 BitSize=0x1
+        unsigned char PageFileContract:1;// Offset=0x3 Size=0x1 BitOffset=0x4 BitSize=0x1
+        unsigned char NoWait:1;// Offset=0x3 Size=0x1 BitOffset=0x5 BitSize=0x1
+        unsigned char BeingProcessed:1;// Offset=0x3 Size=0x1 BitOffset=0x6 BitSize=0x1
+        unsigned char Spare3:1;// Offset=0x3 Size=0x1 BitOffset=0x7 BitSize=0x1
+    };
+};
+
+union _unnamed_1856// Size=0x4 (Id=1856)
+{
+    unsigned long LongFlags;// Offset=0x0 Size=0x4
+    struct _MMPAGE_FILE_EXPANSION_FLAGS Flags;// Offset=0x0 Size=0x4
+};

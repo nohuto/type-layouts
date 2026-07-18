@@ -1,0 +1,15 @@
+struct _MI_REVERSE_MAP_VIEW_ATTRIBUTES// Size=0x8 (Id=1880)
+{
+    union // Size=0x8 (Id=0)
+    {
+        unsigned long long FullSectionOffset;// Offset=0x0 Size=0x8
+        struct // Size=0x8 (Id=0)
+        {
+            unsigned long long NumberOfPtes:6;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x6
+            unsigned long long PartitionId:10;// Offset=0x0 Size=0x8 BitOffset=0x6 BitSize=0xa
+            unsigned long long SectionOffset:46;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x2e
+            unsigned long long ViewState:2;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x2
+        };
+        unsigned long long EntireField;// Offset=0x0 Size=0x8
+    };
+};

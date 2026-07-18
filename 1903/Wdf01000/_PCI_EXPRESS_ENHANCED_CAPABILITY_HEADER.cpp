@@ -1,0 +1,9 @@
+struct _PCI_EXPRESS_ENHANCED_CAPABILITY_HEADER// Size=0x4 (Id=5028)
+{
+    unsigned short CapabilityID;// Offset=0x0 Size=0x2
+    struct // Size=0x2 (Id=0)
+    {
+        unsigned short Version:4;// Offset=0x2 Size=0x2 BitOffset=0x0 BitSize=0x4
+        unsigned short Next:12;// Offset=0x2 Size=0x2 BitOffset=0x4 BitSize=0xc
+    };
+};

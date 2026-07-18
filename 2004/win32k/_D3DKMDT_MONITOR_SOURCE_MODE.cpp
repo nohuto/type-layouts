@@ -1,0 +1,117 @@
+enum _D3DKMDT_VIDEO_SIGNAL_STANDARD
+{
+    D3DKMDT_VSS_UNINITIALIZED=0,
+    D3DKMDT_VSS_VESA_DMT=1,
+    D3DKMDT_VSS_VESA_GTF=2,
+    D3DKMDT_VSS_VESA_CVT=3,
+    D3DKMDT_VSS_IBM=4,
+    D3DKMDT_VSS_APPLE=5,
+    D3DKMDT_VSS_NTSC_M=6,
+    D3DKMDT_VSS_NTSC_J=7,
+    D3DKMDT_VSS_NTSC_443=8,
+    D3DKMDT_VSS_PAL_B=9,
+    D3DKMDT_VSS_PAL_B1=10,
+    D3DKMDT_VSS_PAL_G=11,
+    D3DKMDT_VSS_PAL_H=12,
+    D3DKMDT_VSS_PAL_I=13,
+    D3DKMDT_VSS_PAL_D=14,
+    D3DKMDT_VSS_PAL_N=15,
+    D3DKMDT_VSS_PAL_NC=16,
+    D3DKMDT_VSS_SECAM_B=17,
+    D3DKMDT_VSS_SECAM_D=18,
+    D3DKMDT_VSS_SECAM_G=19,
+    D3DKMDT_VSS_SECAM_H=20,
+    D3DKMDT_VSS_SECAM_K=21,
+    D3DKMDT_VSS_SECAM_K1=22,
+    D3DKMDT_VSS_SECAM_L=23,
+    D3DKMDT_VSS_SECAM_L1=24,
+    D3DKMDT_VSS_EIA_861=25,
+    D3DKMDT_VSS_EIA_861A=26,
+    D3DKMDT_VSS_EIA_861B=27,
+    D3DKMDT_VSS_PAL_K=28,
+    D3DKMDT_VSS_PAL_K1=29,
+    D3DKMDT_VSS_PAL_L=30,
+    D3DKMDT_VSS_PAL_M=31,
+    D3DKMDT_VSS_OTHER=255
+};
+
+struct _D3DKMDT_2DREGION// Size=0x8 (Id=438)
+{
+    unsigned int cx;// Offset=0x0 Size=0x4
+    unsigned int cy;// Offset=0x4 Size=0x4
+};
+
+struct _D3DDDI_RATIONAL// Size=0x8 (Id=579)
+{
+    unsigned int Numerator;// Offset=0x0 Size=0x4
+    unsigned int Denominator;// Offset=0x4 Size=0x4
+};
+
+enum _D3DDDI_VIDEO_SIGNAL_SCANLINE_ORDERING
+{
+    D3DDDI_VSSLO_UNINITIALIZED=0,
+    D3DDDI_VSSLO_PROGRESSIVE=1,
+    D3DDDI_VSSLO_INTERLACED_UPPERFIELDFIRST=2,
+    D3DDDI_VSSLO_INTERLACED_LOWERFIELDFIRST=3,
+    D3DDDI_VSSLO_OTHER=255
+};
+
+struct _D3DKMDT_VIDEO_SIGNAL_INFO// Size=0x2c (Id=448)
+{
+    enum _D3DKMDT_VIDEO_SIGNAL_STANDARD VideoStandard;// Offset=0x0 Size=0x4
+    struct _D3DKMDT_2DREGION TotalSize;// Offset=0x4 Size=0x8
+    struct _D3DKMDT_2DREGION ActiveSize;// Offset=0xc Size=0x8
+    struct _D3DDDI_RATIONAL VSyncFreq;// Offset=0x14 Size=0x8
+    struct _D3DDDI_RATIONAL HSyncFreq;// Offset=0x1c Size=0x8
+    unsigned long PixelRate;// Offset=0x24 Size=0x4
+    union // Size=0x4 (Id=0)
+    {
+        struct _D3DKMDT_VIDEO_SIGNAL_INFO::_anonymous_450::<unnamed-type-AdditionalSignalInfo> AdditionalSignalInfo;// Offset=0x28 Size=0x4
+        enum _D3DDDI_VIDEO_SIGNAL_SCANLINE_ORDERING ScanLineOrdering;// Offset=0x28 Size=0x4
+    };
+};
+
+enum _D3DKMDT_COLOR_BASIS
+{
+    D3DKMDT_CB_UNINITIALIZED=0,
+    D3DKMDT_CB_INTENSITY=1,
+    D3DKMDT_CB_SRGB=2,
+    D3DKMDT_CB_SCRGB=3,
+    D3DKMDT_CB_YCBCR=4,
+    D3DKMDT_CB_YPBPR=5
+};
+
+struct _D3DKMDT_COLOR_COEFF_DYNAMIC_RANGES// Size=0x10 (Id=458)
+{
+    unsigned int FirstChannel;// Offset=0x0 Size=0x4
+    unsigned int SecondChannel;// Offset=0x4 Size=0x4
+    unsigned int ThirdChannel;// Offset=0x8 Size=0x4
+    unsigned int FourthChannel;// Offset=0xc Size=0x4
+};
+
+enum _D3DKMDT_MONITOR_CAPABILITIES_ORIGIN
+{
+    D3DKMDT_MCO_UNINITIALIZED=0,
+    D3DKMDT_MCO_DEFAULTMONITORPROFILE=1,
+    D3DKMDT_MCO_MONITORDESCRIPTOR=2,
+    D3DKMDT_MCO_MONITORDESCRIPTOR_REGISTRYOVERRIDE=3,
+    D3DKMDT_MCO_SPECIFICCAP_REGISTRYOVERRIDE=4,
+    D3DKMDT_MCO_DRIVER=5
+};
+
+enum _D3DKMDT_MODE_PREFERENCE
+{
+    D3DKMDT_MP_UNINITIALIZED=0,
+    D3DKMDT_MP_PREFERRED=1,
+    D3DKMDT_MP_NOTPREFERRED=2
+};
+
+struct _D3DKMDT_MONITOR_SOURCE_MODE// Size=0x4c (Id=360)
+{
+    unsigned int Id;// Offset=0x0 Size=0x4
+    struct _D3DKMDT_VIDEO_SIGNAL_INFO VideoSignalInfo;// Offset=0x4 Size=0x2c
+    enum _D3DKMDT_COLOR_BASIS ColorBasis;// Offset=0x30 Size=0x4
+    struct _D3DKMDT_COLOR_COEFF_DYNAMIC_RANGES ColorCoeffDynamicRanges;// Offset=0x34 Size=0x10
+    enum _D3DKMDT_MONITOR_CAPABILITIES_ORIGIN Origin;// Offset=0x44 Size=0x4
+    enum _D3DKMDT_MODE_PREFERENCE Preference;// Offset=0x48 Size=0x4
+};

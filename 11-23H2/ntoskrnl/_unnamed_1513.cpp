@@ -1,0 +1,12 @@
+union _unnamed_1513// Size=0x2 (Id=1513)
+{
+    struct // Size=0x2 (Id=0)
+    {
+        unsigned short SignatureLevel:4;// Offset=0x0 Size=0x2 BitOffset=0x0 BitSize=0x4
+        unsigned short SignatureType:3;// Offset=0x0 Size=0x2 BitOffset=0x4 BitSize=0x3
+        unsigned short Frozen:2;// Offset=0x0 Size=0x2 BitOffset=0x7 BitSize=0x2
+        unsigned short HotPatch:1;// Offset=0x0 Size=0x2 BitOffset=0x9 BitSize=0x1
+        unsigned short Unused:6;// Offset=0x0 Size=0x2 BitOffset=0xa BitSize=0x6
+    };
+    unsigned short EntireField;// Offset=0x0 Size=0x2
+};

@@ -1,0 +1,12 @@
+struct _POOL_TRACKER_TABLE// Size=0x50 (Id=1047)
+{
+    long Key;// Offset=0x0 Size=0x4
+    unsigned long long NonPagedBytes;// Offset=0x8 Size=0x8
+    unsigned long long NonPagedAllocs;// Offset=0x10 Size=0x8
+    unsigned long long NonPagedFrees;// Offset=0x18 Size=0x8
+    unsigned long long PagedBytes;// Offset=0x20 Size=0x8
+    unsigned long long PagedAllocs;// Offset=0x28 Size=0x8
+    unsigned long long PagedFrees;// Offset=0x30 Size=0x8
+    long long AvailableLimit[2];// Offset=0x38 Size=0x10
+    struct _POOL_LIMIT_TABLE_ENTRY * LimitInfo;// Offset=0x48 Size=0x8
+};

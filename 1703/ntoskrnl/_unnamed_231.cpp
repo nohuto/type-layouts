@@ -1,0 +1,13 @@
+union _unnamed_231// Size=0x8 (Id=231)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long IoAttributionContext:61;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x3d
+        unsigned long long Spare:3;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x3
+    };
+    unsigned long long ImageCrossPartitionCharge;// Offset=0x0 Size=0x8
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long CommittedPageCount:36;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x24
+    };
+};

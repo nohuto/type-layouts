@@ -1,0 +1,4 @@
+struct _OBJECT_HEADER_PADDING_INFO// Size=0x4 (Id=2062)
+{
+    unsigned long PaddingAmount;// Offset=0x0 Size=0x4
+};

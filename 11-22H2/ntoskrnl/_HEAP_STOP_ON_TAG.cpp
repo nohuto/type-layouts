@@ -1,0 +1,9 @@
+struct _HEAP_STOP_ON_TAG// Size=0x4 (Id=1599)
+{
+    union // Size=0x4 (Id=0)
+    {
+        unsigned long HeapAndTagIndex;// Offset=0x0 Size=0x4
+        unsigned short TagIndex;// Offset=0x0 Size=0x2
+        unsigned short HeapIndex;// Offset=0x2 Size=0x2
+    };
+};

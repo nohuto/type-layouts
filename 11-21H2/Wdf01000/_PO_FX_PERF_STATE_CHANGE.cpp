@@ -1,0 +1,9 @@
+struct _PO_FX_PERF_STATE_CHANGE// Size=0x10 (Id=1744)
+{
+    unsigned long Set;// Offset=0x0 Size=0x4
+    union // Size=0x4 (Id=0)
+    {
+        unsigned long StateIndex;// Offset=0x8 Size=0x4
+        unsigned long long StateValue;// Offset=0x8 Size=0x8
+    };
+};

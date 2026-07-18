@@ -1,0 +1,4 @@
+enum _KD_OPTION
+{
+    KD_OPTION_SET_BLOCK_ENABLE=0
+};

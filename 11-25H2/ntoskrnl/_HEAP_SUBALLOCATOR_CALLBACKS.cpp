@@ -1,0 +1,9 @@
+struct _HEAP_SUBALLOCATOR_CALLBACKS// Size=0x30 (Id=888)
+{
+    unsigned long long Allocate;// Offset=0x0 Size=0x8
+    unsigned long long Free;// Offset=0x8 Size=0x8
+    unsigned long long Commit;// Offset=0x10 Size=0x8
+    unsigned long long Decommit;// Offset=0x18 Size=0x8
+    unsigned long long ExtendContext;// Offset=0x20 Size=0x8
+    unsigned long long TlsCleanup;// Offset=0x28 Size=0x8
+};

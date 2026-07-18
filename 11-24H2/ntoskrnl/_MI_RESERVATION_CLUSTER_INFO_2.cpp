@@ -1,0 +1,9 @@
+union _MI_RESERVATION_CLUSTER_INFO// Size=0x4 (Id=2453)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long ClusterSize:10;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0xa
+        unsigned long SequenceNumber:22;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x16
+    };
+    long EntireInfo;// Offset=0x0 Size=0x4
+};

@@ -1,0 +1,3 @@
+struct _WDF_COMPANION_EVENT_CALLBACKS_V1_23// Size=0x0 (Id=5526)
+{
+};

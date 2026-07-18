@@ -1,0 +1,19 @@
+struct _KIST_BASE_FRAME// Size=0x30 (Id=775)
+{
+    struct _KPCR * KernelGsBase;// Offset=0x0 Size=0x8
+    struct _KIST_LINK_FRAME * IstStack;// Offset=0x8 Size=0x8
+    unsigned long long PreviousGsBase;// Offset=0x10 Size=0x8
+    unsigned long long PreviousCr3;// Offset=0x18 Size=0x8
+    unsigned long long IstPad;// Offset=0x20 Size=0x8
+    unsigned long long Reserved;// Offset=0x28 Size=0x8
+};
+
+struct _KTRANSITION_STACK// Size=0x200 (Id=774)
+{
+    union // Size=0x200 (Id=0)
+    {
+        unsigned char Stack[512];// Offset=0x0 Size=0x200
+        unsigned char IstStack[464];// Offset=0x0 Size=0x1d0
+        struct _KIST_BASE_FRAME IstFrame;// Offset=0x1d0 Size=0x30
+    };
+};

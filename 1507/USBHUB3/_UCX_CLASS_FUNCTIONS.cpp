@@ -1,0 +1,26 @@
+enum _UCX_CLASS_FUNCTIONS
+{
+    UcxIoDeviceControlIndex=0,
+    UcxControllerCreateIndex=1,
+    UcxControllerNeedsResetIndex=2,
+    UcxControllerResetCompleteIndex=3,
+    UcxControllerSetFailedIndex=4,
+    UcxRootHubCreateIndex=5,
+    UcxRootHubPortChangedIndex=6,
+    UcxUsbDeviceCreateIndex=7,
+    UcxUsbDeviceInitSetEventCallbacksIndex=8,
+    UcxUsbDeviceRemoteWakeNotificationIndex=9,
+    UcxEndpointCreateIndex=10,
+    UcxEndpointGetStaticStreamsReferencedIndex=11,
+    UcxEndpointNeedToCancelTransfersIndex=12,
+    UcxEndpointInitSetEventCallbacksIndex=13,
+    UcxDefaultEndpointInitSetEventCallbacksIndex=14,
+    UcxEndpointSetWdfIoQueueIndex=15,
+    UcxEndpointPurgeCompleteIndex=16,
+    UcxEndpointAbortCompleteIndex=17,
+    UcxEndpointNoPingResponseErrorIndex=18,
+    UcxStaticStreamsSetStreamInfoIndex=19,
+    UcxStaticStreamsCreateIndex=20,
+    UcxInitializeDeviceInitIndex=21,
+    UcxFunctionsMax=22
+};

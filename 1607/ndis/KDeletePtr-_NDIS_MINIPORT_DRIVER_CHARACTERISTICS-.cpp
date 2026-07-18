@@ -1,0 +1,5 @@
+struct KDeletePtr<_NDIS_MINIPORT_DRIVER_CHARACTERISTICS>// Size=0x1 (Id=442)
+{
+    void KDeletePtr<_NDIS_MINIPORT_DRIVER_CHARACTERISTICS>();
+    void operator()(struct _NDIS_MINIPORT_DRIVER_CHARACTERISTICS * );
+};

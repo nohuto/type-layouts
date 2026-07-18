@@ -1,0 +1,41 @@
+struct _LUID// Size=0x8 (Id=31)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+enum _TOKEN_TYPE
+{
+    TokenPrimary=1,
+    TokenImpersonation=2
+};
+
+enum _SECURITY_IMPERSONATION_LEVEL
+{
+    SecurityAnonymous=0,
+    SecurityIdentification=1,
+    SecurityImpersonation=2,
+    SecurityDelegation=3
+};
+
+struct _TOKEN_MANDATORY_POLICY// Size=0x4 (Id=568)
+{
+    unsigned long Policy;// Offset=0x0 Size=0x4
+};
+
+struct _TOKEN_ACCESS_INFORMATION// Size=0x58 (Id=509)
+{
+    struct _SID_AND_ATTRIBUTES_HASH * SidHash;// Offset=0x0 Size=0x8
+    struct _SID_AND_ATTRIBUTES_HASH * RestrictedSidHash;// Offset=0x8 Size=0x8
+    struct _TOKEN_PRIVILEGES * Privileges;// Offset=0x10 Size=0x8
+    struct _LUID AuthenticationId;// Offset=0x18 Size=0x8
+    enum _TOKEN_TYPE TokenType;// Offset=0x20 Size=0x4
+    enum _SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;// Offset=0x24 Size=0x4
+    struct _TOKEN_MANDATORY_POLICY MandatoryPolicy;// Offset=0x28 Size=0x4
+    unsigned long Flags;// Offset=0x2c Size=0x4
+    unsigned long AppContainerNumber;// Offset=0x30 Size=0x4
+    void * PackageSid;// Offset=0x38 Size=0x8
+    struct _SID_AND_ATTRIBUTES_HASH * CapabilitiesHash;// Offset=0x40 Size=0x8
+    void * TrustLevelSid;// Offset=0x48 Size=0x8
+    void * SecurityAttributes;// Offset=0x50 Size=0x8
+};

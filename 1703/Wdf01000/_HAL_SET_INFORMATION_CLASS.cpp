@@ -1,0 +1,22 @@
+enum _HAL_SET_INFORMATION_CLASS
+{
+    HalProfileSourceInterval=0,
+    HalProfileSourceInterruptHandler=1,
+    HalMcaRegisterDriver=2,
+    HalKernelErrorHandler=3,
+    HalCmcRegisterDriver=4,
+    HalCpeRegisterDriver=5,
+    HalMcaLog=6,
+    HalCmcLog=7,
+    HalCpeLog=8,
+    HalGenerateCmcInterrupt=9,
+    HalProfileSourceTimerHandler=10,
+    HalEnlightenment=11,
+    HalProfileDpgoSourceInterruptHandler=12,
+    HalRegisterSecondaryInterruptInterface=13,
+    HalSetChannelPowerInformation=14,
+    HalI386ExceptionChainTerminatorInformation=15,
+    HalSetResetParkDisposition=16,
+    HalSetPsciSuspendMode=17,
+    HalSetHvciEnabled=18
+};

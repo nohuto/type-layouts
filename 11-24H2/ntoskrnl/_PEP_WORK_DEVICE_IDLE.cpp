@@ -1,0 +1,5 @@
+struct _PEP_WORK_DEVICE_IDLE// Size=0x10 (Id=2516)
+{
+    struct POHANDLE__ * DeviceHandle;// Offset=0x0 Size=0x8
+    unsigned char IgnoreIdleTimeout;// Offset=0x8 Size=0x1
+};

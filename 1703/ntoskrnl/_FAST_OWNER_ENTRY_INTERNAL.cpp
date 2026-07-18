@@ -1,0 +1,23 @@
+struct _LIST_ENTRY// Size=0x10 (Id=22)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _FAST_OWNER_ENTRY_INTERNAL// Size=0x48 (Id=1277)
+{
+    struct _LIST_ENTRY ListEntry;// Offset=0x0 Size=0x10
+    unsigned char AbLockHandle;// Offset=0x10 Size=0x1
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char Disowned:1;// Offset=0x11 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char DynamicallyAllocated:1;// Offset=0x11 Size=0x1 BitOffset=0x1 BitSize=0x1
+        unsigned char CallerExclusive:1;// Offset=0x11 Size=0x1 BitOffset=0x2 BitSize=0x1
+    };
+    unsigned char IsSublistHead;// Offset=0x12 Size=0x1
+    unsigned char IsWaiting;// Offset=0x13 Size=0x1
+    void * LockAddress;// Offset=0x18 Size=0x8
+    void * ThreadAddress;// Offset=0x20 Size=0x8
+    struct _LIST_ENTRY SublistHead;// Offset=0x28 Size=0x10
+    struct _LIST_ENTRY LockListEntry;// Offset=0x38 Size=0x10
+};

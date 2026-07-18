@@ -1,0 +1,15 @@
+union _WHEA_ERROR_RECORD_SECTION_DESCRIPTOR_FLAGS// Size=0x4 (Id=405)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Primary:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long ContainmentWarning:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long Reset:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long ThresholdExceeded:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long ResourceNotAvailable:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long LatentError:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long Propagated:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long Reserved:25;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x19
+    };
+    unsigned long AsULONG;// Offset=0x0 Size=0x4
+};

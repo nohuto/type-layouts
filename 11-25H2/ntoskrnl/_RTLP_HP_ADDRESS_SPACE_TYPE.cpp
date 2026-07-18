@@ -1,0 +1,8 @@
+enum _RTLP_HP_ADDRESS_SPACE_TYPE
+{
+    HeapAddressUser=0,
+    HeapAddressKernel=1,
+    HeapAddressSession=2,
+    HeapAddressSecure=3,
+    HeapAddressTypeMax=4
+};

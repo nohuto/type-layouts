@@ -1,0 +1,20 @@
+struct _LIST_ENTRY// Size=0x10 (Id=4)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _RTL_DYNAMIC_HASH_TABLE_ENTRY// Size=0x18 (Id=138)
+{
+    struct _LIST_ENTRY Linkage;// Offset=0x0 Size=0x10
+    unsigned long long Signature;// Offset=0x10 Size=0x8
+};
+
+struct _SEP_LUID_TO_INDEX_MAP_ENTRY// Size=0x38 (Id=1196)
+{
+    struct _RTL_DYNAMIC_HASH_TABLE_ENTRY HashEntry;// Offset=0x0 Size=0x18
+    long long ReferenceCount;// Offset=0x18 Size=0x8
+    unsigned long long Luid;// Offset=0x20 Size=0x8
+    unsigned long long IndexIntoGlobalSingletonTable;// Offset=0x28 Size=0x8
+    unsigned char MarkedForDeletion;// Offset=0x30 Size=0x1
+};

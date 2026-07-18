@@ -1,0 +1,19 @@
+enum FxSelfManagedIoStates
+{
+    FxSelfManagedIoInvalid=0,
+    FxSelfManagedIoCreated=1,
+    FxSelfManagedIoInit=2,
+    FxSelfManagedIoInitFailed=3,
+    FxSelfManagedIoInitStartedFailedPost=4,
+    FxSelfManagedIoStarted=5,
+    FxSelfManagedIoSuspending=6,
+    FxSelfManagedIoStopped=7,
+    FxSelfManagedIoRestarting=8,
+    FxSelfManagedIoRestartedFailedPost=9,
+    FxSelfManagedIoFailed=10,
+    FxSelfManagedIoFlushing=11,
+    FxSelfManagedIoFlushed=12,
+    FxSelfManagedIoCleanup=13,
+    FxSelfManagedIoFinal=14,
+    FxSelfManagedIoMax=15
+};

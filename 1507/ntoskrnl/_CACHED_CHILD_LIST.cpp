@@ -1,0 +1,9 @@
+struct _CACHED_CHILD_LIST// Size=0x10 (Id=819)
+{
+    unsigned long Count;// Offset=0x0 Size=0x4
+    union // Size=0x8 (Id=0)
+    {
+        unsigned long long ValueList;// Offset=0x8 Size=0x8
+        struct _CM_KEY_CONTROL_BLOCK * RealKcb;// Offset=0x8 Size=0x8
+    };
+};

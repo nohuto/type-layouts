@@ -1,0 +1,6 @@
+struct _count_string// Size=0x10 (Id=215)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short MaximumLength;// Offset=0x2 Size=0x2
+    char * Buffer;// Offset=0x8 Size=0x8
+};

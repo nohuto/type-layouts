@@ -1,0 +1,4 @@
+struct _WDT_HANDLE// Size=0x1 (Id=1926)
+{
+    char Reserved;// Offset=0x0 Size=0x1
+};

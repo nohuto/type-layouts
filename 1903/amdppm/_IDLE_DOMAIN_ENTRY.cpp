@@ -1,0 +1,24 @@
+struct _LIST_ENTRY// Size=0x10 (Id=22)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _KAFFINITY_EX// Size=0xa8 (Id=528)
+{
+    unsigned short Count;// Offset=0x0 Size=0x2
+    unsigned short Size;// Offset=0x2 Size=0x2
+    unsigned long Reserved;// Offset=0x4 Size=0x4
+    unsigned long long Bitmap[20];// Offset=0x8 Size=0xa0
+};
+
+struct _IDLE_DOMAIN_ENTRY// Size=0xd8 (Id=667)
+{
+    struct _LIST_ENTRY Link;// Offset=0x0 Size=0x10
+    struct _LIST_ENTRY IdleStateHead;// Offset=0x10 Size=0x10
+    unsigned long Count;// Offset=0x20 Size=0x4
+    unsigned long Id;// Offset=0x24 Size=0x4
+    unsigned long Coordination;// Offset=0x28 Size=0x4
+    unsigned long Total;// Offset=0x2c Size=0x4
+    struct _KAFFINITY_EX Mask;// Offset=0x30 Size=0xa8
+};

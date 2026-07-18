@@ -1,0 +1,5 @@
+struct KSEVENTDATA::_unnamed_1293::<unnamed-type-Alignment>// Size=0x18 (Id=1293)
+{
+    void * Unused;// Offset=0x0 Size=0x8
+    long long Alignment[2];// Offset=0x8 Size=0x10
+};

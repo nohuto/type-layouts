@@ -1,0 +1,20 @@
+enum _STORPORT_FEATURE_TYPE
+{
+    StorportFeatureBusTypeUnitControl=0,
+    StorportFeatureFruIdUnitControl=1,
+    StorportFeatureFruIdAdapterControl=2,
+    StorportFeatureSetEventLoggingAdapterControl=3,
+    StorportFeatureReportInternalDataUnitControl=4,
+    StorportFeatureReportInternalDataAdapterControl=5,
+    StorportFeatureResetBusSynchronous=6,
+    StorportFeaturePostHwInitialize=7,
+    StorportFeaturePrepareEarlyDumpData=8,
+    StorportFeatureRestoreEarlyDumpData=9,
+    StorportFeatureKsrAdapterPowerDownOptimization=10,
+    StorportFeatureKsrUnitPowerDownOptimization=11,
+    StorportFeaturePreparePLDR=12,
+    StorportFeatureNvmeofAdapterOperation=13,
+    StorportFeatureForwardIoUnitControl=14,
+    StorportFeatureQueryStorMQInterface=15,
+    StorportFeatureMax=16
+};

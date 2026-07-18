@@ -1,0 +1,20 @@
+enum _MMLISTS
+{
+    ZeroedPageList=0,
+    FreePageList=1,
+    StandbyPageList=2,
+    ModifiedPageList=3,
+    ModifiedNoWritePageList=4,
+    BadPageList=5,
+    ActiveAndValid=6,
+    TransitionPage=7
+};
+
+struct _MMPFNLIST// Size=0x28 (Id=533)
+{
+    unsigned long long Total;// Offset=0x0 Size=0x8
+    enum _MMLISTS ListName;// Offset=0x8 Size=0x4
+    unsigned long long Flink;// Offset=0x10 Size=0x8
+    unsigned long long Blink;// Offset=0x18 Size=0x8
+    unsigned long long Lock;// Offset=0x20 Size=0x8
+};

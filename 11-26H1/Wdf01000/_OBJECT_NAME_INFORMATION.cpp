@@ -1,0 +1,11 @@
+struct _UNICODE_STRING// Size=0x10 (Id=145)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short MaximumLength;// Offset=0x2 Size=0x2
+    wchar_t * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _OBJECT_NAME_INFORMATION// Size=0x10 (Id=383)
+{
+    struct _UNICODE_STRING Name;// Offset=0x0 Size=0x10
+};

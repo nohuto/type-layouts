@@ -1,0 +1,41 @@
+struct _NDIS_PER_PROC_PERFORMANCE_COUNTERS// Size=0x130 (Id=191)
+{
+    unsigned long long DpcCount;// Offset=0x0 Size=0x8
+    unsigned long long IsrCount;// Offset=0x8 Size=0x8
+    unsigned long long ReceiveIndicationCalls;// Offset=0x10 Size=0x8
+    unsigned long long ReturnNblsCalls;// Offset=0x18 Size=0x8
+    unsigned long long ReceivedNbls;// Offset=0x20 Size=0x8
+    unsigned long long ReturnedNbls;// Offset=0x28 Size=0x8
+    unsigned long long SendCalls;// Offset=0x30 Size=0x8
+    unsigned long long SendCompleteCalls;// Offset=0x38 Size=0x8
+    unsigned long long SentNbs;// Offset=0x40 Size=0x8
+    unsigned long long SendCompleteNbs;// Offset=0x48 Size=0x8
+    unsigned long long HalBuildSGListCalls;// Offset=0x50 Size=0x8
+    unsigned long long IndirectionTableChangeCalls;// Offset=0x58 Size=0x8
+    unsigned long long NdisQueueDpcCallsNotCurrentCpu;// Offset=0x60 Size=0x8
+    unsigned long long DpcTotalCycles;// Offset=0x68 Size=0x8
+    unsigned long long IsrCycles;// Offset=0x70 Size=0x8
+    unsigned long long NdisReceiveIndicationCycles;// Offset=0x78 Size=0x8
+    unsigned long long StackReceiveIndicationCycles;// Offset=0x80 Size=0x8
+    unsigned long long NdisReturnNblCycles;// Offset=0x88 Size=0x8
+    unsigned long long MiniportReturnNblCycles;// Offset=0x90 Size=0x8
+    unsigned long long NdisSendCycles;// Offset=0x98 Size=0x8
+    unsigned long long MiniportSendCycles;// Offset=0xa0 Size=0x8
+    unsigned long long NdisSendCompleteCycles;// Offset=0xa8 Size=0x8
+    unsigned long long StackSendCompleteCycles;// Offset=0xb0 Size=0x8
+    unsigned long long HalBuildSGListCycles;// Offset=0xb8 Size=0x8
+    unsigned long long IndirectionTableChangeCycles;// Offset=0xc0 Size=0x8
+    unsigned long long SendCallsAtPassive;// Offset=0xc8 Size=0x8
+    unsigned long long SentNbsAtPassive;// Offset=0xd0 Size=0x8
+    unsigned long long ReturnNblsCallsAtPassive;// Offset=0xd8 Size=0x8
+    unsigned long long ReturnedNblsAtPassive;// Offset=0xe0 Size=0x8
+    unsigned long long LowResourceReceiveIndicationCalls;// Offset=0xe8 Size=0x8
+    unsigned long long LowResourceReceivedNbls;// Offset=0xf0 Size=0x8
+    unsigned long long TcpOffloadReceiveIndicationCalls;// Offset=0xf8 Size=0x8
+    unsigned long long TcpOffloadSendCalls;// Offset=0x100 Size=0x8
+    unsigned long long TcpOffloadReceiveData;// Offset=0x108 Size=0x8
+    unsigned long long TcpOffloadSendData;// Offset=0x110 Size=0x8
+    unsigned long long IsrToDpcCycles;// Offset=0x118 Size=0x8
+    unsigned long long DpcCallsDeferred;// Offset=0x120 Size=0x8
+    unsigned long long PacketsCoalesced;// Offset=0x128 Size=0x8
+};

@@ -1,0 +1,10 @@
+struct _RTLP_HEAP_FEATURES// Size=0x1 (Id=377)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char UseSegmentHeap:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char EnableTagging:1;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x1
+        unsigned char DisableDbgBreakOnCorruption:1;// Offset=0x0 Size=0x1 BitOffset=0x2 BitSize=0x1
+        unsigned char TraceLoggingEnabled:1;// Offset=0x0 Size=0x1 BitOffset=0x3 BitSize=0x1
+    };
+};

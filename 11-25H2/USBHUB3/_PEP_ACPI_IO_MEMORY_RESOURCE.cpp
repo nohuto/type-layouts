@@ -1,0 +1,37 @@
+enum _PEP_ACPI_RESOURCE_TYPE
+{
+    PepAcpiMemory=0,
+    PepAcpiIoPort=1,
+    PepAcpiInterrupt=2,
+    PepAcpiGpioIo=3,
+    PepAcpiGpioInt=4,
+    PepAcpiSpbI2c=5,
+    PepAcpiSpbSpi=6,
+    PepAcpiSpbUart=7,
+    PepAcpiExtendedMemory=8,
+    PepAcpiExtendedIo=9
+};
+
+struct _unnamed_10// Size=0x8 (Id=10)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=11)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_10 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _PEP_ACPI_IO_MEMORY_RESOURCE// Size=0x20 (Id=448)
+{
+    enum _PEP_ACPI_RESOURCE_TYPE Type;// Offset=0x0 Size=0x4
+    unsigned char Information;// Offset=0x4 Size=0x1
+    union _LARGE_INTEGER MinimumAddress;// Offset=0x8 Size=0x8
+    union _LARGE_INTEGER MaximumAddress;// Offset=0x10 Size=0x8
+    unsigned long Alignment;// Offset=0x18 Size=0x4
+    unsigned long Length;// Offset=0x1c Size=0x4
+};

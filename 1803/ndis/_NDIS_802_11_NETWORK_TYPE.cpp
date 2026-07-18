@@ -1,0 +1,9 @@
+enum _NDIS_802_11_NETWORK_TYPE
+{
+    Ndis802_11FH=0,
+    Ndis802_11DS=1,
+    Ndis802_11OFDM5=2,
+    Ndis802_11OFDM24=3,
+    Ndis802_11Automode=4,
+    Ndis802_11NetworkTypeMax=5
+};

@@ -1,0 +1,25 @@
+struct _unnamed_994// Size=0x4 (Id=994)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long QueueType:3;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x3
+        unsigned long QueuePortType:4;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x4
+        unsigned long Canceled:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long Ready:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long ReleaseMessage:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+        unsigned long SharedQuota:1;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x1
+        unsigned long ReplyWaitReply:1;// Offset=0x0 Size=0x4 BitOffset=0xb BitSize=0x1
+        unsigned long OwnerPortReference:1;// Offset=0x0 Size=0x4 BitOffset=0xc BitSize=0x1
+        unsigned long ReceiverReference:1;// Offset=0x0 Size=0x4 BitOffset=0xd BitSize=0x1
+        unsigned long ViewAttributeRetrieved:1;// Offset=0x0 Size=0x4 BitOffset=0xe BitSize=0x1
+        unsigned long ViewAttributeDeleteOnRelease:1;// Offset=0x0 Size=0x4 BitOffset=0xf BitSize=0x1
+        unsigned long InDispatch:1;// Offset=0x0 Size=0x4 BitOffset=0x10 BitSize=0x1
+        unsigned long InCanceledQueue:1;// Offset=0x0 Size=0x4 BitOffset=0x11 BitSize=0x1
+    };
+};
+
+union _unnamed_995// Size=0x4 (Id=995)
+{
+    struct _unnamed_994 s1;// Offset=0x0 Size=0x4
+    unsigned long State;// Offset=0x0 Size=0x4
+};

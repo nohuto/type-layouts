@@ -1,0 +1,43 @@
+struct _URB_HEADER// Size=0x18 (Id=660)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short Function;// Offset=0x2 Size=0x2
+    long Status;// Offset=0x4 Size=0x4
+    void * UsbdDeviceHandle;// Offset=0x8 Size=0x8
+    unsigned long UsbdFlags;// Offset=0x10 Size=0x4
+};
+
+struct _URB_HCD_AREA// Size=0x40 (Id=640)
+{
+    void * Reserved8[8];// Offset=0x0 Size=0x40
+};
+
+struct _URB_BULK_OR_INTERRUPT_TRANSFER// Size=0x80 (Id=586)
+{
+    struct _URB_HEADER Hdr;// Offset=0x0 Size=0x18
+    void * PipeHandle;// Offset=0x18 Size=0x8
+    unsigned long TransferFlags;// Offset=0x20 Size=0x4
+    unsigned long TransferBufferLength;// Offset=0x24 Size=0x4
+    void * TransferBuffer;// Offset=0x28 Size=0x8
+    struct _MDL * TransferBufferMDL;// Offset=0x30 Size=0x8
+    struct _URB * UrbLink;// Offset=0x38 Size=0x8
+    struct _URB_HCD_AREA hca;// Offset=0x40 Size=0x40
+};
+
+struct _RTL_BITMAP// Size=0x10 (Id=14)
+{
+    unsigned long SizeOfBitMap;// Offset=0x0 Size=0x4
+    unsigned long * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _HUB_INTERRUPT_REQUEST// Size=0xb8 (Id=535)
+{
+    struct WDFREQUEST__ * WdfRequest;// Offset=0x0 Size=0x8
+    struct _URB_BULK_OR_INTERRUPT_TRANSFER Urb;// Offset=0x8 Size=0x80
+    void * UsbdInterruptPipeHandle;// Offset=0x88 Size=0x8
+    unsigned char NoChangesInLastInterrupt;// Offset=0x90 Size=0x1
+    unsigned long * StatusChangeBitMap;// Offset=0x98 Size=0x8
+    unsigned short MaxStatusChangeBitMapSize;// Offset=0xa0 Size=0x2
+    unsigned short CurrentStatusChangeBitMapSize;// Offset=0xa2 Size=0x2
+    struct _RTL_BITMAP StatusChangeBitMapHeader;// Offset=0xa8 Size=0x10
+};

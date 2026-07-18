@@ -1,0 +1,2536 @@
+enum _USB_DEVICE_SPEED
+{
+    UsbLowSpeed=0,
+    UsbFullSpeed=1,
+    UsbHighSpeed=2,
+    UsbSuperSpeed=3
+};
+
+struct _USBDEVICE_INFO// Size=0x18 (Id=536)
+{
+    unsigned long Size;// Offset=0x0 Size=0x4
+    enum _USB_DEVICE_SPEED DeviceSpeed;// Offset=0x4 Size=0x4
+    unsigned long PortNumber;// Offset=0x8 Size=0x4
+    struct USB_DEVICE_CONTEXT__ * Context;// Offset=0x10 Size=0x8
+};
+
+struct _LIST_ENTRY// Size=0x10 (Id=4)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+union _DEVICE_MUX_FLAGS// Size=0x4 (Id=599)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Stopped:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long PowerReferenceHeld:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long PnpOperationPending:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+    };
+};
+
+struct _DSM_MUX_CONTEXT// Size=0x38 (Id=418)
+{
+    struct _LIST_ENTRY ListEntry;// Offset=0x0 Size=0x10
+    struct _LIST_ENTRY TempListEntry;// Offset=0x10 Size=0x10
+    struct _LIST_ENTRY SurpriseRemoveListEntry;// Offset=0x20 Size=0x10
+    union _DEVICE_MUX_FLAGS DeviceFlags;// Offset=0x30 Size=0x4
+};
+
+struct _URB_HEADER// Size=0x18 (Id=660)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short Function;// Offset=0x2 Size=0x2
+    long Status;// Offset=0x4 Size=0x4
+    void * UsbdDeviceHandle;// Offset=0x8 Size=0x8
+    unsigned long UsbdFlags;// Offset=0x10 Size=0x4
+};
+
+struct _URB_HCD_AREA// Size=0x40 (Id=640)
+{
+    void * Reserved8[8];// Offset=0x0 Size=0x40
+};
+
+struct _URB_CONTROL_TRANSFER_EX// Size=0x88 (Id=409)
+{
+    struct _URB_HEADER Hdr;// Offset=0x0 Size=0x18
+    void * PipeHandle;// Offset=0x18 Size=0x8
+    unsigned long TransferFlags;// Offset=0x20 Size=0x4
+    unsigned long TransferBufferLength;// Offset=0x24 Size=0x4
+    void * TransferBuffer;// Offset=0x28 Size=0x8
+    struct _MDL * TransferBufferMDL;// Offset=0x30 Size=0x8
+    unsigned long Timeout;// Offset=0x38 Size=0x4
+    struct _URB_HCD_AREA hca;// Offset=0x40 Size=0x40
+    unsigned char SetupPacket[8];// Offset=0x80 Size=0x8
+};
+
+struct _URB_PIPE_REQUEST// Size=0x28 (Id=648)
+{
+    struct _URB_HEADER Hdr;// Offset=0x0 Size=0x18
+    void * PipeHandle;// Offset=0x18 Size=0x8
+    unsigned long Reserved;// Offset=0x20 Size=0x4
+};
+
+struct _CONTROL_REQUEST// Size=0xa8 (Id=447)
+{
+    struct WDFREQUEST__ * WdfRequest;// Offset=0x0 Size=0x8
+    unsigned long NumberOfBytes;// Offset=0x8 Size=0x4
+    struct _IRP * Irp;// Offset=0x10 Size=0x8
+    union // Size=0x88 (Id=0)
+    {
+        struct _URB_CONTROL_TRANSFER_EX Urb;// Offset=0x18 Size=0x88
+        struct _URB_PIPE_REQUEST PipeUrb;// Offset=0x18 Size=0x28
+        unsigned long UsbdFlags;// Offset=0xa0 Size=0x4
+    };
+};
+
+struct _DISPATCHER_HEADER// Size=0x18 (Id=478)
+{
+    union // Size=0x4 (Id=0)
+    {
+        long Lock;// Offset=0x0 Size=0x4
+        long LockNV;// Offset=0x0 Size=0x4
+        unsigned char Type;// Offset=0x0 Size=0x1
+        unsigned char Signalling;// Offset=0x1 Size=0x1
+        unsigned char Size;// Offset=0x2 Size=0x1
+        unsigned char Reserved1;// Offset=0x3 Size=0x1
+        unsigned char TimerType;// Offset=0x0 Size=0x1
+        union // Size=0x1 (Id=0)
+        {
+            unsigned char TimerControlFlags;// Offset=0x1 Size=0x1
+            struct // Size=0x1 (Id=0)
+            {
+                unsigned char Absolute:1;// Offset=0x1 Size=0x1 BitOffset=0x0 BitSize=0x1
+                unsigned char Wake:1;// Offset=0x1 Size=0x1 BitOffset=0x1 BitSize=0x1
+                unsigned char EncodedTolerableDelay:6;// Offset=0x1 Size=0x1 BitOffset=0x2 BitSize=0x6
+            };
+        };
+        unsigned char Hand;// Offset=0x2 Size=0x1
+        unsigned char TimerMiscFlags;// Offset=0x3 Size=0x1
+        struct // Size=0x1 (Id=0)
+        {
+            unsigned char Index:6;// Offset=0x3 Size=0x1 BitOffset=0x0 BitSize=0x6
+            unsigned char Inserted:1;// Offset=0x3 Size=0x1 BitOffset=0x6 BitSize=0x1
+            unsigned char Expired:1;// Offset=0x3 Size=0x1 BitOffset=0x7 BitSize=0x1
+        };
+        unsigned char Timer2Type;// Offset=0x0 Size=0x1
+        union // Size=0x1 (Id=0)
+        {
+            unsigned char Timer2Flags;// Offset=0x1 Size=0x1
+            struct // Size=0x1 (Id=0)
+            {
+                unsigned char Timer2Inserted:1;// Offset=0x1 Size=0x1 BitOffset=0x0 BitSize=0x1
+                unsigned char Timer2Expiring:1;// Offset=0x1 Size=0x1 BitOffset=0x1 BitSize=0x1
+                unsigned char Timer2CancelPending:1;// Offset=0x1 Size=0x1 BitOffset=0x2 BitSize=0x1
+                unsigned char Timer2SetPending:1;// Offset=0x1 Size=0x1 BitOffset=0x3 BitSize=0x1
+                unsigned char Timer2Running:1;// Offset=0x1 Size=0x1 BitOffset=0x4 BitSize=0x1
+                unsigned char Timer2Disabled:1;// Offset=0x1 Size=0x1 BitOffset=0x5 BitSize=0x1
+                unsigned char Timer2ReservedFlags:2;// Offset=0x1 Size=0x1 BitOffset=0x6 BitSize=0x2
+            };
+        };
+        unsigned char Timer2ComponentId;// Offset=0x2 Size=0x1
+        unsigned char Timer2RelativeId;// Offset=0x3 Size=0x1
+        unsigned char QueueType;// Offset=0x0 Size=0x1
+        union // Size=0x1 (Id=0)
+        {
+            unsigned char QueueControlFlags;// Offset=0x1 Size=0x1
+            struct // Size=0x1 (Id=0)
+            {
+                unsigned char Abandoned:1;// Offset=0x1 Size=0x1 BitOffset=0x0 BitSize=0x1
+                unsigned char DisableIncrement:1;// Offset=0x1 Size=0x1 BitOffset=0x1 BitSize=0x1
+                unsigned char QueueReservedControlFlags:6;// Offset=0x1 Size=0x1 BitOffset=0x2 BitSize=0x6
+            };
+        };
+        unsigned char QueueSize;// Offset=0x2 Size=0x1
+        unsigned char QueueReserved;// Offset=0x3 Size=0x1
+        unsigned char ThreadType;// Offset=0x0 Size=0x1
+        unsigned char ThreadReserved;// Offset=0x1 Size=0x1
+        union // Size=0x1 (Id=0)
+        {
+            unsigned char ThreadControlFlags;// Offset=0x2 Size=0x1
+            struct // Size=0x1 (Id=0)
+            {
+                unsigned char CycleProfiling:1;// Offset=0x2 Size=0x1 BitOffset=0x0 BitSize=0x1
+                unsigned char CounterProfiling:1;// Offset=0x2 Size=0x1 BitOffset=0x1 BitSize=0x1
+                unsigned char GroupScheduling:1;// Offset=0x2 Size=0x1 BitOffset=0x2 BitSize=0x1
+                unsigned char AffinitySet:1;// Offset=0x2 Size=0x1 BitOffset=0x3 BitSize=0x1
+                unsigned char Tagged:1;// Offset=0x2 Size=0x1 BitOffset=0x4 BitSize=0x1
+                unsigned char EnergyProfiling:1;// Offset=0x2 Size=0x1 BitOffset=0x5 BitSize=0x1
+                unsigned char ThreadReservedControlFlags:2;// Offset=0x2 Size=0x1 BitOffset=0x6 BitSize=0x2
+            };
+        };
+        unsigned char DebugActive;// Offset=0x3 Size=0x1
+        struct // Size=0x1 (Id=0)
+        {
+            unsigned char ActiveDR7:1;// Offset=0x3 Size=0x1 BitOffset=0x0 BitSize=0x1
+            unsigned char Instrumented:1;// Offset=0x3 Size=0x1 BitOffset=0x1 BitSize=0x1
+            unsigned char Minimal:1;// Offset=0x3 Size=0x1 BitOffset=0x2 BitSize=0x1
+            unsigned char Reserved4:3;// Offset=0x3 Size=0x1 BitOffset=0x3 BitSize=0x3
+            unsigned char UmsScheduled:1;// Offset=0x3 Size=0x1 BitOffset=0x6 BitSize=0x1
+            unsigned char UmsPrimary:1;// Offset=0x3 Size=0x1 BitOffset=0x7 BitSize=0x1
+        };
+        unsigned char MutantType;// Offset=0x0 Size=0x1
+        unsigned char MutantSize;// Offset=0x1 Size=0x1
+        unsigned char DpcActive;// Offset=0x2 Size=0x1
+        unsigned char MutantReserved;// Offset=0x3 Size=0x1
+    };
+    long SignalState;// Offset=0x4 Size=0x4
+    struct _LIST_ENTRY WaitListHead;// Offset=0x8 Size=0x10
+};
+
+struct _KEVENT// Size=0x18 (Id=19)
+{
+    struct _DISPATCHER_HEADER Header;// Offset=0x0 Size=0x18
+};
+
+enum _HSM_EVENT
+{
+    HsmEventNull=1000,
+    HsmEventContinueIfNoSubState=1001,
+    HsmEventTimerFired=1002,
+    HsmEventConfigurationFailure=2006,
+    HsmEventConfigurationSuccess=2010,
+    HsmEventDevicePowerReferencesAcquired=2014,
+    HsmEventDevicePowerReferencesReleased=2018,
+    HsmEventDeviceStopAfterSuspendAcked=2022,
+    HsmEventFDOD0Entry=2007,
+    HsmEventFDOD0EntryFromSx=2011,
+    HsmEventFDOD0Exit=2015,
+    HsmEventFDOD0ExitFinal=2019,
+    HsmEventFDODeviceAdd=2023,
+    HsmEventFDODeviceCleanup=2027,
+    HsmEventFDOPrepareHardware=2031,
+    HsmEventFDOReleaseHardware=2035,
+    HsmEventHubConfigurationFailure=2009,
+    HsmEventHubConfigurationSuccess=2013,
+    HsmEventHubError=2026,
+    HsmEventHubFatalError=2017,
+    HsmEventHubIgnoreError=2021,
+    HsmEventHubLocalPowerGood=2025,
+    HsmEventHubLocalPowerLost=2029,
+    HsmEventHubOverCurrent=2033,
+    HsmEventHubOverCurrentCleared=2037,
+    HsmEventInterruptTransferFailure=2030,
+    HsmEventInterruptTransferSuccess=2034,
+    HsmEventIoctlFailure=2038,
+    HsmEventIoctlSuccess=2042,
+    HsmEventNo=2041,
+    HsmEventOperationFailure=2045,
+    HsmEventOperationPending=2049,
+    HsmEventOperationSuccess=2053,
+    HsmEventPDORequestGetPortStatus=2039,
+    HsmEventPortEnableInterruptTransfer=2046,
+    HsmEventPortInterruptReferencesReleased=2050,
+    HsmEventPortPowerReferencesAcquired=2054,
+    HsmEventPortPowerReferencesReleased=2058,
+    HsmEventPortResetReferencesReleased=2062,
+    HsmEventPrepareForUpStreamReset=2043,
+    HsmEventResetHub=2047,
+    HsmEventResetHubComplete=2066,
+    HsmEventResetHubFailed=2070,
+    HsmEventResetHubFailedOnRemoval=2074,
+    HsmEventResetInterruptPipeFailure=2012,
+    HsmEventResetInterruptPipeSuccess=2016,
+    HsmEventResetRegistrationComplete=2078,
+    HsmEventResetUnregistrationComplete=2082,
+    HsmEventTransferFailure=2004,
+    HsmEventTransferSuccess=2008,
+    HsmEventUpstreamResetComplete=2090,
+    HsmEventYes=2057
+};
+
+enum _PSM_EVENT
+{
+    PsmEventNull=1000,
+    PsmEventContinueIfNoSubState=1001,
+    PsmEventTimerFired=1002,
+    PsmEventDeviceDetached=3006,
+    PsmEventDevicePrepareForHibernation=3007,
+    PsmEventDeviceRequestCycle=3011,
+    PsmEventDeviceRequestDisable=3015,
+    PsmEventDeviceRequestDisableSuperSpeed=3019,
+    PsmEventDeviceRequestReset=3023,
+    PsmEventDeviceRequestResume=3027,
+    PsmEventDeviceRequestSuspend=3031,
+    PsmEventDeviceRequestWarmReset=3035,
+    PsmEventDeviceSetU1Timeout=3039,
+    PsmEventDeviceSetU2Timeout=3043,
+    PsmEventHubReset=3010,
+    PsmEventHubResume=3014,
+    PsmEventHubResumeInS0=3018,
+    PsmEventHubResumeWithReset=3022,
+    PsmEventHubStart=3026,
+    PsmEventHubStatusChange=3030,
+    PsmEventHubStop=3034,
+    PsmEventHubSurpriseRemove=3038,
+    PsmEventHubSuspend=3042,
+    PsmEventNo=3005,
+    PsmEventObjectCleanup=3046,
+    PsmEventOperationFailure=3009,
+    PsmEventOperationSuccess=3013,
+    PsmEventPortConnectChange=3017,
+    PsmEventPortCycleOnError=3021,
+    PsmEventPortDisableAndCycleOnError=3025,
+    PsmEventPortDisabled=3029,
+    PsmEventPortEnabledOnConnectError=3033,
+    PsmEventPortEnabledWhileResetError=3037,
+    PsmEventPortError=3041,
+    PsmEventPortErrorWithChange=3045,
+    PsmEventPortIgnoreError=3049,
+    PsmEventPortLinkStateError=3053,
+    PsmEventPortNeedsReset=3057,
+    PsmEventPortNoChange=3061,
+    PsmEventPortOverCurrent=3065,
+    PsmEventPortOverCurrentCleared=3069,
+    PsmEventPortResetComplete=3073,
+    PsmEventPortResetHubOnError=3077,
+    PsmEventPortResetInProgress=3081,
+    PsmEventPortResetPollingTimerFired=3004,
+    PsmEventPortResumed=3085,
+    PsmEventTransferFailure=3008,
+    PsmEventTransferSuccess=3012,
+    PsmEventUserInitiatedResetOnOverCurrent=3054,
+    PsmEventYes=3089
+};
+
+enum _DSM_EVENT
+{
+    DsmEventNull=1000,
+    DsmEventContinueIfNoSubState=1001,
+    DsmEventTimerFired=1002,
+    DsmEventBootResetTimerFired=4007,
+    DsmEventClientRequestCycle=4011,
+    DsmEventClientRequestIdle=4015,
+    DsmEventClientRequestOpenOrCloseStreams=4019,
+    DsmEventClientRequestReset=4023,
+    DsmEventClientRequestResetPipe=4027,
+    DsmEventClientRequestSelectConfiguration=4031,
+    DsmEventClientRequestSelectNullConfiguration=4035,
+    DsmEventClientRequestSetInterface=4039,
+    DsmEventClientRequestSyncClearStall=4043,
+    DsmEventClientRequestSyncResetPipe=4047,
+    DsmEventDeviceDisableUState=4009,
+    DsmEventDeviceEnableUState=4013,
+    DsmEventDeviceFailEnumeration=4017,
+    DsmEventDeviceHotReset=4021,
+    DsmEventDeviceIgnoreError=4025,
+    DsmEventDeviceNoReset=4029,
+    DsmEventDeviceRenumerateOnHubResume=4033,
+    DsmEventDeviceResumed=4037,
+    DsmEventDeviceResumedOnHubResume=4041,
+    DsmEventDeviceRetryEnum=4045,
+    DsmEventDeviceSuspendedOnHubResume=4049,
+    DsmEventDeviceWarmReset=4053,
+    DsmEventFDORequestGetDescriptor=4051,
+    DsmEventHubResume=4006,
+    DsmEventHubResumeInS0=4010,
+    DsmEventHubResumeWithReset=4014,
+    DsmEventHubStart=4018,
+    DsmEventHubStop=4022,
+    DsmEventHubStopAfterSuspend=4026,
+    DsmEventHubStopWithReferenceAcquired=4057,
+    DsmEventHubSuspend=4030,
+    DsmEventLPMPowerSettingChange=4055,
+    DsmEventNo=4061,
+    DsmEventNoPingResponseError=4059,
+    DsmEventOperationFailure=4065,
+    DsmEventOperationFailureWithDeviceEnabled=4069,
+    DsmEventOperationPending=4073,
+    DsmEventOperationSuccess=4077,
+    DsmEventPDOCleanup=4063,
+    DsmEventPDOD0Entry=4067,
+    DsmEventPDOD0Exit=4071,
+    DsmEventPDOD0ExitFinal=4075,
+    DsmEventPDOInstallMSOSExt=4091,
+    DsmEventPDOPrepareForHibernation=4079,
+    DsmEventPDOPreStart=4095,
+    DsmEventPDOReportedMissing=4083,
+    DsmEventPortAttachDevice=4034,
+    DsmEventPortDetachDevice=4038,
+    DsmEventPortDetachDeviceWithDeviceEnabled=4081,
+    DsmEventPortDisabled=4042,
+    DsmEventPortDisabledOnHubSuspend=4085,
+    DsmEventPortFailed=4046,
+    DsmEventPortReAttachDevice=4050,
+    DsmEventPortResetComplete=4054,
+    DsmEventPortResetFailedDueToPendingSuspend=4058,
+    DsmEventPortResetTimedOut=4062,
+    DsmEventPortResumed=4066,
+    DsmEventPortResumedFromD3Cold=4070,
+    DsmEventPortResumeFailedDueToPendingSuspend=4074,
+    DsmEventPortResumeTimedOut=4078,
+    DsmEventPortStateDisabled=4082,
+    DsmEventPortStateEnabled=4086,
+    DsmEventPortStateEnabledOnReconnect=4090,
+    DsmEventPortStateSuspended=4094,
+    DsmEventPortSuspended=4098,
+    DsmEventPortTimeoutUpdated=4102,
+    DsmEventQueryDeviceText=4087,
+    DsmEventTransferFailure=4004,
+    DsmEventTransferStall=4008,
+    DsmEventTransferSuccess=4012,
+    DsmEventUCXClientRequestComplete=4016,
+    DsmEventUCXIoctlFailure=4020,
+    DsmEventUCXIoctlFailureDueToExitLatencyTooLarge=4024,
+    DsmEventUCXIoctlSuccess=4028,
+    DsmEventYes=4089
+};
+
+union _EVENT// Size=0x4 (Id=510)
+{
+    unsigned long EventAsUlong;// Offset=0x0 Size=0x4
+    enum _HSM_EVENT HsmEvent;// Offset=0x0 Size=0x4
+    enum _PSM_EVENT PsmEvent;// Offset=0x0 Size=0x4
+    enum _DSM_EVENT DsmEvent;// Offset=0x0 Size=0x4
+};
+
+enum _GENERIC_STATE
+{
+    GenericStateIgnored=1000,
+    GenericStateEmptySubState=1001,
+    GenericStateNull=1002
+};
+
+enum _HSM_STATE
+{
+    HsmStateIgnored=1000,
+    HsmStateEmptySubState=1001,
+    HsmStateNull=1002,
+    HsmStateCompleteWithStatusFailed=1003,
+    HsmStateRequestPortCycle=1004,
+    HsmStateSignalQueryDeviceTextEvent=1005,
+    HsmStateCompleteFDORequestWithStatusFailed=1006,
+    HsmStateCompleteGetPortStatusWithInternalError=1007,
+    HsmStateCompleteGetPortStatusWithNoSuchDevice=1008,
+    HsmStateCompletePdoPreStart=1009,
+    HsmStateSignalPnpPowerEvent=1010,
+    HsmStateWaitingForAddDevice=2000,
+    HsmStateAcquiringWdfPowerReferenceInitialD0Entry=2001,
+    HsmStateAcquiringWdfPowerReferenceOnInterrupt=2002,
+    HsmStateAcquiringWdfPowerReferenceOnInterruptFailureAndCheckingIfRootHub=2003,
+    HsmStateAcquiringWdfPowerReferenceOnReset=2004,
+    HsmStateAcquiringWdfPowerReferenceOnResumeInSX=2005,
+    HsmStateAcquiringWdfReferenceOnResumeInS0=2006,
+    HsmStateBugcheckingSystemOnExcessiveResetsForHubInBootPath=2007,
+    HsmStateCancellingInterruptTransferOnReset=2008,
+    HsmStateCancellingInterruptTransferOnStop=2009,
+    HsmStateCancellingInterruptTransferOnSuspend=2010,
+    HsmStateCheckIfThereIsAValidHubChange=2011,
+    HsmStateCheckingForUnexpectedPowerLoss=2012,
+    HsmStateCheckingIfHubIsInBootPath=2013,
+    HsmStateCheckingIfResetByParent=2014,
+    HsmStateCheckingIfResetByParentWithResetPending=2015,
+    HsmStateCheckingIfResetRecoveryHasBeenInvokedTooManyTimes=2016,
+    HsmStateCheckingPSMInterruptReferencesOnReset=2017,
+    HsmStateCheckingPSMInterruptReferencesOnResetInNoInterrupt=2018,
+    HsmStateCheckingPSMInterruptReferencesOnResetInNoInterruptOnFatalError=2019,
+    HsmStateCheckingPSMInterruptReferencesOnStop=2020,
+    HsmStateCheckingPSMInterruptReferencesOnStopInNoInterrupt=2021,
+    HsmStateCheckingPSMInterruptReferencesOnSuspend=2022,
+    HsmStateCheckingPSMInterruptReferencesOnSxInNoInterrupt=2023,
+    HsmStateCheckOverCurrentBit=2024,
+    HsmStateCompletingPDORequestForGetPortStatus=2025,
+    HsmStateCompletingPDORequestForGetPortStatusFromConfigWithIntTransfer=2026,
+    HsmStateCompletingPDORequestForGetPortStatusFromConfigWithIntTransferWithNoSuchDevice=2027,
+    HsmStateCompletingPDORequestForGetPortStatusInSuspended=2028,
+    HsmStateCompletingPDORequestForGetPortStatusWithNoSuchDevice=2029,
+    HsmStateConfiguredWithIntTransfer=2030,
+    HsmStateConfiguredWithoutInterruptTransfer=2031,
+    HsmStateConfiguring=2032,
+    HsmStateConfiguringHubAfterReset=2033,
+    HsmStateConfiguringHubAfterResetOnSystemResume=2034,
+    HsmStateCreatingChildPSMs=2035,
+    HsmStateErrorOnWaitingForOvercurrentClear=2036,
+    HsmStateGettingAdditionalConfigInfo=2037,
+    HsmStateGettingHubPortStatus=2038,
+    HsmStateGettingHubPortStatusForLostChanges=2039,
+    HsmStateGettingOverCurrentBitStatus=2040,
+    HsmStateGettingPortStatusOnPDORequest=2041,
+    HsmStateGettingPortStatusOnPDORequestFromConfigWithIntTransfer=2042,
+    HsmStateHasResetCountReachedMaximum=2043,
+    HsmStateHasResetPipeCountReachedMaximum=2044,
+    HsmStateHubStatusError=2045,
+    HsmStateInitializingResetCount=2046,
+    HsmStateIsItHubChange=2047,
+    HsmStateLoggingHubWasReset=2048,
+    HsmStateNotifyingHubResetToPortsOnReset=2049,
+    HsmStateNotifyingHubResetToPortsOnResetOnFatalError=2050,
+    HsmStateNotifyingHubResetToPortsOnResetOnResume=2051,
+    HsmStateNotifyingHubResumeInS0ToDevices=2052,
+    HsmStateNotifyingHubResumeToDevices=2053,
+    HsmStateNotifyingHubResumeWithResetToDevices=2054,
+    HsmStateNotifyingHubResumeWithResetToDevicesOnFailure=2055,
+    HsmStateNotifyingHubStopToDevices=2056,
+    HsmStateNotifyingHubStopToDevicesOnSuspriseRemove=2057,
+    HsmStateNotifyingHubStopToPorts=2058,
+    HsmStateNotifyingHubStopToPortsOnFatalError=2059,
+    HsmStateNotifyingHubStopToPortsOnReset=2060,
+    HsmStateQueryingForHubHackFlags=2061,
+    HsmStateQueueingFakeStatusChangeOnResumeInS0=2062,
+    HsmStateQueueingHubStatusForLostChanges=2063,
+    HsmStateQueueingPortStatusChangeEvents=2064,
+    HsmStateQueuingHubChange=2065,
+    HsmStateReConfiguring=2066,
+    HsmStateReportingErrorToPnp=2067,
+    HsmStateReportingReStartFailure=2068,
+    HsmStateReportingStartFailure=2069,
+    HsmStateResettingHub=2070,
+    HsmStateResettingHubOnResume=2071,
+    HsmStateResettingInterruptPipeOnFailure=2072,
+    HsmStateSendingAckForHubChange=2073,
+    HsmStateSendingInterruptTransfer=2074,
+    HsmStateSendingInterruptTransferAfterResettingPipe=2075,
+    HsmStateSettingUpHubPostErrataQuery=2076,
+    HsmStateSignalingPnPPowerEventOnPendingStop=2077,
+    HsmStateSignalingPnPPowerEventOnStart=2078,
+    HsmStateSignalingPnPPowerEventOnStop=2079,
+    HsmStateSignallingPnpPowerEventForSuspended=2080,
+    HsmStateSignallingPnpPowerEventInUnconfigured=2081,
+    HsmStateStartingTimerForResetRetry=2082,
+    HsmStateStopped=2083,
+    HsmStateSupriseRemoved=2084,
+    HsmStateSuspended=2085,
+    HsmStateSuspendedInRecycle=2086,
+    HsmStateSuspendedWithPendingReset=2087,
+    HsmStateUnblockingResumeOnHubResetFailure=2088,
+    HsmStateUnblockResumeWaitingForStop=2089,
+    HsmStateUnconfigured=2090,
+    HsmStateWaitingForD0Entry=2091,
+    HsmStateWaitingForDevicesToAcquireReferenceOnStart=2092,
+    HsmStateWaitingForDevicesToReleaseReferenceOnD0ExitFinalFromReset=2093,
+    HsmStateWaitingForDevicesToReleaseReferenceOnSuspend=2094,
+    HsmStateWaitingForEnableInterruptsOnReset=2095,
+    HsmStateWaitingForEnableInterruptsOnStop=2096,
+    HsmStateWaitingForEnableInterruptsOnSx=2097,
+    HsmStateWaitingForInterruptReferencesReleasedOnFatalError=2098,
+    HsmStateWaitingForInterruptReferencesReleasedOnReset=2099,
+    HsmStateWaitingForInterruptReferencesReleasedOnStop=2100,
+    HsmStateWaitingForInterruptReferencesReleasedOnSuspend=2101,
+    HsmStateWaitingForOvercurrentToClear=2102,
+    HsmStateWaitingForPortsToAcquireReferenceOnResume=2103,
+    HsmStateWaitingForPortsToAcquireReferenceOnResumeInS0=2104,
+    HsmStateWaitingForPortsToAcquireReferenceOnResumeWithReset=2105,
+    HsmStateWaitingForPortsToAcquireReferenceOnStart=2106,
+    HsmStateWaitingForPortsToAcquireReferencePostReset=2107,
+    HsmStateWaitingForPortsToReleaseReferenceOnReset=2108,
+    HsmStateWaitingForPortsToReleaseReferenceOnResetOnResume=2109,
+    HsmStateWaitingForPortsToReleaseReferenceOnStop=2110,
+    HsmStateWaitingForPortsToReleaseReferenceOnSuspend=2111,
+    HsmStateWaitingForPSMInterruptReferencesOnReset=2112,
+    HsmStateWaitingForPSMInterruptReferencesOnStop=2113,
+    HsmStateWaitingForPSMInterruptReferencesOnSuspend=2114,
+    HsmStateWaitingForReleaseHardware=2115,
+    HsmStateWaitingForReleaseHardwareOnReStartFailure=2116,
+    HsmStateWaitingForReleaseHardwareOnStartFailure=2117,
+    HsmStateWaitingForResetRetryTimer=2118,
+    HsmStateWaitingForStop=2119,
+    HsmStateWaitingToBeDeleted=2120,
+    HsmStateCheckingBytesReturnedInHubConfigDescriptor=2121,
+    HsmStateCheckingIfHubDescriptorRetryCountExceededMax=2122,
+    HsmStateConfiguringAfterSetConfig=2123,
+    HsmStateGettingHubConfigurationDescriptorWithDefaultLength=2124,
+    HsmStateGettingHubConfigurationDescriptorWithReturnedLength=2125,
+    HsmStateGettingHubDescriptor=2126,
+    HsmStateGettingHubStatus=2127,
+    HsmStateInitializingHubDescriptorRetryCount=2128,
+    HsmStateReturningConfigurationFailure=2129,
+    HsmStateReturningConfigurationSuccess=2130,
+    HsmStateSettingHubConfiguration=2131,
+    HsmStateUpdatingHubInfoInUCX=2132,
+    HsmStateValidatingAndParsingHubDescriptor=2133,
+    HsmStateValidatingAndParsingHubPowerStatus=2134,
+    HsmStateValidatingHubConfigurationDescriptor=2135,
+    HsmStateWaitingForHubDescriptorRetryTimer=2136,
+    HsmStateGettingRootHub20PortsInfo=2137,
+    HsmStateGettingRootHub30PortsInfo=2138,
+    HsmStateGettingRootHubInfo=2139,
+    HsmStateReturningConfigurationFailureForRootHub=2140,
+    HsmStateReturningConfigurationSuccessForRootHub=2141,
+    HsmStateGettingAdditionalInfoFromParent=2142,
+    HsmStateReturningOperationFailure=2143,
+    HsmStateReturningOperationSuccess=2144,
+    HsmStateGettingHubDescriptorToCheckForPowerLoss=2145,
+    HsmStateReturningOperationFailureInCheckingForPowerLoss=2146,
+    HsmStateReturningOperationSuccessInCheckingForPowerLoss=2147,
+    HsmStateReturningOperationFailureInSettingHubDepth=2148,
+    HsmStateReturningOperationSuccessInSettingHubDepth=2149,
+    HsmStateSettingHubDepth=2150
+};
+
+enum _PSM20_STATE
+{
+    Psm20StateIgnored=1000,
+    Psm20StateEmptySubState=1001,
+    Psm20StateNull=1002,
+    Psm20StateCompleteWithStatusFailed=1003,
+    Psm20StateRequestPortCycle=1004,
+    Psm20StateSignalQueryDeviceTextEvent=1005,
+    Psm20StateCompleteFDORequestWithStatusFailed=1006,
+    Psm20StateCompleteGetPortStatusWithInternalError=1007,
+    Psm20StateCompleteGetPortStatusWithNoSuchDevice=1008,
+    Psm20StateCompletePdoPreStart=1009,
+    Psm20StateSignalPnpPowerEvent=1010,
+    Psm20StatePoweredOffDisconnected=3000,
+    Psm20StateAcquiringInterruptReferenceOnHSMInDisabled=3001,
+    Psm20StateAcquiringInterruptReferenceOnHSMInEnabled=3002,
+    Psm20StateAcquiringInterruptReferenceOnResuming=3003,
+    Psm20StateAcquiringPowerReferenceFromPoweredOffDisabledInS0=3004,
+    Psm20StateAcquiringPowerReferenceFromPoweredOffDisconnectedInS0=3005,
+    Psm20StateAcquiringPowerReferenceFromPoweredOffSuspendedInS0=3006,
+    Psm20StateCancellingDisableOnHubStopSuspend=3007,
+    Psm20StateCancellingDisablingPortOnPortCycleOnHubStop=3008,
+    Psm20StateCancellingDisablingPortOnPortCycleWithTimerOnHubStop=3009,
+    Psm20StateCancellingQueryPortStatus=3010,
+    Psm20StateCancellingResetOnSurpriseRemove=3011,
+    Psm20StateCancellingSetPortPower=3012,
+    Psm20StateCheckingIfConnectBitOne=3013,
+    Psm20StateCheckingIfOvercurrentBitOne=3014,
+    Psm20StateCheckingIfPersistentOvercurrent=3015,
+    Psm20StateConnectedDisabled=3016,
+    Psm20StateConnectedEnabled=3017,
+    Psm20StateCreatingDevice=3018,
+    Psm20StateDetachingDeviceFromPortOnCycleOnHubStop=3019,
+    Psm20StateDetachingDeviceFromPortOnDisconnect=3020,
+    Psm20StateDetachingDeviceFromPortOnDisconnectWithTimer=3021,
+    Psm20StateDetachingDeviceFromPortOnOverCurrent=3022,
+    Psm20StateDetachingDeviceFromPortOnOverCurrentClear=3023,
+    Psm20StateDetachingDeviceFromPortOnOverCurrentClearWithTimer=3024,
+    Psm20StateDetachingDeviceFromPortOnOverCurrentWithTimer=3025,
+    Psm20StateDetachingDeviceFromPortOnPortCycle=3026,
+    Psm20StateDetachingDeviceOnCleanup=3027,
+    Psm20StateDetachingDeviceOnDisableAndCycle=3028,
+    Psm20StateDetachingDeviceOnHubReset=3029,
+    Psm20StateDetachingDeviceOnPortCycleWithTimer=3030,
+    Psm20StateDetachingDeviceOnPortDisableAndCycleWithTimer=3031,
+    Psm20StateDisablingOnHubSuspendWithTimer=3032,
+    Psm20StateDisablingPortBeforeConnecting=3033,
+    Psm20StateDisablingPortOnCycle=3034,
+    Psm20StateDisablingPortOnDeviceRequest=3035,
+    Psm20StateDisablingPortOnHubSuspend=3036,
+    Psm20StateDisablingPortOnPortCycleWithTimer=3037,
+    Psm20StateDisablingPortOnTimeOut=3038,
+    Psm20StateDisconnected=3039,
+    Psm20StateErrorOnAcquringReferenceOnHubResume=3040,
+    Psm20StateErrorOnConnectedDisabled=3041,
+    Psm20StateErrorOnConnectedEnabled=3042,
+    Psm20StateErrorOnDisconnected=3043,
+    Psm20StateErrorOnIssuingResetComplete=3044,
+    Psm20StateErrorOnResettingEnabled=3045,
+    Psm20StateErrorOnResettingPort=3046,
+    Psm20StateErrorOnStartingAndAcquiringReferenceOnHubResumeFromDisabled=3047,
+    Psm20StateErrorOnStoppingTimerOnDisconnect=3048,
+    Psm20StateErrorOnStoppingTimerOnOverCurrent=3049,
+    Psm20StateErrorOnStoppingTimerOnOverCurrentClear=3050,
+    Psm20StateErrorOnStoppingTimerOnPortCycle=3051,
+    Psm20StateErrorOnSuspended=3052,
+    Psm20StateErrorOnWaitingForCompanionPort=3053,
+    Psm20StateErrorOnWaitingForDebounce=3054,
+    Psm20StateErrorOnWaitingForDSMResumeResponse=3055,
+    Psm20StateErrorOnWaitingForOldDeviceToCleanup=3056,
+    Psm20StateErrorOnWaitingForOverCurrentClear=3057,
+    Psm20StateErrorOnWaitingForResumeComplete=3058,
+    Psm20StateErrorOnWaitingForResumeRecoveryTimer=3059,
+    Psm20StateErrorOnWaitingForResumeTimerToFlush=3060,
+    Psm20StateFlushingStaleDeviceEvents=3061,
+    Psm20StateFlushingUserResetForOverCurrentOnHubStopSuspend=3062,
+    Psm20StateFlushingUserResetForOverCurrentOnOverCurrentClear=3063,
+    Psm20StateInitiatingResetPort=3064,
+    Psm20StateInitiatingResume=3065,
+    Psm20StateIsItBootDevice=3066,
+    Psm20StateIsOldDevicePresent=3067,
+    Psm20StateIssuingAttachDeviceToPort=3068,
+    Psm20StateIssuingDetachDeviceOnCycleFromPoweredOffDisabledOrSuspended=3069,
+    Psm20StateIssuingDisabledToDSMFromDisabled=3070,
+    Psm20StateIssuingHubReset=3071,
+    Psm20StateIssuingHubResetFromDisconnected=3072,
+    Psm20StateIssuingHubResetOnDisableFailure=3073,
+    Psm20StateIssuingHubResetWhenWaitingForDSMResumeResponse=3074,
+    Psm20StateIssuingHubResetWhileHubSuspend=3075,
+    Psm20StateIssuingHubResetWithPendingTimer=3076,
+    Psm20StateIssuingHubResetWithTimer=3077,
+    Psm20StateIssuingHubResetWithTimerOnHubSuspend=3078,
+    Psm20StateIssuingHubResetWithTimerWhileHubSuspend=3079,
+    Psm20StateIssuingPortDisabledToDevice=3080,
+    Psm20StateIssuingPortDisableFailedToDevice=3081,
+    Psm20StateIssuingReAttachDeviceToBootDevice=3082,
+    Psm20StateIssuingResetFailedDuetoPendingHubSuspendToDSMInDisabled=3083,
+    Psm20StateIssuingResetFailedDuetoPendingHubSuspendToDSMInEnabled=3084,
+    Psm20StateIssuingResumedToDeviceSM=3085,
+    Psm20StateIssuingSuspendedToDeviceSM=3086,
+    Psm20StateNotifyingUserAboutPersistentOverCurrent=3087,
+    Psm20StatePoweredOffDisabled=3088,
+    Psm20StatePoweredOffSuspended=3089,
+    Psm20StateQueryingPortStatusOnOverCurrent=3090,
+    Psm20StateQueueingPortFailureToDSMOnSuspend=3091,
+    Psm20StateQueueingPortResumeFailedDueToPendingSuspend=3092,
+    Psm20StateQueueingPortResumeTimedOut=3093,
+    Psm20StateQueueingStateDisabledOnHubResumeFromDisabled=3094,
+    Psm20StateQueueingStateDisabledToDeviceSM=3095,
+    Psm20StateQueueingStateDisabledToDeviceSMOnResetHub=3096,
+    Psm20StateQueueingStateEnabledToDeviceSM=3097,
+    Psm20StateQueueingStateSuspendedToDeviceSM=3098,
+    Psm20StateQueueingStateSuspendedToDeviceSMOnIgnoreError=3099,
+    Psm20StateReleasingInterruptReferenceAndIssuingPortResetTimedOutToDSM=3100,
+    Psm20StateReleasingInterruptReferenceAndStoppingTimer=3101,
+    Psm20StateReleasingInterruptReferenceOnResetTransferFailure=3102,
+    Psm20StateReleasingInterruptReferenceOnSuccessfulReset=3103,
+    Psm20StateReleasingPowerReferenceonPoweredOffDisabled=3104,
+    Psm20StateReleasingPowerReferenceonPoweredOffDisconnected=3105,
+    Psm20StateReleasingResetReferenceOnDeviceRemoval=3106,
+    Psm20StateResettingEnabled=3107,
+    Psm20StateSettingPortPowerOnOverCurrent=3108,
+    Psm20StateStartingAndAcquiringReferenceOnHubResume=3109,
+    Psm20StateStartingAndAcquiringReferenceOnHubResumeFromDisabled=3110,
+    Psm20StateStartingAndAcquiringReferenceOnHubStart=3111,
+    Psm20StateStartingAndAcquiringReferenceOnHubStartFromDisabled=3112,
+    Psm20StateStartingAndAcquiringReferenceOnWarmResume=3113,
+    Psm20StateStartingOverCurrentTimer=3114,
+    Psm20StateStartingResetTimer=3115,
+    Psm20StateStartingResumeRecoveryTimer=3116,
+    Psm20StateStartingResumeTimer=3117,
+    Psm20StateStoppingResumeTimer=3118,
+    Psm20StateStoppingTimerAndQueueingHubResetInDisconnected=3119,
+    Psm20StateStoppingTimerOnDisconnect=3120,
+    Psm20StateStoppingTimerOnHubStopSuspendInDisconnected=3121,
+    Psm20StateStoppingTimerOnOverCurrent=3122,
+    Psm20StateStoppingTimerOnOverCurrentClear=3123,
+    Psm20StateStoppingTimerOnPortCycle=3124,
+    Psm20StateStoppingTimerOnResetComplete=3125,
+    Psm20StateSuspended=3126,
+    Psm20StateSuspending=3127,
+    Psm20StateWaitingForDebounce=3128,
+    Psm20StateWaitingForDisableCompleteOnHubSuspend=3129,
+    Psm20StateWaitingForDisableCompleteWithTimerOnHubSuspend=3130,
+    Psm20StateWaitingForDSMResumeResponse=3131,
+    Psm20StateWaitingForDSMResumeResponseOnHubStop=3132,
+    Psm20StateWaitingForHubStopSuspend=3133,
+    Psm20StateWaitingForHubStopSuspendInDisconnected=3134,
+    Psm20StateWaitingForHubStopSuspendOnAttachFailure=3135,
+    Psm20StateWaitingForHubStopSuspendOrTimer=3136,
+    Psm20StateWaitingForOldDeviceToDetach=3137,
+    Psm20StateWaitingForOverCurrentClear=3138,
+    Psm20StateWaitingForResetComplete=3139,
+    Psm20StateWaitingForResetTimerToFlush=3140,
+    Psm20StateWaitingForResumeComplete=3141,
+    Psm20StateWaitingForResumeRecoveryTimer=3142,
+    Psm20StateWaitingForResumeTimerToFlush=3143,
+    Psm20StateWaitingForTimerOnResetInDisconnected=3144,
+    Psm20StateWaitingForTimerToFlushOnDisconnect=3145,
+    Psm20StateWaitingForTimerToFlushOnHubStopSuspend=3146,
+    Psm20StateWaitingForTimerToFlushOnHubStopSuspendInDisconnected=3147,
+    Psm20StateWaitingForTimerToFlushOnOverCurrent=3148,
+    Psm20StateWaitingForTimerToFlushOnOverCurrentClear=3149,
+    Psm20StateWaitingForTimerToFlushOnPortCycle=3150,
+    Psm20StateWaitingForUserResetOnOverCurrent=3151,
+    Psm20StateWaitingToBeDeleted=3152,
+    Psm20StateAckingPortChange=3153,
+    Psm20StateCheckIfThereIsAPortChange=3154,
+    Psm20StateCheckIfThereIsAPortChangeOnPortStatus=3155,
+    Psm20StateEnablingInterruptsAndGettingPortEvent=3156,
+    Psm20StateGettingPortStatus=3157,
+    Psm20StateInitializingCumulativePortChangeBits=3158,
+    Psm20StateIssuingHubResetOnControlTransferFailure=3159,
+    Psm20StateQueueingEnableInterruptTransferOnPortChange=3160,
+    Psm20StateWaitingForPortChangeEvent=3161,
+    Psm20StateAcquiringPortReferenceOnStart=3162,
+    Psm20StateGettingPortLostChangesOnStart=3163,
+    Psm20StateGettingPortStatusOnStart=3164,
+    Psm20StateIssuingHubResetOnControlTransferFailureOnStart=3165,
+    Psm20StatePoweringOnPortOnStart=3166,
+    Psm20StateQueueingEnableInterruptTransferOnStart=3167,
+    Psm20StateWaitingForPortPowerOnTimerOnStart=3168,
+    Psm20StateAckingConnectChangeOnResume=3169,
+    Psm20StateAckingPortChangeWhileWaitingForReconnect=3170,
+    Psm20StateAcquiringPortReferenceOnResume=3171,
+    Psm20StateAcquiringPortReferenceOnResumeInFailure=3172,
+    Psm20StateCheckIfThereIsAPortChangeOnPortStatusWhileWaitingForReconnect=3173,
+    Psm20StateCheckingIfConnectBitChangeSetOnResume=3174,
+    Psm20StateCheckingIfConnectBitIsOneOnChangeWhileWaitingForReconnect=3175,
+    Psm20StateCheckingIfDeviceDisconnectedOnResume=3176,
+    Psm20StateCheckingIfDeviceDisconnectedOnResumeAfterWaiting=3177,
+    Psm20StateEnablingInterruptsWaitingForReconnect=3178,
+    Psm20StateGettingPortLostChangesOnStartOnResume=3179,
+    Psm20StateGettingPortStatusOnResume=3180,
+    Psm20StateGettingPortStatusOnResumeAfterWaiting=3181,
+    Psm20StateGettingPortStatusWhileWaitingForReconnect=3182,
+    Psm20StateInitializingCumulativePortChangeBitsWhileWaitingForReconnect=3183,
+    Psm20StateIssuingHubResetOnControlTransferFailureOnResume=3184,
+    Psm20StatePoweringOnPortOnResume=3185,
+    Psm20StateQueueingEnableInterruptTransferOnResume=3186,
+    Psm20StateQueueingStateDisabledOnFailure=3187,
+    Psm20StateResettingHubOnFailureWhileWaitingForReconnect=3188,
+    Psm20StateReturningHubStopOnResume=3189,
+    Psm20StateStartingTimerForAllowingReconnect=3190,
+    Psm20StateStoppingReconnectTimerOnDeviceConnect=3191,
+    Psm20StateStoppingReconnectTimerOnHubStop=3192,
+    Psm20StateWaitingForDeviceToReconnect=3193,
+    Psm20StateWaitingForPortPowerOnTimerOnResume=3194,
+    Psm20StateWaitingForReconnectTimerToFlushOnHubStop=3195,
+    Psm20StateAckingPortChangeInSuspended=3196,
+    Psm20StateAcquiringPowerReferenceOnHubS0IdleInD3Cold=3197,
+    Psm20StateCheckIfThereIsAPortChangeAfterInitialGetPortStatusOnSuspended=3198,
+    Psm20StateCheckIfThereIsAPortChangeOnSuspended=3199,
+    Psm20StateCheckingIfDeviceIsConnectedAfterHubResumeInD3Cold=3200,
+    Psm20StateCheckingIfDeviceIsConnectedOnConnectChangeForD3Cold=3201,
+    Psm20StateCheckingIfDeviceIsConnectedOnPortChangeInD3Cold=3202,
+    Psm20StateCheckingIfDeviceIsConnectedOnPortChangeInD3ColdOnResume=3203,
+    Psm20StateCheckingIfDeviceIsConnectedOnPortChangInD3ColdOnResume=3204,
+    Psm20StateCheckingIsD3ColdIsEnabled=3205,
+    Psm20StateGettingPortChangeEventInSuspended=3206,
+    Psm20StateGettingPortChangeOnResumeFromD3ColdSuspended=3207,
+    Psm20StateGettingPortStatusInSuspended=3208,
+    Psm20StateInitializingCumulativePortChangeBitsInSuspended=3209,
+    Psm20StateIssuingHubResetOnControlTransferFailureInSuspended=3210,
+    Psm20StatePoweredOffOnHubSuspendFromD3Cold=3211,
+    Psm20StatePoweringOnResumeFromD3ColdSuspended=3212,
+    Psm20StateQueueingDisabledToDSMOnReconnectFromD3Cold=3213,
+    Psm20StateQueueingEnableInterruptTransferOnPortChangeForSuspended=3214,
+    Psm20StateQueueingPortStateDisabledOnHubResumeInD3Cold=3215,
+    Psm20StateQueueingResumeToDSMFromSuspended=3216,
+    Psm20StateReEnablingInterruptsOnConnectChangeInSuspended=3217,
+    Psm20StateReEnablingInterruptsOnErrorInSuspended=3218,
+    Psm20StateReEnablingInterruptsOnOverCurrentClearedInSuspended=3219,
+    Psm20StateReEnablingInterruptsOnOverCurrentInSuspended=3220,
+    Psm20StateReleasingPowerReferenceOnHubS0IdleInD3Cold=3221,
+    Psm20StateReturningHubStopFromSuspendedInD3Cold=3222,
+    Psm20StateReturningHubSuspendFromSuspendedInD3Cold=3223,
+    Psm20StateReturningPortConnectChangeFromSuspended=3224,
+    Psm20StateReturningPortErrorFromSuspended=3225,
+    Psm20StateReturningPortOverCurrentClearedFromSuspended=3226,
+    Psm20StateReturningPortOverCurrentFromSuspended=3227,
+    Psm20StateReturningPortResumedFromD3Cold=3228,
+    Psm20StateReturningPortResumedFromSuspended=3229,
+    Psm20StateStartingDebounceTimerOnResumeFromD3Cold=3230,
+    Psm20StateStartingDebounceTimerOnResumeFromD3ColdOnResume=3231,
+    Psm20StateStartingTimerForAllowingReconnectOnResumingFromD3Cold=3232,
+    Psm20StateStoppingDebounceTimerInD3Cold=3233,
+    Psm20StateStoppingDebounceTimerInD3ColdOnResume=3234,
+    Psm20StateStoppingReconnectTimerOnDeviceReAttachAfterD3Cold=3235,
+    Psm20StateStoppingReconnectTimerOnHubStopInD3Cold=3236,
+    Psm20StateStoppingReconnectTimerOnOvercurrentClearedInD3Cold=3237,
+    Psm20StateStoppingReconnectTimerOnOvercurrentInD3Cold=3238,
+    Psm20StateWaitingForDebounceTimerOnReconnectInD3Cold=3239,
+    Psm20StateWaitingForDebounceTimerOnReconnectInD3ColdOnResume=3240,
+    Psm20StateWaitingForDebounceTimerToFlushOnHubStop=3241,
+    Psm20StateWaitingForDebounceTimerToFlushOnHubStopOnResume=3242,
+    Psm20StateWaitingForDebounceTimerToFlushOnHubSuspend=3243,
+    Psm20StateWaitingForDebounceTimerToFlushOnPortChangeInD3Cold=3244,
+    Psm20StateWaitingForDebounceTimerToFlushOnPortChangeInD3ColdOnResume=3245,
+    Psm20StateWaitingForDeviceRequestResumeOnD3Cold=3246,
+    Psm20StateWaitingForDeviceToReconnectOnResumeFromD3Cold=3247,
+    Psm20StateWaitingForPortChangeEventInD3Cold=3248,
+    Psm20StateWaitingForPortChangeEventInSuspended=3249,
+    Psm20StateWaitingForReconnectTimerToFlushOnHubStopInD3Cold=3250,
+    Psm20StateWaitingForReconnectTimerToFlushOnOvercurrentClearedInD3Cold=3251,
+    Psm20StateWaitingForReconnectTimerToFlushOnOvercurrentInD3Cold=3252,
+    Psm20StateWaitingForReconnectTimerToFlushOnReattachAfterD3Cold=3253,
+    Psm20StateWaitingForResumeRecoveryTimerOnResumeInSuspended=3254,
+    Psm20StateAckingPortChangeInInWaitingForStopSuspend=3255,
+    Psm20StateCheckIfThereIsAPortChangeInInWaitingForStopSuspend=3256,
+    Psm20StateGettingPortStatusInWaitingForStopSuspend=3257,
+    Psm20StateQueueingEnableInterruptTransferInWaitingForStopSuspend=3258,
+    Psm20StateQueueingPortEventFailureToDSM=3259,
+    Psm20StateWaitingForDevicePortEvents=3260,
+    Psm20StateAckingPortChangeInInWaitingForStopSuspendInDisconnected=3261,
+    Psm20StateCheckIfThereIsAPortChangeInInWaitingForStopSuspendInDisconnected=3262,
+    Psm20StateGettingPortStatusInWaitingForStopSuspendInDisconnected=3263,
+    Psm20StateQueueingEnableInterruptTransferInWaitingForStopSuspendInDisconnected=3264,
+    Psm20StateWaitingForDevicePortEventsInDisconnected=3265
+};
+
+enum _PSM30_STATE
+{
+    Psm30StateIgnored=1000,
+    Psm30StateEmptySubState=1001,
+    Psm30StateNull=1002,
+    Psm30StateCompleteWithStatusFailed=1003,
+    Psm30StateRequestPortCycle=1004,
+    Psm30StateSignalQueryDeviceTextEvent=1005,
+    Psm30StateCompleteFDORequestWithStatusFailed=1006,
+    Psm30StateCompleteGetPortStatusWithInternalError=1007,
+    Psm30StateCompleteGetPortStatusWithNoSuchDevice=1008,
+    Psm30StateCompletePdoPreStart=1009,
+    Psm30StateSignalPnpPowerEvent=1010,
+    Psm30StatePoweredOffDisconnected=5000,
+    Psm30StateAcquiringInterruptReferenceOnHSMInDisabled=5001,
+    Psm30StateAcquiringInterruptReferenceOnHSMInEnabled=5002,
+    Psm30StateAcquiringInterruptReferenceOnHSMInEnabledOnWarmReset=5003,
+    Psm30StateAcquiringInterruptReferenceOnHSMOnResetRequest=5004,
+    Psm30StateAcquiringInterruptReferenceOnResuming=5005,
+    Psm30StateAcquiringPowerReferenceAfterDisablingSuperSpeed=5006,
+    Psm30StateAcquiringPowerReferenceonPoweredOffConnectedErrorInS0=5007,
+    Psm30StateAcquiringPowerReferenceonPoweredOffDisconnectedInS0=5008,
+    Psm30StateAcquiringPowerReferenceonPoweredOffSuspendedInS0=5009,
+    Psm30StateAcquiringReferenceInConnectedWithResetNeeded=5010,
+    Psm30StateCancellingResetOnSurpriseRemove=5011,
+    Psm30StateCancellingSetPortPower=5012,
+    Psm30StateCheckingIfADeviceIsPresent=5013,
+    Psm30StateCheckingIfDebounceIsNeeded=5014,
+    Psm30StateCheckingIfLinkStateIsU0=5015,
+    Psm30StateCheckingIfOvercurrentBitOne=5016,
+    Psm30StateCheckingIfPersistentOvercurrent=5017,
+    Psm30StateCheckingIfSuperSpeedShouldBeDisabled=5018,
+    Psm30StateCheckingIsD3ColdIsEnabled=5019,
+    Psm30StateConnectedEnabled=5020,
+    Psm30StateConnectedError=5021,
+    Psm30StateCreatingDevice=5022,
+    Psm30StateCreatingDeviceInConnectedWithResetInProgress=5023,
+    Psm30StateCreatingDeviceInConnectedWithResetNeeded=5024,
+    Psm30StateDetachingDeviceFromPortOnDisconnect=5025,
+    Psm30StateDetachingDeviceFromPortOnDisconnectOnTimedOut=5026,
+    Psm30StateDetachingDeviceFromPortOnDisconnectWithTimer=5027,
+    Psm30StateDetachingDeviceFromPortOnOverCurrent=5028,
+    Psm30StateDetachingDeviceFromPortOnOverCurrentClear=5029,
+    Psm30StateDetachingDeviceFromPortOnOverCurrentClearOnTimedOut=5030,
+    Psm30StateDetachingDeviceFromPortOnOverCurrentClearWithTimer=5031,
+    Psm30StateDetachingDeviceFromPortOnOverCurrentOnTimedOut=5032,
+    Psm30StateDetachingDeviceFromPortOnOverCurrentWithTimer=5033,
+    Psm30StateDetachingDeviceFromPortOnPortCycle=5034,
+    Psm30StateDetachingDeviceOnCleanup=5035,
+    Psm30StateDisablingSuperSpeedOnPortForUnsupportedHubs=5036,
+    Psm30StateDisablingSuperSpeedOnPortOnDeviceRequest=5037,
+    Psm30StateDisconnected=5038,
+    Psm30StateDisconnectedSuperSpeedDisabled=5039,
+    Psm30StateDoesDeviceSupportsReAttach=5040,
+    Psm30StateDoesDeviceSupportsReAttachWithResetInProgress=5041,
+    Psm30StateDoesDeviceSupportsReAttachWithResetNeeded=5042,
+    Psm30StateEnablingSuperSpeedOnStopSuspend=5043,
+    Psm30StateEnablingSuperSpeedOnTimerExpiration=5044,
+    Psm30StateFlushingStaleDeviceEvents=5045,
+    Psm30StateFlushingStaleDeviceEventsWithResetInProgress=5046,
+    Psm30StateFlushingStaleDeviceEventsWithResetNeeded=5047,
+    Psm30StateFlushingUserResetForOverCurrentOnHubStopSuspend=5048,
+    Psm30StateFlushingUserResetForOverCurrentOnOverCurrentClear=5049,
+    Psm30StateGettingPortChangeOnStartResumeFromConnectedError=5050,
+    Psm30StateGettingPortStatusOnResetTimeout=5051,
+    Psm30StateGettingPortStatusOnResumeRequest=5052,
+    Psm30StateGettingPortStatusOnResumeTimeout=5053,
+    Psm30StateInitiatingResetPort=5054,
+    Psm30StateInitiatingResume=5055,
+    Psm30StateInitiatingWarmResetPort=5056,
+    Psm30StateIsDeviceInU0OnResumeRequest=5057,
+    Psm30StateIsDeviceInU0OnResumeTimeout=5058,
+    Psm30StateIsOldDevicePresent=5059,
+    Psm30StateIsOldDevicePresentInConnectedWithResetNeeded=5060,
+    Psm30StateIsOldDevicePresentWithResetInProgress=5061,
+    Psm30StateIssuingAttachDeviceToDsm=5062,
+    Psm30StateIssuingAttachDeviceWithResetToDsm=5063,
+    Psm30StateIssuingAttachDeviceWithResetToDsmWithResetInProgress=5064,
+    Psm30StateIssuingDetachDeviceOnCycleFromPoweredOffDisabled=5065,
+    Psm30StateIssuingDisabledToDSMFromDisabled=5066,
+    Psm30StateIssuingHubReset=5067,
+    Psm30StateIssuingHubResetFromDisconnected=5068,
+    Psm30StateIssuingHubResetOnDisableFailure=5069,
+    Psm30StateIssuingHubResetOnTimedOut=5070,
+    Psm30StateIssuingHubResetWithPendingTimer=5071,
+    Psm30StateIssuingHubResetWithTimer=5072,
+    Psm30StateIssuingPortDisabledToDevice=5073,
+    Psm30StateIssuingPortDisableFailedToDevice=5074,
+    Psm30StateIssuingPortFailedToDSMOnLinkStateError=5075,
+    Psm30StateIssuingPortResetTimedOutToDSM=5076,
+    Psm30StateIssuingReAttachDeviceToBootDevice=5077,
+    Psm30StateIssuingReAttachDeviceToBootDeviceWithResetInProgress=5078,
+    Psm30StateIssuingResetFailedDuetoPendingHubSuspendToDSMInDisabled=5079,
+    Psm30StateIssuingResetFailedDuetoPendingHubSuspendToDSMInEnabled=5080,
+    Psm30StateIssuingResetFailedDuetoPendingHubSuspendToDSMWhileResetInProgress=5081,
+    Psm30StateIssuingResumedToDeviceSM=5082,
+    Psm30StateIssuingSuspendedToDeviceSM=5083,
+    Psm30StateNotifyingUserAboutPersistentOverCurrent=5084,
+    Psm30StatePoweredOffConnectedError=5085,
+    Psm30StatePoweredOffConnectedWithResetNeededAndDeviceDetached=5086,
+    Psm30StatePoweredOffSuspended=5087,
+    Psm30StateQueryingPortStatusOnOverCurrent=5088,
+    Psm30StateQueueingPortFailureToDSMOnTransferFailure=5089,
+    Psm30StateQueueingPortFailureToDSMOnTransferFailureForLpmTimeout=5090,
+    Psm30StateQueueingPortResumeFailedDueToPendingSuspend=5091,
+    Psm30StateQueueingPortResumeTimedOut=5092,
+    Psm30StateQueueingPortTimeoutUpdatedToDSM=5093,
+    Psm30StateQueueStateDisabledToDSMOnStartFromConnectedError=5094,
+    Psm30StateReleasingInterruptReferenceAfterResetFailure=5095,
+    Psm30StateReleasingInterruptReferenceAndStoppingTimer=5096,
+    Psm30StateReleasingInterruptReferenceOnResetTransferFailure=5097,
+    Psm30StateReleasingInterruptReferenceOnResumed=5098,
+    Psm30StateReleasingInterruptReferenceOnSuccessfulReset=5099,
+    Psm30StateReleasingInterruptReferenceOnTransferFailureInResuming=5100,
+    Psm30StateReleasingPortPowerReferenceInSuperSpeedDisabled=5101,
+    Psm30StateReleasingPowerReferenceonPoweredOffConnectedWithResetNeeded=5102,
+    Psm30StateReleasingPowerReferenceonPoweredOffDisabled=5103,
+    Psm30StateReleasingPowerReferenceonPoweredOffDisconnected=5104,
+    Psm30StateReleasingResetReferenceInDisconnected=5105,
+    Psm30StateReleasingResetReferenceInSuperSpeedDisabled=5106,
+    Psm30StateReleasingResetReferenceOnDeviceRemoval=5107,
+    Psm30StateResettingHubAndFlushingUserInitiatedResetOnOverCurrent=5108,
+    Psm30StateSettingPortPowerOnOverCurrent=5109,
+    Psm30StateSettingRemotWakeMask=5110,
+    Psm30StateSettingRemotWakeMaskInDisconected=5111,
+    Psm30StateSettingU1TImeOut=5112,
+    Psm30StateSettingU2TImeOut=5113,
+    Psm30StateStartingAndAcquiringReferenceOnHubStart=5114,
+    Psm30StateStartingAndAcquiringReferenceOnSystemResume=5115,
+    Psm30StateStartingDisableSuperSpeedTimer=5116,
+    Psm30StateStartingOverCurrentTimer=5117,
+    Psm30StateStartingResumeTimer=5118,
+    Psm30StateStoppingDisableSuperSpeedTimer=5119,
+    Psm30StateStoppingResumeTimer=5120,
+    Psm30StateStoppingTimerAndQueueingHubResetInDisconnected=5121,
+    Psm30StateStoppingTimerOnDisconnect=5122,
+    Psm30StateStoppingTimerOnOverCurrent=5123,
+    Psm30StateStoppingTimerOnOverCurrentClear=5124,
+    Psm30StateStoppingTimerOnResetComplete=5125,
+    Psm30StateSuperSpeedDisabled=5126,
+    Psm30StateSuperSpeedDisabledStopped=5127,
+    Psm30StateSuspended=5128,
+    Psm30StateSuspendedDisabled=5129,
+    Psm30StateSuspendedInD3Cold=5130,
+    Psm30StateSuspending=5131,
+    Psm30StateSuspendingPortOnDisableRequest=5132,
+    Psm30StateSuspendingPortOnHubSuspend=5133,
+    Psm30StateWaitingForDebounceTimer=5134,
+    Psm30StateWaitingForHubStopSuspend=5135,
+    Psm30StateWaitingForHubStopSuspendInDisconnected=5136,
+    Psm30StateWaitingForHubStopSuspendOnAttachFailure=5137,
+    Psm30StateWaitingForHubStopSuspendOnAttachWithResetFailure=5138,
+    Psm30StateWaitingForHubStopSuspendOrTimer=5139,
+    Psm30StateWaitingForOldDeviceToDetach=5140,
+    Psm30StateWaitingForOldDeviceToDetachInConnectedWithResetNeeded=5141,
+    Psm30StateWaitingForOldDeviceToDetachWithResetInProgress=5142,
+    Psm30StateWaitingForOverCurrentClear=5143,
+    Psm30StateWaitingForResetComplete=5144,
+    Psm30StateWaitingForResetRequestFromDSMWithResetInPorgress=5145,
+    Psm30StateWaitingForResetTimerToFlush=5146,
+    Psm30StateWaitingForResumeComplete=5147,
+    Psm30StateWaitingForResumeTimerToFlush=5148,
+    Psm30StateWaitingForSuperSpeedDisableTimerToFlush=5149,
+    Psm30StateWaitingForTimerOnResetInDisconnected=5150,
+    Psm30StateWaitingForTimerToFlushOnDisconnect=5151,
+    Psm30StateWaitingForTimerToFlushOnHubStopSuspend=5152,
+    Psm30StateWaitingForTimerToFlushOnHubStopSuspendInDisconnected=5153,
+    Psm30StateWaitingForTimerToFlushOnOverCurrent=5154,
+    Psm30StateWaitingForTimerToFlushOnOverCurrentClear=5155,
+    Psm30StateWaitingForUserResetOnOverCurrent=5156,
+    Psm30StateWaitingToBeDeleted=5157,
+    Psm30StateAckingPortChange=5158,
+    Psm30StateCheckIfThereIsAPortChange=5159,
+    Psm30StateCheckIfThereIsAPortChangeOnGetPortStatus=5160,
+    Psm30StateEnablingInterruptsAndGettingPortEvent=5161,
+    Psm30StateEnablingInterruptsOnFailure=5162,
+    Psm30StateGettingPortStatus=5163,
+    Psm30StateInitializingCumulativePortChangeBits=5164,
+    Psm30StateReturningPortResetHubOnError=5165,
+    Psm30StateAckingPortChangeInNoChange=5166,
+    Psm30StateCheckIfThereIsAPortChangeInNoChange=5167,
+    Psm30StateCheckIfThereIsAPortChangeOnGetPortStatusInNoChange=5168,
+    Psm30StateEnablingInterruptsAndGettingPortEventInNoChange=5169,
+    Psm30StateGettingPortStatusInNoChange=5170,
+    Psm30StateInitializingCumulativePortChangeBitsInNoChange=5171,
+    Psm30StateReturningPortResetHubOnErrorInNoChange=5172,
+    Psm30StateAckingPortChangeOnStartResume=5173,
+    Psm30StateAcquiringPortReferenceAndGettingPortEvent=5174,
+    Psm30StateAcquiringPortReferenceOnFailure=5175,
+    Psm30StateCheckIfThereIsAPortChangeOnStartResume=5176,
+    Psm30StateCheckIfThereIsAPortChangeOnStartResumeOnGetPortStatus=5177,
+    Psm30StateGettingPortStatusOnStartResume=5178,
+    Psm30StateInitializingCumulativePortChangeBitsOnStartResume=5179,
+    Psm30StateReturningPortResetHubOnErrorOnStartResume=5180,
+    Psm30StateGettingPortChange=5181,
+    Psm30StateReturningConnectChangeOnLinkError=5182,
+    Psm30StateReturningPortResetHubOnErrorInPortChangeHandler=5183,
+    Psm30StateWaitingForPortChangeEvent=5184,
+    Psm30StateAcquiringPortReferenceOnTransferFailure=5185,
+    Psm30StateCheckingIfPortIsPoweredOnStart=5186,
+    Psm30StateCheckingIfPowerOnStartHackIsPresent=5187,
+    Psm30StateGettingPortStatusOnStart=5188,
+    Psm30StateGettingPortStatusOnStartBeforePoweringOn=5189,
+    Psm30StatePoweringOnPortOnStart=5190,
+    Psm30StateReturningPortConnectChangeOnLinkErrorOnStart=5191,
+    Psm30StateReturningPortResetHubOnErrorOnStart=5192,
+    Psm30StateWaitingForPortPowerOnTimerOnStart=5193,
+    Psm30StateCheckingIfDeviceIsStillConnectedOnResume=5194,
+    Psm30StateGettingPortStatusOnResume=5195,
+    Psm30StateGettingPortStatusOnResumeAfterWaiting=5196,
+    Psm30StateQueueingStateDisabledOnConnectChangeOnResume=5197,
+    Psm30StateQueueingStateDisabledOnFailure=5198,
+    Psm30StateQueueingStateDisabledOnResetInProgress=5199,
+    Psm30StateQueueingStateEnabledOnResume=5200,
+    Psm30StateQueueingStateSuspendedOnResume=5201,
+    Psm30StateReturningHubStopOnResume=5202,
+    Psm30StateReturningPortConnectChange=5203,
+    Psm30StateReturningPortNeedsResetOnResume=5204,
+    Psm30StateReturningPortOperationSuccessOnResume=5205,
+    Psm30StateReturningPortResetHubOnErrorOnResume=5206,
+    Psm30StateReturningPortResetInProgressOnResume=5207,
+    Psm30StateReturningPortResumedOnResume=5208,
+    Psm30StateStartingTimerForAllowingReconnect=5209,
+    Psm30StateStoppingReconnectTimerOnHubStatusChange=5210,
+    Psm30StateStoppingReconnectTimerOnHubStop=5211,
+    Psm30StateWaitingForDeviceToReconnect=5212,
+    Psm30StateWaitingForReconnectTimerToFlushOnHubStatusChange=5213,
+    Psm30StateWaitingForReconnectTimerToFlushOnHubStop=5214,
+    Psm30StateGettingPortStatusInResuming=5215,
+    Psm30StateReturningConnectChangeOnLinkErrorInResuming=5216,
+    Psm30StateReturningPortResetHubOnErrorInResuming=5217,
+    Psm30StateWaitingForPortChangeEventInResuming=5218,
+    Psm30StateGettingPortStatusInWaitingForStopSuspend=5219,
+    Psm30StateQueueingPortEventFailureToDSM=5220,
+    Psm30StateWaitingForDevicePortEvents=5221,
+    Psm30StateGettingPortStatusInWaitingForStopSuspendInDisconnected=5222,
+    Psm30StateWaitingForDevicePortEventsInDisconnected=5223,
+    Psm30StateCheckingIfLinkIsInU0AfterResetPolling=5224,
+    Psm30StateCheckingIfResetCompletionRequiresPolling=5225,
+    Psm30StateGettingPortStatusInReset=5226,
+    Psm30StateGettingPortStatusInResetAfterPollingInterval=5227,
+    Psm30StateReturningPortResetCompleted=5228,
+    Psm30StateReturningPortResetHubOnErrorInReset=5229,
+    Psm30StateWaitingForPollingIntervalForResetCompletion=5230,
+    Psm30StateWaitingForPortChangeEventInReset=5231,
+    Psm30StateCheckingIfBootDeviceIsConnected=5232,
+    Psm30StateCheckingIfParentHubIsArmedForWake=5233,
+    Psm30StateDisablingRemoteWakeOnPort=5234,
+    Psm30StateEnablingRemoteWakeOnPort=5235,
+    Psm30StateIssuingHubResetOnRemoteWakeMaskFailure=5236,
+    Psm30StateReturningOperationSucessFromArmingForWake=5237,
+    Psm30StateAcquiringPowerReferenceOnHubResumeInD3Cold=5238,
+    Psm30StateCheckingIfDeviceIsConnectedOnConnectChangeForD3Cold=5239,
+    Psm30StateCheckingIfDeviceIsConnectedOnPortChangeInD3Cold=5240,
+    Psm30StateCheckingIfDeviceIsConnectedOnPortChangInD3ColdOnResume=5241,
+    Psm30StatePoweredOffOnHubSuspendFromD3Cold=5242,
+    Psm30StateQueueingEnabledToDSMOnReconnectAfterResumeRequestFromD3Cold=5243,
+    Psm30StateQueueingEnabledToDSMOnReconnectFromD3Cold=5244,
+    Psm30StateQueueingStateSuspendedOnHubResumeInD3Cold=5245,
+    Psm30StateReleasingPowerReferenceOnHubS0IdleInD3Cold=5246,
+    Psm30StateReturningConnectChangeFromD3Cold=5247,
+    Psm30StateReturningHubStopFromSuspendedInD3Cold=5248,
+    Psm30StateReturningOverCurrentClearedFromD3Cold=5249,
+    Psm30StateReturningOverCurrentFromD3Cold=5250,
+    Psm30StateReturningPortResetHubOnErrorFromD3Cold=5251,
+    Psm30StateReturningPortResumedFromD3Cold=5252,
+    Psm30StateStartingTimerForAllowingReconnectOnResumingFromD3Cold=5253,
+    Psm30StateStoppingReconnectTimerOnDeviceReAttachAfterD3Cold=5254,
+    Psm30StateStoppingReconnectTimerOnHubStopInD3Cold=5255,
+    Psm30StateStoppingReconnectTimerOnOvercurrentClearedInD3Cold=5256,
+    Psm30StateStoppingReconnectTimerOnOvercurrentInD3Cold=5257,
+    Psm30StateStoppingReconnectTimerOnResetHubErrorInD3Cold=5258,
+    Psm30StateWaitingForDeviceRequestResumeOnD3Cold=5259,
+    Psm30StateWaitingForDeviceToReconnectOnResumeFromD3Cold=5260,
+    Psm30StateWaitingForPortChangeEventInD3Cold=5261,
+    Psm30StateWaitingForReconnectTimerToFlushOnHubStopInD3Cold=5262,
+    Psm30StateWaitingForReconnectTimerToFlushOnOvercurrentClearedInD3Cold=5263,
+    Psm30StateWaitingForReconnectTimerToFlushOnOvercurrentInD3Cold=5264,
+    Psm30StateWaitingForReconnectTimerToFlushOnReattachAfterD3Cold=5265,
+    Psm30StateWaitingForReconnectTimerToFlushOnResetHubErrorInD3Cold=5266
+};
+
+enum _DSM_STATE
+{
+    DsmStateIgnored=1000,
+    DsmStateEmptySubState=1001,
+    DsmStateNull=1002,
+    DsmStateCompleteWithStatusFailed=1003,
+    DsmStateRequestPortCycle=1004,
+    DsmStateSignalQueryDeviceTextEvent=1005,
+    DsmStateCompleteFDORequestWithStatusFailed=1006,
+    DsmStateCompleteGetPortStatusWithInternalError=1007,
+    DsmStateCompleteGetPortStatusWithNoSuchDevice=1008,
+    DsmStateCompletePdoPreStart=1009,
+    DsmStateSignalPnpPowerEvent=1010,
+    DsmStateWaitingForPortAttach=4000,
+    DsmStateAckingD0ForFaultyClientDrivers=4001,
+    DsmStateAckingHubStopAfterSuspendFromStoppedState=4002,
+    DsmStateAckingPdoPreStart=4003,
+    DsmStateAckingPdoPreStartFromStoppedEnabled=4004,
+    DsmStateAckingQueryResourcesInConfiguredD0=4005,
+    DsmStateAckingStopAfterSuspendOnDetach=4006,
+    DsmStateAcquiringPowerReferenceOnHubOnAttach=4007,
+    DsmStateAcquiringPowerReferenceOnHubStart=4008,
+    DsmStateBugcheckingSystemOnBootDeviceEnumerationFailure=4009,
+    DsmStateCheckIfDeviceCanBeDisabledOnDriverNotFound=4010,
+    DsmStateCheckingForZeroBwPipeOnClientClearStall=4011,
+    DsmStateCheckingForZeroBwPipeOnClientResetPipe=4012,
+    DsmStateCheckingForZeroBwPipeOnClientSyncResetPipe=4013,
+    DsmStateCheckingIfBootDeviceOnD0Exit=4014,
+    DsmStateCheckingIfBootDeviceOnDetach=4015,
+    DsmStateCheckingIfBootDeviceOnReset=4016,
+    DsmStateCheckingIfDeviceHasReceivedFirstStart=4017,
+    DsmStateCheckingIfDeviceHasReceivedFirstStartInUncoonfigured=4018,
+    DsmStateCheckingIfDeviceShouldBeDisabled=4019,
+    DsmStateCheckingIfItIsIsochronousEndpoint=4020,
+    DsmStateCleaningUpAnyExistingConfigurationOnStart=4021,
+    DsmStateClearingEndpointHaltOnClientClearStall=4022,
+    DsmStateClearingEndpointHaltOnClientResetPipe=4023,
+    DsmStateClearingFailIoFlagOnSuccessfulRecovery=4024,
+    DsmStateCompletingClientRequestInConfigured=4025,
+    DsmStateCompletingClientRequestInConfiguredWithLastStatus=4026,
+    DsmStateCompletingClientRequestInConfiguredWithSpecialFile=4027,
+    DsmStateCompletingClientRequestInUnconfigured=4028,
+    DsmStateCompletingClientRequestInUnConfiguredWithLastStatus=4029,
+    DsmStateCompletingClientRequestOnDetachInConfigured=4030,
+    DsmStateCompletingClientRequestOnDetachInDisabled=4031,
+    DsmStateCompletingClientRequestOnDetachWithDeviceProgrammed=4032,
+    DsmStateCompletingClientRequestOnFailureInConfigured=4033,
+    DsmStateCompletingClientRequestOnFailureInDisabled=4034,
+    DsmStateCompletingClientRequestOnFailureInUnconfigured=4035,
+    DsmStateCompletingClientUnconfigureRequest=4036,
+    DsmStateCompletingClientUnconfigureRequestWithFailure=4037,
+    DsmStateCompletingD0EntryInConfigured=4038,
+    DsmStateCompletingD0EntryInConfiguredWithSpecialFile=4039,
+    DsmStateCompletingD0EntryInConfiguredWithSpecialFileOnDetach=4040,
+    DsmStateCompletingD0EntryInConfiguredWithSpecialFileOnDetachWithDeviceEnabled=4041,
+    DsmStateCompletingD0EntryInUnconfigured=4042,
+    DsmStateCompletingD0EntryOnDetachWithSpecialFile=4043,
+    DsmStateCompletingD0ExitAfterHubSuspend=4044,
+    DsmStateCompletingD0ExitOnSuspendFailure=4045,
+    DsmStateCompletingDeviceCleanup=4046,
+    DsmStateCompletingHubStopAfterSuspend=4047,
+    DsmStateCompletingHubStopWithPortOff=4048,
+    DsmStateCompletingPDOCleanupForUnknownDevice=4049,
+    DsmStateCompletingPdoExitFinalOnDetach=4050,
+    DsmStateCompletingPdoExitFinalOnDetachOnDeviceReportedMissing=4051,
+    DsmStateCompletingPdoReStartOnDetach=4052,
+    DsmStateCompletingPdoReStartOnDetachWithDeviceEnabled=4053,
+    DsmStateCompletingPdoReStartOnOperationFailure=4054,
+    DsmStateCompletingPnpEventOnDetachInConfigured=4055,
+    DsmStateCompletingPnpEventOnDetachInDisabled=4056,
+    DsmStateCompletingPnpEventOnDetachInUnConfigured=4057,
+    DsmStateCompletingPnpEventOnDetachWhileRenumeratingOnResume=4058,
+    DsmStateCompletingPnpEventOnFailureInDisabledWithPortOff=4059,
+    DsmStateCompletingPnpEventOnFailureWithEndpointsToBeDeleted=4060,
+    DsmStateConfiguredInD0=4061,
+    DsmStateConfiguredResumingOnHubResume=4062,
+    DsmStateConfiguredSuspended=4063,
+    DsmStateConfiguredSuspendedOnHubSuspend=4064,
+    DsmStateConfiguredSuspendedWithSpecialFile=4065,
+    DsmStateConfiguredSuspending=4066,
+    DsmStateConfiguredSuspendingOnHubSuspend=4067,
+    DsmStateConfiguredSuspendingWithSpecialFile=4068,
+    DsmStateConfiguringDeviceFromCachedInformation=4069,
+    DsmStateConfiguringDeviceFromCachedInformationOnHubResume=4070,
+    DsmStateConfiguringDeviceFromCachedInformationOnResume=4071,
+    DsmStateConfiguringDeviceFromCachedInformationOnResumeWithSpecialFile=4072,
+    DsmStateConfiguringDeviceFromCachedInformationWithSpecialFile=4073,
+    DsmStateConfiguringOnSelectConfiguration=4074,
+    DsmStateCyclingPortOnRenumerationOfUnknownDevice=4075,
+    DsmStateD0EntryForUnknownDevice=4076,
+    DsmStateDeConfiguringDeviceOnClientRequest=4077,
+    DsmStateDeConfiguringDeviceOnClientRequestFromUnconfigured=4078,
+    DsmStateDeletingDefaultEndpointAndDeviceOnDetachDuringEnum=4079,
+    DsmStateDeletingDeviceAndDefaultEndpointOnCleanup=4080,
+    DsmStateDeletingDeviceAndDefaultEndpointOnCleanupAfterDetach=4081,
+    DsmStateDeletingDeviceAndDefaultEndpointOnCleanupWithPortOff=4082,
+    DsmStateDeletingEndpoinstAndDeviceOnDetachOnCleanup=4083,
+    DsmStateDeletingEndpointsAndDeviceOnOnCleanup=4084,
+    DsmStateDeporgrammingAllEndpointsOnCleanupFromEnumeratedConfigured=4085,
+    DsmStateDeporgrammingAllEndpointsOnHubStopFromEnumeratedConfigured=4086,
+    DsmStateDeprogrammingAllEndpointsOnHubSuspendFromEnumeratedConfigured=4087,
+    DsmStateDetachedAndDeprogrammedWithResetPending=4088,
+    DsmStateDetachedWithResetPending=4089,
+    DsmStateDeviceDetachedAndDeporgrammedWithSpecialFile=4090,
+    DsmStateDeviceDetachedWithSpecialFile=4091,
+    DsmStateDisablingBackPortInEnumeratedUnknown=4092,
+    DsmStateDisablingBackPortInWaitingForD0EntryForFailedDevice=4093,
+    DsmStateDisablingDeviceAndDefaultEndpointInControllerOnDetachDuringEnum=4094,
+    DsmStateDisablingDeviceAndDefaultEndpointOnDetachOnHubStart=4095,
+    DsmStateDisablingDeviceAndDefaultEndpointOnEnumFailureOnHubStart=4096,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOFailureWithPortOff=4097,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnCleanupWithPortOff=4098,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnD0ExitOnDetachWithPDOMissing=4099,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnDetach=4100,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnDetachOnHubStopWithPDOMissing=4101,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnDetachOnPDOCleaupWithPDOMissing=4102,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnHubStopAfterSuspend=4103,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnHubStopAfterSuspendOnDetach=4104,
+    DsmStateDisablingDeviceAndDefaultEpInControllerOnHubStopOnDetach=4105,
+    DsmStateDisablingDeviceInControllerOnCleanup=4106,
+    DsmStateDisablingDeviceInControllerOnDetachOnCleanup=4107,
+    DsmStateDisablingDeviceInControllerOnEnumFailureOnPdoPreStart=4108,
+    DsmStateDisablingDeviceInControllerOnEnumFailureOnRestart=4109,
+    DsmStateDisablingDeviceInControllerOnHubStopFromStoppedEnabled=4110,
+    DsmStateDisablingDeviceInControllerOnHubStopInStopped=4111,
+    DsmStateDisablingDeviceInControllerOnHubStopInSuspended=4112,
+    DsmStateDisablingDeviceInControllerOnPDOStop=4113,
+    DsmStateDisablingDeviceInControllerOnRenumerationWhileSuspended=4114,
+    DsmStateDisablingDeviceInControllerOnStartTimeout=4115,
+    DsmStateDisablingEndpointsInControllerOHubStopAfterSuspendOnDetach=4116,
+    DsmStateDisablingEndpointsInControllerOHubStopOnDetach=4117,
+    DsmStateDisablingEndpointsInControllerOnCleanupWithPortOff=4118,
+    DsmStateDisablingEndpointsInControllerOnClientRequest=4119,
+    DsmStateDisablingEndpointsInControllerOnD0ExitOnDetach=4120,
+    DsmStateDisablingEndpointsInControllerOnD0ExitOnDetachWithPDOMissing=4121,
+    DsmStateDisablingEndpointsInControllerOnDetachOnHubStopWithPDOMissing=4122,
+    DsmStateDisablingEndpointsInControllerOnDetachOnPDOCleanupWithPDOMissing=4123,
+    DsmStateDisablingEndpointsInControllerOnFailureWithPortOff=4124,
+    DsmStateDisablingEndpointsInControllerOnHubStopAfterSuspend=4125,
+    DsmStateDisablingEndpointsInControllerOnRenumerationWhileSuspended=4126,
+    DsmStateDisablingEndpointsInControllerOnStop=4127,
+    DsmStateDisablingEndpointsOnDetachWithSpecialFile=4128,
+    DsmStateDisablingEndpointsOnDetachWithSpecialFileAndResetPending=4129,
+    DsmStateDisablingEndpointsOnFailureWithSpecialFile=4130,
+    DsmStateDisablingPortOnFailureInUnConfigured=4131,
+    DsmStateDisablingPortOnHubStop=4132,
+    DsmStateDisablingPortOnHubStopFromStoppedEnabled=4133,
+    DsmStateDisablingPortOnPdoCleanup=4134,
+    DsmStateDisablingPortOnPDOStop=4135,
+    DsmStateDisablingPortOnStartTimeout=4136,
+    DsmStateEnumeratedAsFailedUnknown=4137,
+    DsmStateEnumerating=4138,
+    DsmStateFlushingPD0D0ExitFinalInConfigured=4139,
+    DsmStateFlushingPD0D0ExitFinalInUnConfigured=4140,
+    DsmStateFowardingStreamsRequestToUcxInConfigured=4141,
+    DsmStateFowardingStreamsRequestToUcxInConfiguredSuspended=4142,
+    DsmStateFowardingStreamsRequestToUcxInConfiguredSuspendedWithSpecialFile=4143,
+    DsmStateFowardingStreamsRequestToUcxInDeviceDetachedAndDeporgrammedWithSpecialFile=4144,
+    DsmStateFowardingStreamsRequestToUcxInDeviceDetachedWithSpecialFile=4145,
+    DsmStateFowardingStreamsRequestToUcxInStopEnabled=4146,
+    DsmStateFowardingStreamsRequestToUcxInStopped=4147,
+    DsmStateFowardingStreamsRequestToUcxInStoppedWithHubSuspended=4148,
+    DsmStateFowardingStreamsRequestToUcxInUnconfiguredInD0=4149,
+    DsmStateFowardingStreamsRequestToUcxInUnconfiguredSuspended=4150,
+    DsmStateFowardingStreamsRequestToUcxInWaitingForDetachorResetWithDeviceDeprogrammed=4151,
+    DsmStateFowardingStreamsRequestToUcxInWaitingForDetatchorReset=4152,
+    DsmStateGettingMatchingPipeHandleOnClientClearStall=4153,
+    DsmStateGettingMatchingPipeHandleOnClientResetPipe=4154,
+    DsmStateGettingMatchingPipeHandleOnClientSyncResetPipe=4155,
+    DsmStateIssuingDeviceDetachedToPSMOnDetach=4156,
+    DsmStateIssuingPortCycleAndCompletingClientRequestOnEnumFailue=4157,
+    DsmStateIssuingPortCycleAndSingalingPnpEventOnEnumFailueFromConfigured=4158,
+    DsmStateIssuingPortCycleOnEnumFailureOnHubResume=4159,
+    DsmStateIssuingPortCycleOnFailueWithEndpointsToBeDeleted=4160,
+    DsmStateNotifyingDeviceDisconnectedOnDetach=4161,
+    DsmStateNotifyingDeviceDisconnectedOnDetachWithSpecialFile=4162,
+    DsmStatePreparingEndpointAndInterfaceListsOnClientReset=4163,
+    DsmStatePreparingEndpointAndInterfaceListsOnClientResetWithSpecialFile=4164,
+    DsmStatePreparingEndpointAndInterfaceListsOnResetAfterHubResume=4165,
+    DsmStatePreparingEndpointAndInterfaceListsOnResetAfterResume=4166,
+    DsmStatePreparingEndpointAndInterfaceListsOnResetAfterResumeWithSpecialFile=4167,
+    DsmStatePreparingEndpointAndInterfaceListsOnSelectConfiguration=4168,
+    DsmStatePreparingEndpointAndInterfaceListsOnSelectConfigurationFromConfigured=4169,
+    DsmStatePurgingDeviceIoOnDetachInConfigured=4170,
+    DsmStatePurgingDeviceIoOnHubSuspend=4171,
+    DsmStatePurgingDeviceIoOnHubSuspendFromSuspending=4172,
+    DsmStatePurgingDeviceIoOnPrepareForHibernate=4173,
+    DsmStateQueryingDescriptorForFdoRequestFromConfigured=4174,
+    DsmStateQueryingDescriptorForFdoRequestFromStoppedEnumerated=4175,
+    DsmStateQueryingDescriptorForFdoRequestFromUnConfigured=4176,
+    DsmStateQueryingDeviceTextStringFromConfigured=4177,
+    DsmStateQueryingDeviceTextStringFromStoppedEnumerated=4178,
+    DsmStateQueryingDeviceTextStringFromUnConfigured=4179,
+    DsmStateQueueingAttachFailureToPort=4180,
+    DsmStateQueueingAttachSuccessToPort=4181,
+    DsmStateQueueingDeviceDetachedToPsmForBootDeviceInUnconfigured=4182,
+    DsmStateQueueingDeviceDetachedToPsmForBootDeviceWithResetPending=4183,
+    DsmStateQueueingDeviceDetachedToPsmForBootDeviceWithResetPendingAndDeviceDeprogrammed=4184,
+    DsmStateQueueingPrepareForHiberToPSM=4185,
+    DsmStateReDisablingPortAfterHubResume=4186,
+    DsmStateReEnumeratingOnClientRequestInConfigured=4187,
+    DsmStateReEnumeratingOnClientRequestInConfiguredWithSpecialFile=4188,
+    DsmStateReEnumeratingOnClientRequestInUnconfigured=4189,
+    DsmStateReEnumeratingOnClientRequestOnReattach=4190,
+    DsmStateReEnumeratingOnClientRequestOnReattachWithDeviceDeprogrammed=4191,
+    DsmStateReEnumeratingOnHubResumeInConfigured=4192,
+    DsmStateReEnumeratingOnHubResumeInUnConfigured=4193,
+    DsmStateReEnumeratingOnHubStart=4194,
+    DsmStateReEnumeratingOnPdoPreStartWhileEnabled=4195,
+    DsmStateReEnumeratingOnPdoStart=4196,
+    DsmStateReEnumeratingOnPdoStartWhileEnabled=4197,
+    DsmStateReEnumeratingOnResumeInConfigured=4198,
+    DsmStateReEnumeratingOnResumeInConfiguredWithSpecialFile=4199,
+    DsmStateReEnumeratingOnResumeInUnConfigured=4200,
+    DsmStateRegisteringWithHSM=4201,
+    DsmStateReleasingDevicePowerReferenceOnStopAfterDetach=4202,
+    DsmStateReleasingPowerReferenceOnDetachInConfigured=4203,
+    DsmStateReleasingPowerReferenceOnHubOnDetach=4204,
+    DsmStateReleasingPowerReferenceOnHubOnDetachOnEnumSuccess=4205,
+    DsmStateReleasingPowerReferenceOnHubOnEnumerationFailure=4206,
+    DsmStateReleasingPowerReferenceOnHubStopSuspend=4207,
+    DsmStateReleasingPowerReferenceOnHubSuspendStopOnDetach=4208,
+    DsmStateReleasingPowerReferenceOnPortFailureInHubStopSuspend=4209,
+    DsmStateReleasingPowerReferenceOnSuspendFailureInConfigured=4210,
+    DsmStateReleasingPowerReferenceOnSuspendFailureInUnConfigured=4211,
+    DsmStateRemovingDeviceInfoFromGlobalListOnCleanup=4212,
+    DsmStateRemovingDeviceInfoFromGlobalListOnCleanupOnDetachInConfigured=4213,
+    DsmStateRemovingDeviceInfoFromGlobalListOnCleanupOnDetachInUnConfigured=4214,
+    DsmStateRemovingDeviceInfoFromGlobalListOnCleanUpOnHubStopOnDetach=4215,
+    DsmStateRemovingDeviceInfoFromGlobalListOnDeviceReportedMissing=4216,
+    DsmStateRemovingDeviceInfoFromGlobalListOnReportedMissingOnHubStopOnDetach=4217,
+    DsmStateReportingDeviceMissing=4218,
+    DsmStateReportingDeviceToPnp=4219,
+    DsmStateReportingFailedDeviceAsMissing=4220,
+    DsmStateReportingFailedUnknownDeviceToPnp=4221,
+    DsmStateRequestingCyclePortAndCompletingPnpEventOnFailureInUnconfigured=4222,
+    DsmStateRequestingPortCycleOnErrorFromConfigured=4223,
+    DsmStateResettingPipeInUCXOnClientReset=4224,
+    DsmStateResettingPipeInUCXOnClientSyncResetPipe=4225,
+    DsmStateResumingOnHubResumeInStopped=4226,
+    DsmStateSettingConfigurationInformationInClientRequest=4227,
+    DsmStateSettingDeviceInterface=4228,
+    DsmStateSettingExitLatencyAdjustmentOnNoPingResponseError=4229,
+    DsmStateSettingFailIoFlagOnClientReset=4230,
+    DsmStateSettingForceResetOnRenumFlag=4231,
+    DsmStateSettingInterfaceInformationInClientRequest=4232,
+    DsmStateSettingLPMValuesInConfiguredOnSettingChange=4233,
+    DsmStateSettingLPMValuesInStoppedEnabled=4234,
+    DsmStateSettingLPMValuesInUnConfiguredOnSettingChange=4235,
+    DsmStateSignalingPnpPowerEventOnDetachDuringRenumOnRestart=4236,
+    DsmStateSignalingPnpPowerEventOnStop=4237,
+    DsmStateSignalingPnpPowerEventOnStopEnable=4238,
+    DsmStateSignallingPnpEventOnHubSuspendFromUnconfiguredSuspending=4239,
+    DsmStateStartingDeviceIoOnHubResume=4240,
+    DsmStateStopped=4241,
+    DsmStateStoppedEnabled=4242,
+    DsmStateStoppedEnumerated=4243,
+    DsmStateStoppedEnumeratedConfiguredForFaultyClients=4244,
+    DsmStateStoppedEnumeratedWithHubSuspended=4245,
+    DsmStateStoppedWithHubSuspended=4246,
+    DsmStateSuspendingOnHubSuspendInStopped=4247,
+    DsmStateUnConfiguredInD0=4248,
+    DsmStateUnConfiguredResumingOnHubResume=4249,
+    DsmStateUnconfiguredSuspended=4250,
+    DsmStateUnConfiguredSuspendedOnHubSuspend=4251,
+    DsmStateUnconfiguredSuspending=4252,
+    DsmStateUnConfiguredSuspendingOnHubSuspend=4253,
+    DsmStateUnregisteringWithHSMOnDetachAfterCleanup=4254,
+    DsmStateUnregisteringWithHsmOnDetachOnDeviceReportedMissing=4255,
+    DsmStateUnregsiteringWithHsmOnDetach=4256,
+    DsmStateUnregsiteringWithHSMOnDetachOnPDOCleaupWithPDOMissing=4257,
+    DsmStateValidatingSelectConfigUrbFromConfigured=4258,
+    DsmStateValidatingSelectConfigUrbFromUnConfigured=4259,
+    DsmStateValidatingSelectInterfaceUrbFromConfigured=4260,
+    DsmStateWaitingForD0EntryForFailedDevice=4261,
+    DsmStateWaitingForDetachOrRemove=4262,
+    DsmStateWaitingForDetachOrRemoveInConfigured=4263,
+    DsmStateWaitingForDetachOrRemoveInDisabledWithPortOff=4264,
+    DsmStateWaitingForDetachOrRemoveInUnConfigured=4265,
+    DsmStateWaitingForDetachOrRemoveWithPortOff=4266,
+    DsmStateWaitingForDetachOrReset=4267,
+    DsmStateWaitingForDetachOrResetWithDeviceDeporgrammed=4268,
+    DsmStateWaitingForDetachOrToBeDeleted=4269,
+    DsmStateWaitingForDetachOrToBeDeletedWithPortOff=4270,
+    DsmStateWaitingForDisableCompleteOnHubStopFromStoppedEnabled=4271,
+    DsmStateWaitingForPDOD0ExitOnDetachInConfigured=4272,
+    DsmStateWaitingForPDOD0ExitOnDetachInUnConfigured=4273,
+    DsmStateWaitingForPDOReportedMissing=4274,
+    DsmStateWaitingForPortResumeResponseOnStop=4275,
+    DsmStateWaitingForPortResumeResponseOnSuspend=4276,
+    DsmStateWaitingForRemoveOnDetach=4277,
+    DsmStateWaitingForRemoveOrReprotedMissingOnHubStopOnDetach=4278,
+    DsmStateWaitingForReportedMissingOnDetachInConfigured=4279,
+    DsmStateWaitingForReportedMissingOnDetachInUnConfigured=4280,
+    DsmStateWaitingToBeDeleted=4281,
+    DsmStateQueryingLanguageSpecificProductIdString=4282,
+    DsmStateReturningOperationSuccessInQueryingProductId=4283,
+    DsmStateSignalingDeviceQueryTextEvent=4284,
+    DsmStateValidatingLanguageSpecificProductIdString=4285,
+    DsmStateAcquiringAddressZeroOwnershipInEnum=4286,
+    DsmStateAcquiringPowerReferenceOnStartInEnum=4287,
+    DsmStateCancellingAcquiringAddress0OnDetachInEnum=4288,
+    DsmStateCancellingRetryTimerOnDetachInEnum=4289,
+    DsmStateCancellingRetryTimerOnStopSuspendInEnum=4290,
+    DsmStateCheckingIfDevicePDChargingPolicySupported=4291,
+    DsmStateCheckingIfEnumRetryReachedMaximumInEnum=4292,
+    DsmStateCheckingIfEnumRetryReachedMaximumInEnumWithAddr0Ownership=4293,
+    DsmStateClearingDeviceProgrammingLostFlagOnEnum=4294,
+    DsmStateDeletingDefaultEndpointAndDeviceFromUCXOnDetachInEnumeratingAfterAddr=4295,
+    DsmStateDeletingDefaultEndpointAndDeviceFromUCXOnFailureInEnum=4296,
+    DsmStateDeletingDefaultEndpointAndDeviceOnPostAddressFailureInEnum=4297,
+    DsmStateDeletingDefaultEndpointAndDeviceOnStopSuspendAfterAddressInEnum=4298,
+    DsmStateDeletingDeviceAndDefaultEndpointOnDetachWithAddress0OwnershipInEnum=4299,
+    DsmStateDeletingDeviceAndDefaultEndpointOnStopSuspendWithAddress0OwnershipInEnum=4300,
+    DsmStateDisablingDeviceInControllerOnDetachInEnumeratingAfterAddr=4301,
+    DsmStateDisablingDeviceInControllerOnDetachWithAddress0OwnershipInEnum=4302,
+    DsmStateDisablingDeviceInControllerOnPostAddressEnumFailureInEnum=4303,
+    DsmStateDisablingDeviceInControllerOnSetAddressFailureInEnum=4304,
+    DsmStateDisablingDeviceInControllerOnStopSuspendAfterAddressInEnum=4305,
+    DsmStateDisablingDeviceInControllerOnStopSuspendWithAddress0OwnershipInEnum=4306,
+    DsmStateDisablingOnEnumAfterFailureInEnum=4307,
+    DsmStateDisablingOnEnumAfterFailureInEnumWithAddress0Ownership=4308,
+    DsmStateDisablingOnStopSuspendInEnum=4309,
+    DsmStateDisablingOnStopSuspendInEnumWithAddress0Ownership=4310,
+    DsmStateDisablingOnStopSuspendOnIoctlFailureInEnum=4311,
+    DsmStateEnumeratingAfterAddressInEnum=4312,
+    DsmStateEnumeratingAtAddressZeroInEnum=4313,
+    DsmStateInitializingEnumRetryCountInEnum=4314,
+    DsmStateReleasingAddressZeroOwnershipInEnum=4315,
+    DsmStateReleasingAddressZeroOwnershipOnDetach=4316,
+    DsmStateReleasingAddressZeroOwnershipOnDetachInEnum=4317,
+    DsmStateReleasingAddressZeroOwnershipOnEnumFailure=4318,
+    DsmStateReleasingAddressZeroOwnershipOnStopSuspend=4319,
+    DsmStateReleasingAddressZeroOwnershipOnStopSuspendInEnum=4320,
+    DsmStateReleasingPowerReferenceInEnum=4321,
+    DsmStateReturningOperationFailureInEnum=4322,
+    DsmStateReturningOperationSuccessInEnum=4323,
+    DsmStateReturningPortDetachDeviceInEnum=4324,
+    DsmStateSettingDevicePDChargingPolicy=4325,
+    DsmStateSettingLPMValues=4326,
+    DsmStateSettingNonZeroAddressInEnum=4327,
+    DsmStateStartingTimerForEnumRetryInEnum=4328,
+    DsmStateStartingTimerForEnumRetryInEnumWithAddr0Ownership=4329,
+    DsmStateStoppedSuspendedInEnum=4330,
+    DsmStateUpdatingDeviceInformationInEnum=4331,
+    DsmStateWaitingForDisableCompleteOnStopSuspendAfterFailureInEnum=4332,
+    DsmStateWaitingForDisableCompleteOnStopSuspendInEnum=4333,
+    DsmStateWaitingForDisableCompleteOnStopSuspendInEnumWithAddress0Ownership=4334,
+    DsmStateWaitingForTimerToFlushOnDetachInEnum=4335,
+    DsmStateWaitingForTimerToFlushOnStopSuspendInEnum=4336,
+    DsmStateWaitingForUCXIoctlOnDetachInEnum=4337,
+    DsmStateWaitingForUCXIoctlOnStopSuspendInEnum=4338,
+    DsmStateCheckingIfFirstEnumTryAfterReset1=4339,
+    DsmStateCheckingIfFirstEnumTryAfterReset2=4340,
+    DsmStateCheckingIfSecondResetIsNeeded=4341,
+    DsmStateCreatingUCXDefaultEndpoint=4342,
+    DsmStateCreatingUCXDevice=4343,
+    DsmStateDeletingUCXDefaultEndpointAndDeviceOnDetach=4344,
+    DsmStateDeletingUCXDefaultEndpointAndDeviceOnStop=4345,
+    DsmStateDeletingUCXDefaultEndpointAndDeviceOnSuspend=4346,
+    DsmStateDeletingUCXDefaultEndpointOnOperationFailure=4347,
+    DsmStateDeletingUCXDeviceOnOperationFailure=4348,
+    DsmStateDisablingDeviceInUCXOnDetach=4349,
+    DsmStateDisablingDeviceInUCXOnOperationFailure=4350,
+    DsmStateDisablingDeviceInUCXOnStop=4351,
+    DsmStateDisablingDeviceInUCXOnSuspend=4352,
+    DsmStateDisablingPortOnHubStopInEnumAtAddr0=4353,
+    DsmStateDisablingPortOnHubSuspendInEnumAtAddr0=4354,
+    DsmStateEnablingDeviceInUCX=4355,
+    DsmStateGettingDeviceDescriptorInEnumAtZero=4356,
+    DsmStateLoggingReset1TimeoutInEnumAtZero=4357,
+    DsmStateLoggingReset2TimeoutInEnumAtZero=4358,
+    DsmStateNotifyingDeviceResetToUCXAfterReset2=4359,
+    DsmStateResetting1=4360,
+    DsmStateResetting2=4361,
+    DsmStateReturningDeviceOperationFailureInEnumAtZero=4362,
+    DsmStateReturningDeviceOperationSuccessInEnumAtZero=4363,
+    DsmStateReturningHubStopInEnumAtZero=4364,
+    DsmStateReturningHubSuspendInEnumAtZero=4365,
+    DsmStateReturningPortDetachDeviceInEnumAtZero=4366,
+    DsmStateSettingSpeedFlagFor20Devices=4367,
+    DsmStateStoppingTimerOnHubStopInEnumAtZero=4368,
+    DsmStateStoppingTimerOnHubSuspendInEnumAtZero=4369,
+    DsmStateStoppingTimerOnPortDetachInEnumAtZero=4370,
+    DsmStateUpdatingDefaultEndpointMaxPacketSizeInEnum=4371,
+    DsmStateValidatingDeviceDescriptorInEnumAtZero=4372,
+    DsmStateWaitingForPortReset1OrDisableOnHubStopInEnumAtZero=4373,
+    DsmStateWaitingForPortReset1OrDisableOnHubSuspendInEnumAtZero=4374,
+    DsmStateWaitingForPortReset2OnHubStopInEnumAtZero=4375,
+    DsmStateWaitingForPortReset2OnHubSuspendInEnumAtZero=4376,
+    DsmStateWaitingForPostReset1ExtendedTimer=4377,
+    DsmStateWaitingForPostReset1Timer=4378,
+    DsmStateWaitingForPostReset2ExtendedTimer=4379,
+    DsmStateWaitingForPostReset2Timer=4380,
+    DsmStateWaitingForStopSuspendOnReset1InEnumAtZero=4381,
+    DsmStateWaitingForStopSuspendOnReset2InEnumAtZero=4382,
+    DsmStateWaitingForTimerOnHubStopInEnumAtZero=4383,
+    DsmStateWaitingForTimerOnHubSuspendInEnumAtZero=4384,
+    DsmStateWaitingForTimerOnPortDetachInEnumAtZero=4385,
+    DsmStateCreatingUCXDefaultEndpointFor30=4386,
+    DsmStateCreatingUCXDevice30=4387,
+    DsmStateDeletingUCXDefaultEndpointOnOperationFailureFor30=4388,
+    DsmStateDeletingUCXDefaultEndpointOnOperationFailureFor30OnDetach=4389,
+    DsmStateDeletingUCXDefaultEndpointOnOperationFailureFor30OnHubStop=4390,
+    DsmStateDeletingUCXDefaultEndpointOnOperationFailureFor30OnHubSuspend=4391,
+    DsmStateDeletingUCXDeviceOnOperationFailureFor30=4392,
+    DsmStateDeletingUCXDeviceOnOperationFailureFor30OnDetach=4393,
+    DsmStateDeletingUCXDeviceOnOperationFailureFor30OnHubStop=4394,
+    DsmStateDeletingUCXDeviceOnOperationFailureFor30OnHubSuspend=4395,
+    DsmStateEnablingDeviceInUCXFor30=4396,
+    DsmStateResettingDeviceInEnumeration=4397,
+    DsmStateReturningDetachInPreAddressEnumFor30=4398,
+    DsmStateReturningDeviceOperationFailureInPreAddressEnumFor30=4399,
+    DsmStateReturningDeviceOperationSuccessInPreAddressEnumFor30=4400,
+    DsmStateReturningHubStopInPreAddressEnumFor30=4401,
+    DsmStateReturningHubSuspendInPreAddressEnumFor30=4402,
+    DsmStateSetting30Speed=4403,
+    DsmStateCancellingControlTransferOnDetachInEnumAfterAddr=4404,
+    DsmStateCancellingControlTransferOnHubStopInEnumAfterAddr=4405,
+    DsmStateCancellingControlTransferOnHubSuspendInEnumAfterAddr=4406,
+    DsmStateCheckingBytesReturnedInConfigDescriptor=4407,
+    DsmStateCheckingIfAltEnumCmdCached=4408,
+    DsmStateCheckingIfSuperSpeedNeedsToBeDisabled=4409,
+    DsmStateDiasablingSuperSpeed=4410,
+    DsmStateGettingConfigurationDescriptorWithDefaultLength=4411,
+    DsmStateGettingConfigurationDescriptorWithReturnedLength=4412,
+    DsmStateGettingDeviceDescriptorAfterAddressing=4413,
+    DsmStateGettingRemainingDescriptorsAfterConfigDescriptor=4414,
+    DsmStateQueryingRegistryValuesForDevice=4415,
+    DsmStateReturningHubStopInEnumAfterAddr=4416,
+    DsmStateReturningHubSuspendInEnumAfterAddr=4417,
+    DsmStateReturningOperationFailureInEnumAfterAddr=4418,
+    DsmStateReturningOperationSuccessInEnumAfterAddr=4419,
+    DsmStateReturningPortDeviceDetachInEnumAfterAddr=4420,
+    DsmStateSendingAltEnumCmdInEnumAfterAddr=4421,
+    DsmStateSettingVersionFlagInEnumerating=4422,
+    DsmStateValidatingConfigurationDescriptor=4423,
+    DsmStateValidatingDeviceDescriptorAfterAddressing=4424,
+    DsmStateCancellingControlTransferOnDetachInRemainingDescriptors=4425,
+    DsmStateCancellingControlTransferOnHubStopInRemainingDescriptors=4426,
+    DsmStateCancellingControlTransferOnHubSuspendInRemainingDescriptors=4427,
+    DsmStateCheckingIfIProductIdStringDescriptorShouldBeQueried=4428,
+    DsmStateCheckingIfIProductIsZero=4429,
+    DsmStateGettingBosDescriptorSet=4430,
+    DsmStateGettingDeviceQualifierDescriptorsAndCheckingForSpeedMismatch=4431,
+    DsmStateGettingLanguageIdStringDescriptor=4432,
+    DsmStateGettingMSOSAndSerialNumberDescriptor=4433,
+    DsmStateGettingProductIdStringDescriptor=4434,
+    DsmStateReturningErrorResponseOnLanguageIdQuery=4435,
+    DsmStateReturningErrorResponseOnProductStringQuery=4436,
+    DsmStateReturningHubStopInRemainingDescriptors=4437,
+    DsmStateReturningHubSuspendInRemainingDescriptors=4438,
+    DsmStateReturningOperationFailureInRemainingDescriptors=4439,
+    DsmStateReturningOperationSuccessInRemainingDescriptors=4440,
+    DsmStateReturningPortDeviceDetachInRemainingDescriptors=4441,
+    DsmStateValidatingLanguageIdStringDescriptor=4442,
+    DsmStateValidatingProductIdStringDescriptor=4443,
+    DsmStateCheckingIfDeviceSupportsContainerId=4444,
+    DsmStateCheckingIfIgnoreHWSerNumIsSet=4445,
+    DsmStateCheckingIfMSOSContainerIdDescriptorIsSupported=4446,
+    DsmStateCheckingIfMSOSDescriptorShouldBeQueried=4447,
+    DsmStateCheckingIfMSOSExtendedConfigDescriptorIsSupported=4448,
+    DsmStateCheckingIfSerialNumberStringIndexIsZero=4449,
+    DsmStateGettingMSOSContainerIdDescriptor=4450,
+    DsmStateGettingMSOSContainerIdHeaderDescriptor=4451,
+    DsmStateGettingMSOSDescriptor=4452,
+    DsmStateGettingMSOSExtendedDescriptor=4453,
+    DsmStateGettingMSOSExtendedDescriptorHeader=4454,
+    DsmStateGettingSerialNumberStringDescriptor=4455,
+    DsmStateMarkDeviceAsNotSupportingMSOSDescriptor=4456,
+    DsmStateMarkDeviceAsSupportingMSOSDescriptor=4457,
+    DsmStateMarkingDeviceAsNotSupportingContainerId=4458,
+    DsmStateMarkingDeviceAsNotSupportingContainerIdBasedOnMSOSDescriptor=4459,
+    DsmStateReturningErrorResponseOnContainerIdHeaderQuery=4460,
+    DsmStateReturningErrorResponseOnContainerIdQuery=4461,
+    DsmStateReturningErrorResponseOnMSOSExtendedHeaderQuery=4462,
+    DsmStateReturningErrorResponseOnMSOSExtendedQuery=4463,
+    DsmStateReturningErrorResponseOnMSOSQuery=4464,
+    DsmStateReturningErrorResponseOnSerialNumberQuery=4465,
+    DsmStateReturningOperationFailureInGettingDescriptorsForGreaterThan1x=4466,
+    DsmStateReturningOperationSuccessInGettingDescriptorsForGreaterThan1x=4467,
+    DsmStateValidatingMSOSContainerIdDescriptor=4468,
+    DsmStateValidatingMSOSContainerIdHeaderDescriptor=4469,
+    DsmStateValidatingMSOSDescriptor=4470,
+    DsmStateValidatingMSOSExtendedConfigDescriptor=4471,
+    DsmStateValidatingMSOSExtendedConfigDescriptorHeader=4472,
+    DsmStateValidatingSerialNumberStringDescriptor=4473,
+    DsmStateCheckingIfIgnoreHWSerNumIsSetFor1xDevice=4474,
+    DsmStateCheckingIfSerialNumberStringIndexIsZeroFor1xDevice=4475,
+    DsmStateGettingSerialNumberStringDescriptorFor1xDevice=4476,
+    DsmStateReturningErrorResponseOnSerialNumberQueryFor1xDevice=4477,
+    DsmStateReturningOperationFailureInGettingSerialNumberFor1x=4478,
+    DsmStateReturningOperationSuccessInGettingSerialNumberFor1x=4479,
+    DsmStateValidatingSerialNumberStringDescriptorFor1xDevice=4480,
+    DsmStateCheckingIfWaitRequiredAfterSetAddress=4481,
+    DsmStateReturningHubStopInSettingAddress=4482,
+    DsmStateReturningHubSuspendInSettingAddress=4483,
+    DsmStateReturningOperationFailureInSettingAddress=4484,
+    DsmStateReturningOperationSuccessInSettingAddress=4485,
+    DsmStateReturningPortDetachDeviceInSettingAddress=4486,
+    DsmStateSettingNonZeroAddress=4487,
+    DsmStateStoppingTimerOnHubStopInSettingAddress=4488,
+    DsmStateStoppingTimerOnHubSuspendInSettingAddress=4489,
+    DsmStateStoppingTimerOnPortDetachInSettingAddress=4490,
+    DsmStateWaitingForTimerAfterSetAddress=4491,
+    DsmStateWaitingForTimerOnHubStopInSettingAddress=4492,
+    DsmStateWaitingForTimerOnHubSuspendInSettingAddress=4493,
+    DsmStateWaitingForTimerOnPortDetachInSettingAddress=4494,
+    DsmStateCheckingBytesReturnedInAlternateConfigDescriptor=4495,
+    DsmStateCheckingIfAltEnumCommandNeeded=4496,
+    DsmStateCheckingIfAlternateBOSDescriptorQueryShouldBeSkipped=4497,
+    DsmStateCheckingIfAlternateModeStringDescriptorShouldBeQueried=4498,
+    DsmStateCheckingIfBillboardBOSDescriptorIsPresent=4499,
+    DsmStateCheckingIfBillboardStringDescriptorShouldBeQueried=4500,
+    DsmStateCheckingIfBOSDescriptorQueryShouldBeSkipped=4501,
+    DsmStateCheckingIfCompleteAlternateBOSDescriptorWasRetrieved=4502,
+    DsmStateCheckingIfCompleteBOSDescriptorWasRetrieved=4503,
+    DsmStateCheckingIfDualRoleFeaturesSupported=4504,
+    DsmStateGetMsOs20DescriptorSet=4505,
+    DsmStateGettingAlternateBOSDescriptor=4506,
+    DsmStateGettingAlternateBOSDescriptorHeader=4507,
+    DsmStateGettingAlternateConfigurationDescriptorWithDefaultLength=4508,
+    DsmStateGettingAlternateConfigurationDescriptorWithReturnedLength=4509,
+    DsmStateGettingAlternateDeviceDescriptor=4510,
+    DsmStateGettingAlternateModeStringDescriptor=4511,
+    DsmStateGettingBillboardStringDescriptor=4512,
+    DsmStateGettingBOSDescriptor=4513,
+    DsmStateGettingBOSDescriptorHeader=4514,
+    DsmStateIsMsOs20DescriptorSupported=4515,
+    DsmStateQueryingRegistryValuesForAlternateDeviceEnumeration=4516,
+    DsmStateReturningErrorResponseOnBOSDescriptorHeaderQuery=4517,
+    DsmStateReturningErrorResponseOnBOSDescriptorQuery=4518,
+    DsmStateReturningOperationFailureInGettingBOSDescriptor=4519,
+    DsmStateReturningOperationSuccessInGettingBOSDescriptor=4520,
+    DsmStateSendingMsOs20AlternateEnumerationCommand=4521,
+    DsmStateSendingUsbFeaturesVendorCmd=4522,
+    DsmStateSettingVersionFlagInAlternateEnumeration=4523,
+    DsmStateValidatingAlternateBOSDescriptor=4524,
+    DsmStateValidatingAlternateBOSDescriptorHeader=4525,
+    DsmStateValidatingAlternateConfigurationDescriptor=4526,
+    DsmStateValidatingAlternateDeviceDescriptor=4527,
+    DsmStateValidatingAndLoggingAlternateModeStringDescriptor=4528,
+    DsmStateValidatingAndLoggingBillboardStringDescriptor=4529,
+    DsmStateValidatingBOSDescriptor=4530,
+    DsmStateValidatingBOSDescriptorHeader=4531,
+    DsmStateValidatingMsOs20DescriptorSetIfPresent=4532,
+    DsmStateGettingDeviceQualifierDescriptor=4533,
+    DsmStateReturningErrorResponseOnDeviceQualifierQuery=4534,
+    DsmStateReturningOperationSuccessInCheckingFor20FullSpeed=4535,
+    DsmStateValidatingDeviceQualifierDescriptor=4536,
+    DsmStateAddingDeviceToGlobalChildList=4537,
+    DsmStateCheckingIfAddDeviceToGlobalListRetryCountExceededLimit=4538,
+    DsmStateCreatingChildPDOAndReportingToPnp=4539,
+    DsmStateDiscardSerialNumber=4540,
+    DsmStateInitializingAddDeviceToGlobalListRetryCount=4541,
+    DsmStateRequestingDeviceCycleInReportingToPnp=4542,
+    DsmStateReturningOperationSuccessInReportingToPnp=4543,
+    DsmStateReturningPortDetachDevice=4544,
+    DsmStateStoppingTimerAndRequestingCycleOnStopSuspend=4545,
+    DsmStateStoppingTimerOnDetachInReportingToPnp=4546,
+    DsmStateWaitingForDetachInReportingToPnp=4547,
+    DsmStateWaitingForDetachOrTimerInReportingToPnp=4548,
+    DsmStateWaitingForDuplicateDeviceToGoAway=4549,
+    DsmStateWaitingForTimerToFlushOnDetachInReportingToPnp=4550,
+    DsmStateCreatingUnknownChildPDOAndReportingToPnp=4551,
+    DsmStateMarkingUnknownDeviceAsFailed=4552,
+    DsmStateRequestingDeviceCycleForUnknownDevice=4553,
+    DsmStateReturningOperationSuccessInReportingUnknownDevice=4554,
+    DsmStateReturningPortDetachDeviceInReportingUnknownDevice=4555,
+    DsmStateAckingResumed=4556,
+    DsmStateAcquiringPowerReferenceInEnabled=4557,
+    DsmStateAcquiringPowerReferenceInSuspended=4558,
+    DsmStateAcquiringPowerReferenceInSuspendedOnResumeWithReset=4559,
+    DsmStateAcquiringPowerReferenceOnHubResume=4560,
+    DsmStateAcquiringPowerReferenceOnHubResumeWithReenumRequired=4561,
+    DsmStateAcquiringPowerReferenceOnHubResumeWtihReset=4562,
+    DsmStateAcquiringPowerReferenceOnResumeInS0=4563,
+    DsmStateCheckingIfDeviceNeedsResetOnResumeInSxOnEnabled=4564,
+    DsmStateCheckingIfDeviceNeedsResetOnResumeInSxOnSuspended=4565,
+    DsmStateCompletingUnexpectedD0ExitInHubSuspended=4566,
+    DsmStateDisabledOrFailedInHubSuspend=4567,
+    DsmStateDisablingPortOnPortEnabledInPendingHubStop=4568,
+    DsmStateReleasingReferenceOnHubSuspendAfterPSMSyncUp=4569,
+    DsmStateReleasingReferenceOnHubSuspendAfterPSMSyncUpInDisabledOrFailed=4570,
+    DsmStateReleasingReferenceOnHubSuspendOnDetachAfterPSMSyncUp=4571,
+    DsmStateResumingBeforeResetting=4572,
+    DsmStateReturningDeviceRenumerationOnHubResume=4573,
+    DsmStateReturningDeviceResumedOnHubResume=4574,
+    DsmStateReturningDeviceSuspendedOnHubResume=4575,
+    DsmStateReturningHubStopWithReferenceAcquiredInHubSuspended=4576,
+    DsmStateReturningPortDetach=4577,
+    DsmStateSuspendedInHubSuspend=4578,
+    DsmStateSuspendingPortOnPortEnabledInPendingHubSuspend=4579,
+    DsmStateWaitingForHubResumeInEnabled=4580,
+    DsmStateWaitingForHubResumeInSuspended=4581,
+    DsmStateWaitingForHubResumeWithRenumRequired=4582,
+    DsmStateWaitingForPSMSyncUp=4583,
+    DsmStateWaitingForPSMSyncUpOnPendingStop=4584,
+    DsmStateWaitingForPSMSyncUpOnPendingSuspend=4585,
+    DsmStateWaitingForPSMSyncUpOnResumeWithReset=4586,
+    DsmStateWaitingForResumeResponseFromPortOnHubStop=4587,
+    DsmStateWaitingForResumeResponseFromPortOnHubSuspend=4588,
+    DsmStateAcquiringAddressZeroOwnershipOnRenum=4589,
+    DsmStateAcquiringPowerReferenceOnStartInReEnum=4590,
+    DsmStateCancellingAcquiringAddress0OnDetachOnRenum=4591,
+    DsmStateCancellingRetryTimerOnDetachOnRenum=4592,
+    DsmStateCancellingRetryTimerOnStopSuspendOnRenum=4593,
+    DsmStateCheckingIfAltEnumCmdNeededInReenum=4594,
+    DsmStateCheckingIfDevicePDChargingPolicySupportedInReEnum=4595,
+    DsmStateCheckingIfDevicePorgrammingWasLosttInUnconfigured=4596,
+    DsmStateCheckingIfDeviceProgrammingWasLosttInConfigured=4597,
+    DsmStateCheckingIfEnumRetryReachedMaximumOnRenum=4598,
+    DsmStateCheckingIfEnumRetryReachedMaximumOnRenumWithAddress0Ownership=4599,
+    DsmStateCheckingIfEnumRetryReachedMaximumWithDeviceDisabledOnRenum=4600,
+    DsmStateCheckingIfItIsBootDeviceOnIdComparisionFailure=4601,
+    DsmStateCheckingIfRequestConfigDescOnResetIsSet=4602,
+    DsmStateCheckingIfSerialNumberShouldBeCompared=4603,
+    DsmStateClearingDeviceLostProgammingFlagOnRestart=4604,
+    DsmStateClearingDeviceProgrammingLostFlagOnRenum=4605,
+    DsmStateComparingDeviceOnReEnumeration=4606,
+    DsmStateComparingSerialNumberOnReEnumeration=4607,
+    DsmStateDeconfiguringEndpointsInControllerBeforeRenumerating=4608,
+    DsmStateDisablingDeviceInControllerOnStopSuspendOnRenum=4609,
+    DsmStateDisablingDeviceInControllerOnStopSuspendOnRenumWithAddress0Ownership=4610,
+    DsmStateDisablingOnEnumAfterFailureInReEnum=4611,
+    DsmStateDisablingOnEnumAfterFailureInReEnumWithAddress0Ownership=4612,
+    DsmStateDisablingOnEnumAfterFailureWithDeviceDisabledInReEnum=4613,
+    DsmStateEnablingDeviceInControllerInRenum=4614,
+    DsmStateEnumeratingAtAddressZeroOnRenum=4615,
+    DsmStateGettingConfigDescriptorWhileRenuemrating=4616,
+    DsmStateGettingDeviceDescriptorOnRenum=4617,
+    DsmStateGettingSerialNumberStringDescriptorWhileRenuemrating=4618,
+    DsmStateInitializingEnumRetryCountInReEnumDuringResetInConfigured=4619,
+    DsmStateInitializingEnumRetryCountInReEnumDuringResetInUnConfigured=4620,
+    DsmStateInitializingEnumRetryCountInReEnumDuringRestart=4621,
+    DsmStatePurgingDeviceTreeIoOnReEnumerationInConfigured=4622,
+    DsmStatePurgingDeviceTreeIoOnReEnumerationInUnConfigured=4623,
+    DsmStatePurgingIoOnEnumAfterFailureInReEnum=4624,
+    DsmStatePurgingIoOnEnumAfterFailureInReEnumWithAddress0Ownership=4625,
+    DsmStateReleasingAddressZeroOwnershipOnDetachOnEnumFailure=4626,
+    DsmStateReleasingAddressZeroOwnershipOnDetachWithDeviceEnabledOnRenum=4627,
+    DsmStateReleasingAddressZeroOwnershipOnDetachWithTimer=4628,
+    DsmStateReleasingAddressZeroOwnershipOnEnumFailureInRenum=4629,
+    DsmStateReleasingAddressZeroOwnershipOnRenum=4630,
+    DsmStateReleasingAddressZeroOwnershipOnStopSuspendOnEnumFailure=4631,
+    DsmStateReleasingAddressZeroOwnershipOnStopSuspendOnRenum=4632,
+    DsmStateReleasingAddressZeroOwnershipOnStopSuspendWithTimer=4633,
+    DsmStateReleasingPowerReferenceOnRenum=4634,
+    DsmStateReturningOperationFailureOnRenum=4635,
+    DsmStateReturningOperationFailureWithDeviceEnabledOnRenum=4636,
+    DsmStateReturningOperationSuccessOnRenum=4637,
+    DsmStateReturningPortDetachDeviceOnRenum=4638,
+    DsmStateReturningPortDetachDeviceWithDeviceEnabledOnRenum=4639,
+    DsmStateSendingMsOs20AltEnumCmdOnReenum=4640,
+    DsmStateSettingDevicePDChargingPolicyInReEnum=4641,
+    DsmStateSettingLPMValuesInReEnum=4642,
+    DsmStateSettingNonZeroAddressOnRenum=4643,
+    DsmStateStartingTimerForEnumRetryOnRenum=4644,
+    DsmStateStartingTimerForEnumRetryOnRenumWithAddress0Ownership=4645,
+    DsmStateStoppedSuspendedOnRenum=4646,
+    DsmStateWaitingForDetachAfterWrongDeviceDetectedOnBootDevicePort=4647,
+    DsmStateWaitingForDisableCompleteOnStopSuspendAfterFailureInReEnum=4648,
+    DsmStateWaitingForDisableCompleteOnStopSuspendOnRenum=4649,
+    DsmStateWaitingForDisableCompleteOnStopSuspendWithDeviceDisabledAfterFailureInReEnum=4650,
+    DsmStateWaitingForTimerToFlushOnDetachOnRenum=4651,
+    DsmStateWaitingForTimerToFlushOnStopSuspendOnRenum=4652,
+    DsmStateWaitingForUCXIoctlOnDetachOnRenum=4653,
+    DsmStateWaitingForUCXIoctlOnStopSuspend=4654,
+    DsmStateCheckingIfAnyAlternateInterfaceLeft=4655,
+    DsmStateConfiguringDevice=4656,
+    DsmStateCreatingNewEndpoints=4657,
+    DsmStateDeconfiguringEndpointsInControllerForDeviceConfiguration=4658,
+    DsmStateDeletingEndpointsForOldConfiguration=4659,
+    DsmStateMarkingAnyEndpointsToBeEnableAsDisabled=4660,
+    DsmStateProgrammingEndpointsAndSettingLPMValuesrForDeviceConfiguration=4661,
+    DsmStateProgrammingEndpointsInControllerForDeviceConfigurationFor20Devices=4662,
+    DsmStateReturningOperationFailureInReConfiguring=4663,
+    DsmStateReturningOperationSuccessInReConfiguring=4664,
+    DsmStateSettingDeviceInterfaceInConfiguring=4665,
+    DsmStateDisablingPortOnHubSuspendInCleanup=4666,
+    DsmStateFlushingHubPowerDownEvents=4667,
+    DsmStateFlushingHubPowerUpEvents=4668,
+    DsmStateFlushingHubStopAfterSuspendEvent=4669,
+    DsmStateFlushingPnpEvents=4670,
+    DsmStateFowardingStreamsRequestToUcxInWaitingForDevicePortEvents=4671,
+    DsmStateReleasingPowerReferenceOnHubSuspendInCleanup=4672,
+    DsmStateReturningPortDetachDeviceFromIgnoringDevicePort=4673,
+    DsmStateReturningPortDisabledOnHubSuspendInCleanup=4674,
+    DsmStateWaitingForDevicePortEvents=4675,
+    DsmStateFlushingHubPowerDownEventsWithPortOff=4676,
+    DsmStateFlushingHubPowerUpEventsWithPortOff=4677,
+    DsmStateFlushingHubStopAfterSuspendEventWithPortOff=4678,
+    DsmStateFlushingPnpEventsWithPortOff=4679,
+    DsmStateFowardingStreamsRequestToUcxInWaitingForDevicePortEventsWithPortOff=4680,
+    DsmStateWaitingForDevicePortEventsWithPortOff=4681,
+    DsmStateDisablingPortForFailedDeviceAfterHubResume=4682,
+    DsmStateDisablingPortOnHubSuspendForFailedDevice=4683,
+    DsmStateFailedDeviceHubSuspended=4684,
+    DsmStateFlushingHubPowerDownEventsForFailedDevice=4685,
+    DsmStateFlushingHubPowerUpEventsForFailedDevice=4686,
+    DsmStateFlushingHubStopAfterSuspendEventForFailedDevice=4687,
+    DsmStateFlushingPnpEventsForFailedDevice=4688,
+    DsmStateReleasingPowerReferenceOnDetachForFailedDevice=4689,
+    DsmStateReturningPortDetachDeviceForFailedDevice=4690,
+    DsmStateWaitingForDevicePortEventsForFailedDevice=4691,
+    DsmStateFlushingHubStartResumeEvent=4692,
+    DsmStateFlushingHubSuspendEvent=4693,
+    DsmStateFlushingPnpEventExceptStop=4694,
+    DsmStateFowardingStreamsRequestToUcxInWaitingForDevicePortEventsExceptStop=4695,
+    DsmStateWaitingForDevicePortEventsExceptStop=4696,
+    DsmStateFlushingHubResumeEventForBootDevice=4697,
+    DsmStateFlushingHubSuspendEventForBootDevice=4698,
+    DsmStateFlushingPnpEventsForBootDevice=4699,
+    DsmStateWaitingForDeviceHubEventsForBootDevice=4700,
+    DsmStateAckingPortEventInD3Cold=4701,
+    DsmStateAckingPortResumed=4702,
+    DsmStateCheckingIfDeviceArmedForWakeOnResume=4703,
+    DsmStateCheckingIfDeviceNeedsResetOnResumeInS0=4704,
+    DsmStateCheckingIfDeviceShouldBeDisarmedForWakeOnResume=4705,
+    DsmStateCheckingIfResetOnLastResumeFlagIsSet=4706,
+    DsmStateCheckingIfResetOnLastResumeFlagIsSetOnSuspended=4707,
+    DsmStateCompletingD0EntryOnDetach=4708,
+    DsmStateCompletingD0EntryOnPortFailure=4709,
+    DsmStateDisabledAfterD3Cold=4710,
+    DsmStateDisablingOnHubSuspendNeedingRenumeration=4711,
+    DsmStateDisablingPortOnStopFromSuspended=4712,
+    DsmStateDisarmingDeviceForWakeOnD0Entry=4713,
+    DsmStateDisarmingDeviceForWakeOnPortResumed=4714,
+    DsmStatePurgingDeviceIoOnHubSuspendWhileWaitingForD0Entry=4715,
+    DsmStatePurgingDeviceIoOnHubSuspendWhileWaitingForD0EntryOnHwWake=4716,
+    DsmStateReleasingPowerReferenceOnDetachWhileSuspending=4717,
+    DsmStateReleasingPowerReferenceOnDetachWhileWaitingForHubSuspend=4718,
+    DsmStateReleasingPowerReferenceOnPortFailureWhileWaitingForHubSuspend=4719,
+    DsmStateResumingFromSelectiveSuspend=4720,
+    DsmStateReturningDetachDevice=4721,
+    DsmStateReturningDeviceResumed=4722,
+    DsmStateReturningHubStopFromSuspended=4723,
+    DsmStateReturningPortFailureOnResume=4724,
+    DsmStateReturningRenumerateDeviceOnResume=4725,
+    DsmStateSettingResetOnLastResumeDueToD3Cold=4726,
+    DsmStateSettingResetOnLastResumeFlagForPDO=4727,
+    DsmStateSettingResetOnLastResumeFlagForPDOAfterD3Cold=4728,
+    DsmStateStartingDeviceIoOnDeviceResumeOnHwWake=4729,
+    DsmStateStartingDeviceIoOnDeviceResumeOnSwWake=4730,
+    DsmStateSuspended=4731,
+    DsmStateSuspendedWithHubSuspended=4732,
+    DsmStateSuspendedWithHubSuspendedInD3Cold=4733,
+    DsmStateSuspendingBackUnarmedDevice=4734,
+    DsmStateSuspendingWakeArmedDeviceOnHubSuspend=4735,
+    DsmStateWaitingForD0EntryOnHwWake=4736,
+    DsmStateWaitingForD0EntryOnPendingRenumerate=4737,
+    DsmStateWaitingForSuspendCompleteOnHubSuspend=4738,
+    DsmStateAbortingDeviceIoInSuspendingBeforeArmingForWakeFailure=4739,
+    DsmStateArmingDeviceForWake=4740,
+    DsmStateCheckingIfDeviceArmedForWakeOnSuspending=4741,
+    DsmStateCompletingWaitWakeOnDetachDuringSuspending=4742,
+    DsmStateCompletingWaitWakeOnSuspendFailure=4743,
+    DsmStatePurgingDeviceIoInSuspending=4744,
+    DsmStatePurgingDeviceIoInSuspendingAfterArmingForWake=4745,
+    DsmStatePurgingDeviceIoInSuspendingAfterArmingForWakeFailure=4746,
+    DsmStateReturningOperationFailureInSuspending=4747,
+    DsmStateReturningOperationSuccessInSuspending=4748,
+    DsmStateReturningPortDetachDeviceInSuspending=4749,
+    DsmStateReturningUnexpectedHubSuspendInSuspending=4750,
+    DsmStateSuspending=4751,
+    DsmStateSuspendingPortOnFailureInSuspending=4752,
+    DsmStateSuspendingWithArmedForWake=4753,
+    DsmStateWaitingForPortResponseOnHubSuspend=4754,
+    DsmStateCreatingNewEndpointsInSettingInterface=4755,
+    DsmStateDeletingEndpointsForNewInterfaceOnFailure=4756,
+    DsmStateDeletingEndpointsForOldInterface=4757,
+    DsmStateDeletingEndpointsForOldInterfaceOnFailure=4758,
+    DsmStateDisablingEndpointsForTheCurrentInterface=4759,
+    DsmStateDisablingEndpointsForTheNewInterfaceOnFailure=4760,
+    DsmStatePreparingEndpointAndInterfaceListsOnSelectInterface=4761,
+    DsmStateProgrammingEndpointsAndSettingLPMValuesInSettingInterface=4762,
+    DsmStateProgrammingEndpointsInControllerInSettingInterfaceFor20Devices=4763,
+    DsmStateReturningOperationFailureInSettingInterface=4764,
+    DsmStateReturningOperationSuccessInSettingInterface=4765,
+    DsmStateSettingDeviceInterfaceInSettingInterface=4766,
+    DsmStateSettingDeviceInterfaceInSettingInterfaceOnFailureForCompat=4767,
+    DsmStateCheckingIfDeviceSpeedChanged=4768,
+    DsmStateCheckingIfFirstEnumTryInRenum=4769,
+    DsmStateGettingDeviceDescriptorInReEnumAtZero=4770,
+    DsmStateLoggingReset1TimeoutInReEnumAtZero=4771,
+    DsmStateLoggingReset2TimeoutInReEnum=4772,
+    DsmStateNotifyingDeviceResetToUCXAfterReset1InRenum=4773,
+    DsmStateNotifyingDeviceResetToUCXAfterReset2InRenum=4774,
+    DsmStateResetting1InRenum=4775,
+    DsmStateResetting2InRenum=4776,
+    DsmStateReturningDeviceOperationFailureInReEnumAtZero=4777,
+    DsmStateReturningDeviceOperationSuccessInReEnumAtZero=4778,
+    DsmStateReturningHubStopInReEnumAtZero=4779,
+    DsmStateReturningHubSuspendInReEnumAtZero=4780,
+    DsmStateReturningPortDetachDeviceInReEnumAtZero=4781,
+    DsmStateStoppingTimerOnHubStopInReEnumAtZero=4782,
+    DsmStateStoppingTimerOnHubSuspendInReEnumAtZero=4783,
+    DsmStateStoppingTimerOnPortDetachInReEnumAtZero=4784,
+    DsmStateValidatingDeviceDescriptorInReEnumAtZero=4785,
+    DsmStateWaitingForPortResetOnHubStopInReEnumAtZero=4786,
+    DsmStateWaitingForPortResetOnHubSuspendInReEnumAtZero=4787,
+    DsmStateWaitingForPostReset1TimerInRenum=4788,
+    DsmStateWaitingForPostReset2ExtendedTimerInRenum=4789,
+    DsmStateWaitingForPostReset2TimerInRenum=4790,
+    DsmStateWaitingForStopSuspendOnReset1InReEnumAtZero=4791,
+    DsmStateWaitingForTimerOnHubStopInReEnumAtZero=4792,
+    DsmStateWaitingForTimerOnHubSuspendInReEnumAtZero=4793,
+    DsmStateWaitingForTimerOnPortDetachInReEnumAtZero=4794,
+    DsmStateCheckingIfFirstReEnumTryFor30Device=4795,
+    DsmStateDeterminingPortResetTypeRequired=4796,
+    DsmStateLoggingResetTimeoutInResettingFor30=4797,
+    DsmStateNotifyingDeviceResetToUCXInResettingFor30=4798,
+    DsmStateQueueingHotPortResetFor30=4799,
+    DsmStateQueueingWarmPortResetFor30=4800,
+    DsmStateReturningDeviceOperationFailureInResettingFor30=4801,
+    DsmStateReturningDeviceOperationSuccessInInResettingFor30=4802,
+    DsmStateReturningHubStopInResettingFor30=4803,
+    DsmStateReturningHubSuspendInResettingFor30=4804,
+    DsmStateReturningPortDetachDeviceInResettingFor30=4805,
+    DsmStateStartingPostResetTimerFor30=4806,
+    DsmStateStoppingTimerOnHubStopInResettingFor30=4807,
+    DsmStateStoppingTimerOnHubSuspendInResettingFor30=4808,
+    DsmStateStoppingTimerOnPortDetachInResettingFor30=4809,
+    DsmStateWaitingForPortResetCompleteFor30=4810,
+    DsmStateWaitingForPortResetOnHubStopInResettingFor30=4811,
+    DsmStateWaitingForPortResetOnHubSuspendInResettingFor30=4812,
+    DsmStateWaitingForStopSuspendOnReset1InResettingFor30=4813,
+    DsmStateWaitingForTimerOnHubStopInResettingFor30=4814,
+    DsmStateWaitingForTimerOnHubSuspendInResettingFor30=4815,
+    DsmStateWaitingForTimerOnPortDetachInResettingFor30=4816,
+    DsmStateAllocatingBufferForMsOsExtendedPropertyDescriptor=4817,
+    DsmStateCheckingIfMsOs20RegistryValuesShouldBeInstalled=4818,
+    DsmStateCheckingIfMSOSExtendedPropertyDescriptorShouldBeQueried=4819,
+    DsmStateFreeingBufferAllocatedForMSOSExtendedProperty=4820,
+    DsmStateGettingMSOSExtendedPropertyDescriptor=4821,
+    DsmStateGettingMSOSExtendedPropertyDescriptorHeader=4822,
+    DsmStateInstallingMsOs20RegistryValues=4823,
+    DsmStateSettingExtPropDescSemaphoreForMsOs2=4824,
+    DsmStateSettingExtPropDescSemaphoreRegistryFlag=4825,
+    DsmStateSignalingPnpEventForMSOSExtInstall=4826,
+    DsmStateValidatingMSOSExtendedPropertyDescriptor=4827,
+    DsmStateValidatingMSOSExtendedPropertyDescriptorHeader=4828,
+    DsmStateWaitingForInstallMSOSExt=4829,
+    DsmStateWritingCustomPropertiesInRegistry=4830,
+    DsmStateCheckingIfLTMShouldBeEnabled=4831,
+    DsmStateCheckingIfSetIsochDelayShouldBeSkipped=4832,
+    DsmStateCheckingIfSetSelShouldBeSkipped=4833,
+    DsmStateEnablingLTM=4834,
+    DsmStateReturningOperationFailureInSettingLPMValues=4835,
+    DsmStateReturningOperationSuccessInSettingLPMValues=4836,
+    DsmStateSettingSEL=4837,
+    DsmStateSetttingIsochDelay=4838,
+    DsmStateCheckingIfEnableU1NeedsToBeUpdated=4839,
+    DsmStateCheckingIfEnableU2NeedsToBeUpdated=4840,
+    DsmStateCheckingIfEndpointsNeedToBeConfiguredAfterDecreasingExitLatency=4841,
+    DsmStateCheckingIfEndpointsNeedToBeProgrammedAfterIncreasingLatency=4842,
+    DsmStateCheckingIfEndpointsToBeDisabled=4843,
+    DsmStateCheckingIfEndpointsToBeDisabledOnDetach=4844,
+    DsmStateCheckingIfExitLatencyNeedsToBeDecreased=4845,
+    DsmStateCheckingIfExitLatencyNeedsToBeIncreased=4846,
+    DsmStateCheckingIfU1TimeoutNeedsToBeChanged=4847,
+    DsmStateCheckingIfU2TimeoutNeedsToBeChanged=4848,
+    DsmStateComputingU1U2TimeoutsAndExitLatency=4849,
+    DsmStateDisablingEndpointsOnConfigFailure=4850,
+    DsmStateDisablingEndpointsOnConfigFailureOnDetach=4851,
+    DsmStateDisablingU1=4852,
+    DsmStateDisablingU1U2OnExitLatencyTooLargeError=4853,
+    DsmStateDisablingU2=4854,
+    DsmStateEnablingU1=4855,
+    DsmStateEnablingU2=4856,
+    DsmStateInitializingU1U2Flags=4857,
+    DsmStateProgrammingEndpointsInControllerAfterDecreasingExitLatency=4858,
+    DsmStateProgrammingEndpointsInControllerAfterIncreasingExitLatency=4859,
+    DsmStateQueuingSetU1TimeoutToPsm=4860,
+    DsmStateQueuingSetU2TimeoutToPsm=4861,
+    DsmStateReturningOperationFailureInUpdatingLPMValues=4862,
+    DsmStateReturningOperationSuccessInUpdatingLPMValues=4863,
+    DsmStateReturningPortDetachDeviceInUpdatingLPMValues=4864,
+    DsmStateUpdatingDeviceExitLatencyInTheControllerAfterDecreasingExitLatency=4865,
+    DsmStateUpdatingDeviceExitLatencyInTheControllerAfterIncreasingExitLatency=4866,
+    DsmStateUpdatingDeviceStatusToU1Disabled=4867,
+    DsmStateUpdatingDeviceStatusToU1Enabled=4868,
+    DsmStateUpdatingDeviceStatusToU2Disabled=4869,
+    DsmStateUpdatingDeviceStatusToU2Enabled=4870,
+    DsmStateComputingLPMTimeoutValuesInUnconfigured=4871,
+    DsmStateQueuingSetU2TimeoutToPsmForEnumeratedDevice=4872,
+    DsmStateReturningOperationFailureInUpdatingLPMValuesInUnconfigured=4873,
+    DsmStateReturningOperationSuccessInUpdatingLPMValuesInUnconfigured=4874,
+    DsmStateGettingRemoteWakeCapability=4875,
+    DsmStateReturningOperationFailureInGettingRemoteWakeCap=4876,
+    DsmStateReturningOperationSuccessInGettingRemoteWakeCap=4877,
+    DsmStateValidatingInterfaceStatusForRemoteWake=4878,
+    DsmStateCheckingIf20LPMShouldBeEnabled=4879,
+    DsmStateReturningOperationSuccessInSetting20LPMValues=4880,
+    DsmStateWaitingFor20LpmUpdateIoctlToComplete=4881
+};
+
+union _STATE// Size=0x4 (Id=619)
+{
+    unsigned long StateAsUlong;// Offset=0x0 Size=0x4
+    enum _GENERIC_STATE GenericState;// Offset=0x0 Size=0x4
+    enum _HSM_STATE HsmState;// Offset=0x0 Size=0x4
+    enum _PSM20_STATE Psm20State;// Offset=0x0 Size=0x4
+    enum _PSM30_STATE Psm30State;// Offset=0x0 Size=0x4
+    enum _DSM_STATE DsmState;// Offset=0x0 Size=0x4
+};
+
+struct _STATE_LOG// Size=0xc (Id=487)
+{
+    union _EVENT Event;// Offset=0x0 Size=0x4
+    union _STATE State;// Offset=0x4 Size=0x4
+    unsigned long Depth;// Offset=0x8 Size=0x4
+};
+
+struct _EVENT_QUEUE// Size=0x44 (Id=537)
+{
+    union _EVENT Events[16];// Offset=0x0 Size=0x40
+    unsigned char QueueHead;// Offset=0x40 Size=0x1
+    unsigned char QueueTail;// Offset=0x41 Size=0x1
+};
+
+struct _GUID// Size=0x10 (Id=62)
+{
+    unsigned long Data1;// Offset=0x0 Size=0x4
+    unsigned short Data2;// Offset=0x4 Size=0x2
+    unsigned short Data3;// Offset=0x6 Size=0x2
+    unsigned char Data4[8];// Offset=0x8 Size=0x8
+};
+
+struct _SM_CONTEXT// Size=0x420 (Id=407)
+{
+    struct _STATE_LOG StateHistory[64];// Offset=0x0 Size=0x300
+    union _EVENT EventHistory[16];// Offset=0x300 Size=0x40
+    unsigned char StateHistoryIndex;// Offset=0x340 Size=0x1
+    unsigned char EventHistoryIndex;// Offset=0x341 Size=0x1
+    unsigned long long StateMachineLock;// Offset=0x348 Size=0x8
+    unsigned char StateMachineRunning;// Offset=0x350 Size=0x1
+    union _STATE CurrentState[7];// Offset=0x354 Size=0x1c
+    unsigned long CurrentStateDepth;// Offset=0x370 Size=0x4
+    struct _EVENT_QUEUE EventQueue;// Offset=0x374 Size=0x44
+    unsigned long SubSmFlags;// Offset=0x3b8 Size=0x4
+    void * ParentContext;// Offset=0x3c0 Size=0x8
+    void  ( * AddEvent)(void * ,unsigned long );// Offset=0x3c8 Size=0x8
+    struct _STATE_ENTRY ** StateTable;// Offset=0x3d0 Size=0x8
+    unsigned long StartIndex;// Offset=0x3d8 Size=0x4
+    struct _UCX_FORWARD_PROGRESS_WORKITEM * SmWorker;// Offset=0x3e0 Size=0x8
+    struct _HUB_FDO_CONTEXT * HubFdoContext;// Offset=0x3e8 Size=0x8
+    unsigned char NeedsForwardProgress;// Offset=0x3f0 Size=0x1
+    struct _GUID CurrentActivityId;// Offset=0x3f4 Size=0x10
+    struct UCXUSBDEVICE__ * ParentHandle;// Offset=0x408 Size=0x8
+    struct _EX_TIMER * Timer;// Offset=0x410 Size=0x8
+    unsigned char WaitingForTimerFired;// Offset=0x418 Size=0x1
+    unsigned char DebugBreakOnStateTransition;// Offset=0x419 Size=0x1
+};
+
+union _USB_DEVICE_PROPERTIES// Size=0x4 (Id=443)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long DeviceReservedUXD:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long DeviceIsHub:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long DeviceIsComposite:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long ContainerIdValid:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long BOSContainerIdValid:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long DeviceNotRemovable:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long SerialNumber:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long MsOsDescriptorNotSupported:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long UsbWakeupSupport:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long ExtPropertyInstalled:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+        unsigned long DeviceSupportsSelectiveSuspend:1;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x1
+        unsigned long DeviceIsSuperSpeedCapable:1;// Offset=0x0 Size=0x4 BitOffset=0xb BitSize=0x1
+        unsigned long DeviceIsEnhancedSuperSpeedCapable:1;// Offset=0x0 Size=0x4 BitOffset=0xc BitSize=0x1
+        unsigned long DeviceIsHighSpeedCapable:1;// Offset=0x0 Size=0x4 BitOffset=0xd BitSize=0x1
+        unsigned long AllowIdleIrpInD3:1;// Offset=0x0 Size=0x4 BitOffset=0xe BitSize=0x1
+        unsigned long D3ColdSupportedInAcpi:1;// Offset=0x0 Size=0x4 BitOffset=0xf BitSize=0x1
+        unsigned long ChargingPolicySupported:1;// Offset=0x0 Size=0x4 BitOffset=0x10 BitSize=0x1
+        unsigned long DeviceIsBillboard:1;// Offset=0x0 Size=0x4 BitOffset=0x11 BitSize=0x1
+        unsigned long DeviceIsDualRole:1;// Offset=0x0 Size=0x4 BitOffset=0x12 BitSize=0x1
+        unsigned long FailGetStatusRequest:1;// Offset=0x0 Size=0x4 BitOffset=0x13 BitSize=0x1
+        unsigned long LtmCapable:1;// Offset=0x0 Size=0x4 BitOffset=0x14 BitSize=0x1
+    };
+};
+
+union _USB_DEVICE_STATE_FLAGS// Size=0x4 (Id=649)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long DeviceAttachSuccessful:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long DeviceIsKnown:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long HotResetOnEnumRequired:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long WarmResetOnEnumRequired:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long ConfigurationIsValid:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long DeviceReprogrammingPending:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long ActivityIdSetForDsmRequests:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long WdfActivityIdValid:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long WdfPowerReferenceHeldOnFdo:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long DeviceFailedAtLeastOneEnumeration:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+        unsigned long DifferentDeviceOnBootDevicePort:1;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x1
+        unsigned long DecorateSerialNumber:1;// Offset=0x0 Size=0x4 BitOffset=0xb BitSize=0x1
+        unsigned long D3ColdEnabledByFunctionDriver:1;// Offset=0x0 Size=0x4 BitOffset=0xc BitSize=0x1
+        unsigned long ConfigDescIsValid:1;// Offset=0x0 Size=0x4 BitOffset=0xd BitSize=0x1
+        unsigned long DeviceStarted:1;// Offset=0x0 Size=0x4 BitOffset=0xe BitSize=0x1
+        unsigned long FailAlternateSetting:1;// Offset=0x0 Size=0x4 BitOffset=0xf BitSize=0x1
+        unsigned long LastSetAddressFailed:1;// Offset=0x0 Size=0x4 BitOffset=0x10 BitSize=0x1
+        unsigned long InstallMSOSExtEventProcessed:1;// Offset=0x0 Size=0x4 BitOffset=0x11 BitSize=0x1
+        unsigned long DualRoleVendorCmdSent:1;// Offset=0x0 Size=0x4 BitOffset=0x12 BitSize=0x1
+    };
+};
+
+union _USB_DEVICE_SQM_PROPERTIES// Size=0x4 (Id=532)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Reserved1:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long Reserved2:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long Virtualized:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long IsOnXhci:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long HostSpecialFiles:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long ValidBOSDescriptor:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long SupportsStreams:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long SupportsMultipleConfigurations:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long Reserved3:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long IsSuperSpeedCapable:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+    };
+};
+
+union _USB_DEVICE_HACKS// Size=0x4 (Id=576)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long DisableSerialNumber:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long DontSkipMsOsDescriptor:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long ResetOnResumeSx:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long DisableOnSoftRemove:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long RequestConfigDescOnReset:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long SkipContainerIdQuery:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long IgnoreBOSDescriptorValidationFailure:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long DisableLpm:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long SkipSetSel:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long ResetOnResumeInSuperSpeed:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+        unsigned long AllowInvalidPipeHandles:1;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x1
+        unsigned long DisableUASP:1;// Offset=0x0 Size=0x4 BitOffset=0xb BitSize=0x1
+        unsigned long SkipSetIsochDelay:1;// Offset=0x0 Size=0x4 BitOffset=0xc BitSize=0x1
+        unsigned long ResetOnResumeS0:1;// Offset=0x0 Size=0x4 BitOffset=0xd BitSize=0x1
+        unsigned long DisableHotReset:1;// Offset=0x0 Size=0x4 BitOffset=0xe BitSize=0x1
+        unsigned long SkipBOSDescriptorQuery:1;// Offset=0x0 Size=0x4 BitOffset=0xf BitSize=0x1
+        unsigned long NonFunctional:1;// Offset=0x0 Size=0x4 BitOffset=0x10 BitSize=0x1
+        unsigned long DisableUsb20HardwareLpm:1;// Offset=0x0 Size=0x4 BitOffset=0x11 BitSize=0x1
+        unsigned long DisableRemoteWakeForUsb20HardwareLpm:1;// Offset=0x0 Size=0x4 BitOffset=0x12 BitSize=0x1
+        unsigned long DisableSuperSpeed:1;// Offset=0x0 Size=0x4 BitOffset=0x13 BitSize=0x1
+        unsigned long IncompatibleWithWindows:1;// Offset=0x0 Size=0x4 BitOffset=0x14 BitSize=0x1
+        unsigned long UseWin8DescriptorValidation:1;// Offset=0x0 Size=0x4 BitOffset=0x15 BitSize=0x1
+        unsigned long DisableFastEnumeration:1;// Offset=0x0 Size=0x4 BitOffset=0x16 BitSize=0x1
+        unsigned long DisableRecoveryFromPowerDrain:1;// Offset=0x0 Size=0x4 BitOffset=0x17 BitSize=0x1
+        unsigned long AddControllerSuffixedCompatIdToAudioDevices:1;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x1
+    };
+};
+
+struct _USB_HUB_DEVICE_UXD_SETTINGS// Size=0x44 (Id=450)
+{
+    unsigned long Version;// Offset=0x0 Size=0x4
+    struct _GUID PnpGuid;// Offset=0x4 Size=0x10
+    struct _GUID OwnerGuid;// Offset=0x14 Size=0x10
+    unsigned long DeleteOnShutdown;// Offset=0x24 Size=0x4
+    unsigned long DeleteOnReload;// Offset=0x28 Size=0x4
+    unsigned long DeleteOnDisconnect;// Offset=0x2c Size=0x4
+    unsigned long Reserved[5];// Offset=0x30 Size=0x14
+};
+
+struct _USB_DEVICE_DESCRIPTOR// Size=0x12 (Id=498)
+{
+    unsigned char bLength;// Offset=0x0 Size=0x1
+    unsigned char bDescriptorType;// Offset=0x1 Size=0x1
+    unsigned short bcdUSB;// Offset=0x2 Size=0x2
+    unsigned char bDeviceClass;// Offset=0x4 Size=0x1
+    unsigned char bDeviceSubClass;// Offset=0x5 Size=0x1
+    unsigned char bDeviceProtocol;// Offset=0x6 Size=0x1
+    unsigned char bMaxPacketSize0;// Offset=0x7 Size=0x1
+    unsigned short idVendor;// Offset=0x8 Size=0x2
+    unsigned short idProduct;// Offset=0xa Size=0x2
+    unsigned short bcdDevice;// Offset=0xc Size=0x2
+    unsigned char iManufacturer;// Offset=0xe Size=0x1
+    unsigned char iProduct;// Offset=0xf Size=0x1
+    unsigned char iSerialNumber;// Offset=0x10 Size=0x1
+    unsigned char bNumConfigurations;// Offset=0x11 Size=0x1
+};
+
+struct _USB_DEVICE_QUALIFIER_DESCRIPTOR// Size=0xa (Id=491)
+{
+    unsigned char bLength;// Offset=0x0 Size=0x1
+    unsigned char bDescriptorType;// Offset=0x1 Size=0x1
+    unsigned short bcdUSB;// Offset=0x2 Size=0x2
+    unsigned char bDeviceClass;// Offset=0x4 Size=0x1
+    unsigned char bDeviceSubClass;// Offset=0x5 Size=0x1
+    unsigned char bDeviceProtocol;// Offset=0x6 Size=0x1
+    unsigned char bMaxPacketSize0;// Offset=0x7 Size=0x1
+    unsigned char bNumConfigurations;// Offset=0x8 Size=0x1
+    unsigned char bReserved;// Offset=0x9 Size=0x1
+};
+
+struct _OS_STRING// Size=0x12 (Id=452)
+{
+    unsigned char bLength;// Offset=0x0 Size=0x1
+    unsigned char bDescriptorType;// Offset=0x1 Size=0x1
+    wchar_t MicrosoftString[7];// Offset=0x2 Size=0xe
+    unsigned char bVendorCode;// Offset=0x10 Size=0x1
+    union // Size=0x1 (Id=0)
+    {
+        unsigned char bPad;// Offset=0x11 Size=0x1
+        unsigned char bFlags;// Offset=0x11 Size=0x1
+    };
+};
+
+struct _UNICODE_STRING// Size=0x10 (Id=136)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short MaximumLength;// Offset=0x2 Size=0x2
+    wchar_t * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _USB_ID_STRING// Size=0x10 (Id=616)
+{
+    unsigned short LanguageId;// Offset=0x0 Size=0x2
+    unsigned short Pad;// Offset=0x2 Size=0x2
+    unsigned long LengthInBytes;// Offset=0x4 Size=0x4
+    wchar_t * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _USB_SEL_INFO// Size=0x6 (Id=422)
+{
+    unsigned char U1SEL;// Offset=0x0 Size=0x1
+    unsigned char U1PEL;// Offset=0x1 Size=0x1
+    unsigned short U2SEL;// Offset=0x2 Size=0x2
+    unsigned short U2PEL;// Offset=0x4 Size=0x2
+};
+
+union _DEVICE_LPM_STATE_FLAGS// Size=0x4 (Id=500)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long SlowestLinkForU1Exit:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long SlowestLinkForU2Exit:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long U1EnabledForUSPort:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long U2EnabledForUSPort:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long TargetU1EnabledForUSPort:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long TargetU2EnabledForUSPort:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long U1DisabledDueToIntolerableLatency:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long U2DisabledDueToIntolerableLatency:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long U1U2DisabledDueToNoPingResponse:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+    };
+};
+
+union _LPM_POLICY// Size=0x4 (Id=512)
+{
+    union // Size=0x4 (Id=0)
+    {
+        unsigned long AsUlong32;// Offset=0x0 Size=0x4
+        struct // Size=0x1 (Id=0)
+        {
+            unsigned char U1EnabledForUSPort:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+            unsigned char U2EnabledForUSPort:1;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x1
+            unsigned char U1TimeoutAcceptTransitions:1;// Offset=0x0 Size=0x1 BitOffset=0x2 BitSize=0x1
+            unsigned char U2TimeoutAcceptTransitions:1;// Offset=0x0 Size=0x1 BitOffset=0x3 BitSize=0x1
+            unsigned char U1TimeoutInitiateTransitions:1;// Offset=0x0 Size=0x1 BitOffset=0x4 BitSize=0x1
+            unsigned char U2TimeoutInitiateTransitions:1;// Offset=0x0 Size=0x1 BitOffset=0x5 BitSize=0x1
+            unsigned char ForceConservativeTimeoutValues:1;// Offset=0x0 Size=0x1 BitOffset=0x6 BitSize=0x1
+            unsigned char ForceAggressiveTimeoutValues:1;// Offset=0x0 Size=0x1 BitOffset=0x7 BitSize=0x1
+        };
+    };
+};
+
+enum _USB_20_LPM_STATUS
+{
+    Usb20LpmStatusUnknown=0,
+    Usb20LpmEnabled=1,
+    Usb20LpmDisabledSinceDeviceIsHub=2,
+    Usb20LpmDisabledDueToDeviceHackFlag=3,
+    Usb20LpmDisabledDueToHubHackFlag=4,
+    Usb20LpmDisabledDueToHubGlobalFlag=5,
+    Usb20LpmNotSupportedByDevice=6,
+    Usb20LpmDisabledSinceBESLandAltHIRDNotSupported=7,
+    Usb20LpmNotSupportedOnThisPort=8,
+    Usb20LpmDiabledSinceDeviceOperatingInSuperspeedModeOrHigher=9
+};
+
+struct _unnamed_10// Size=0x8 (Id=10)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=11)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_10 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _DEVICE_20_LPM_ATTRIBUTES// Size=0x4 (Id=469)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long LPMCapable:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long BESLAndAlternateHIRDSupported:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long BaselineBESLValid:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long DeepBESLValid:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long BaselineBESL:4;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x4
+        unsigned long DeepBESL:4;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x4
+    };
+};
+
+enum _DEVICE_POWER_STATE
+{
+    PowerDeviceUnspecified=0,
+    PowerDeviceD0=1,
+    PowerDeviceD1=2,
+    PowerDeviceD2=3,
+    PowerDeviceD3=4,
+    PowerDeviceMaximum=5
+};
+
+union _MSOS20_FLAGS// Size=0x4 (Id=559)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long DescriptorSetInfo:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long DescriptorSetHeader:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long AlternateEnumeration:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long ConfigurationSubset:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long FunctionSubset:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long CompatibleId:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long RegistryProperty:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long MinResumeTime:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long ModelId:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long CcgpDevice:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+    };
+};
+
+union _MSOS20_ALT_ENUM_FLAGS// Size=0x4 (Id=669)
+{
+    unsigned long AsUlong32;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long AltEnumCmdSent:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long AltEnumCompleted:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long AltEnumCmdCached:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+    };
+};
+
+struct _MSOS20_DESCRIPTOR_SET_INFO// Size=0x8 (Id=494)
+{
+    unsigned long dwWindowsVersion;// Offset=0x0 Size=0x4
+    unsigned short wLength;// Offset=0x4 Size=0x2
+    unsigned char bMS_VendorCode;// Offset=0x6 Size=0x1
+    unsigned char bAltEnumCmd;// Offset=0x7 Size=0x1
+};
+
+struct _MSOS20_INFO// Size=0x60 (Id=517)
+{
+    union _MSOS20_FLAGS Flags;// Offset=0x0 Size=0x4
+    union _MSOS20_ALT_ENUM_FLAGS AltEnumFlags;// Offset=0x4 Size=0x4
+    unsigned char AltEnumCmd;// Offset=0x8 Size=0x1
+    unsigned long BytesReturned;// Offset=0xc Size=0x4
+    struct _MSOS20_DESCRIPTOR_SET_INFO DescriptorSetInfo;// Offset=0x10 Size=0x8
+    struct _MSOS20_DESCRIPTOR_SET_HEADER * DescriptorSet;// Offset=0x18 Size=0x8
+    struct _MSOS20_FEATURE_COMPATIBLE_ID_DESCRIPTOR * CompatibleIdDescriptor;// Offset=0x20 Size=0x8
+    struct _MSOS20_FEATURE_MINIMUM_RESUME_TIME_DESCRIPTOR * MinResumeTimeDescriptor;// Offset=0x28 Size=0x8
+    struct _MSOS20_FEATURE_MODEL_ID_DESCRIPTOR * ModelIdDescriptor;// Offset=0x30 Size=0x8
+    struct _MSOS20_FEATURE_CCGP_DEVICE_DESCRIPTOR * CcgpDeviceDescriptor;// Offset=0x38 Size=0x8
+    struct _USB_DEVICE_DESCRIPTOR OriginalDeviceDescriptor;// Offset=0x40 Size=0x12
+    struct RECORDER_LOG__ * IfrLog;// Offset=0x58 Size=0x8
+};
+
+struct _RTL_BITMAP// Size=0x10 (Id=14)
+{
+    unsigned long SizeOfBitMap;// Offset=0x0 Size=0x4
+    unsigned long * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _unnamed_322// Size=0x4 (Id=322)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned int MTPInitiator:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned int MTPResponder:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned int IpOverUsb:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned int VidStream:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned int Reserved:27;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1b
+        unsigned int UcmIsPresent:1;// Offset=0x0 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+};
+
+union _USB_DUAL_ROLE_FEATURES// Size=0x4 (Id=323)
+{
+    unsigned long ul;// Offset=0x0 Size=0x4
+    struct _unnamed_322 features;// Offset=0x0 Size=0x4
+};
+
+struct _DEVICE_CONTEXT// Size=0xa60 (Id=325)
+{
+    struct _HUB_FDO_CONTEXT * HubFdoContext;// Offset=0x0 Size=0x8
+    struct _PORT_CONTEXT * PortContext;// Offset=0x8 Size=0x8
+    struct _HUB_PDO_CONTEXT * PdoContext;// Offset=0x10 Size=0x8
+    struct UCXUSBDEVICE__ * UsbDevice;// Offset=0x18 Size=0x8
+    unsigned long EnumRetryCount;// Offset=0x20 Size=0x4
+    unsigned long long ConfigurationLock;// Offset=0x28 Size=0x8
+    struct _DEVICE_CONFIGURATION * CurrentDeviceConfiguration;// Offset=0x30 Size=0x8
+    struct _DEVICE_CONFIGURATION * OldDeviceConfiguration;// Offset=0x38 Size=0x8
+    struct _INTERFACE_HANDLE * NextInterfaceToSet;// Offset=0x40 Size=0x8
+    struct _INTERFACE_HANDLE * OldInterface;// Offset=0x48 Size=0x8
+    struct _INTERFACE_HANDLE * NewInterface;// Offset=0x50 Size=0x8
+    struct UCXENDPOINT__ * DefaultEndpoint;// Offset=0x58 Size=0x8
+    unsigned long UcxEndpointArrayCount;// Offset=0x60 Size=0x4
+    struct UCXENDPOINT__ ** EndpointsToBeEnabled;// Offset=0x68 Size=0x8
+    unsigned long EndpointsToBeEnabledCount;// Offset=0x70 Size=0x4
+    struct UCXENDPOINT__ ** EndpointsToBeDisabled;// Offset=0x78 Size=0x8
+    unsigned long EndpointsToBeDisabledCount;// Offset=0x80 Size=0x4
+    struct UCXENDPOINT__ ** EndpointsToRemainUnchanged;// Offset=0x88 Size=0x8
+    unsigned long EndpointsToRemainUnchangedCount;// Offset=0x90 Size=0x4
+    unsigned long MaxPacketSize;// Offset=0x94 Size=0x4
+    struct _USBDEVICE_INFO UsbDeviceInfo;// Offset=0x98 Size=0x18
+    struct _DSM_MUX_CONTEXT MuxContext;// Offset=0xb0 Size=0x38
+    struct _CONTROL_REQUEST ControlRequest;// Offset=0xe8 Size=0xa8
+    struct WDFREQUEST__ * UcxRequest;// Offset=0x190 Size=0x8
+    struct _IRP * UcxRequestIrp;// Offset=0x198 Size=0x8
+    struct WDFMEMORY__ * UcxIoctlRequestMemory;// Offset=0x1a0 Size=0x8
+    unsigned long UcxIoctl;// Offset=0x1a8 Size=0x4
+    struct WDFTIMER__ * BootResetTimer;// Offset=0x1b0 Size=0x8
+    struct WDFREQUEST__ * CurrentClientRequest;// Offset=0x1b8 Size=0x8
+    struct WDFREQUEST__ * CurrentFdoRequest;// Offset=0x1c0 Size=0x8
+    struct _KEVENT QueryDeviceTextEvent;// Offset=0x1c8 Size=0x18
+    struct WDFREQUEST__ * PreformattedGetDescriptorRequest;// Offset=0x1e0 Size=0x8
+    struct _SM_CONTEXT DsmContext;// Offset=0x1e8 Size=0x420
+    long LastOperationNtStatus;// Offset=0x608 Size=0x4
+    long LastOperationUsbdStatus;// Offset=0x60c Size=0x4
+    struct WDFDEVICE_INIT * PdoDeviceInit;// Offset=0x610 Size=0x8
+    long PnPPowerStatus;// Offset=0x618 Size=0x4
+    struct _KEVENT PnPPowerEvent;// Offset=0x620 Size=0x18
+    struct _KEVENT PreStartEvent;// Offset=0x638 Size=0x18
+    union _USB_DEVICE_PROPERTIES DeviceFlags;// Offset=0x650 Size=0x4
+    union _USB_DEVICE_STATE_FLAGS DeviceStateFlags;// Offset=0x654 Size=0x4
+    union _USB_DEVICE_SQM_PROPERTIES DeviceSqmFlags;// Offset=0x658 Size=0x4
+    union _USB_DEVICE_HACKS DeviceHackFlags;// Offset=0x65c Size=0x4
+    unsigned long DeviceAddress;// Offset=0x660 Size=0x4
+    struct _PIPE_HANDLE * CurrentTargetPipe;// Offset=0x668 Size=0x8
+    struct _USB_HUB_DEVICE_UXD_SETTINGS UxdSettings;// Offset=0x670 Size=0x44
+    unsigned char ScratchBuffer[256];// Offset=0x6b4 Size=0x100
+    struct _USB_DEVICE_DESCRIPTOR DeviceDescriptor;// Offset=0x7b4 Size=0x12
+    struct _USB_INTERFACE_DESCRIPTOR * CompatIdInterfaceDescriptor;// Offset=0x7c8 Size=0x8
+    struct _USB_CONFIGURATION_DESCRIPTOR * ConfigurationDescriptor;// Offset=0x7d0 Size=0x8
+    struct _USB_STRING_DESCRIPTOR * LanguageIdDescriptor;// Offset=0x7d8 Size=0x8
+    struct _USB_STRING_DESCRIPTOR * ProductIdStringDescriptor;// Offset=0x7e0 Size=0x8
+    unsigned short CurrentLanguageId;// Offset=0x7e8 Size=0x2
+    struct _USB_DEVICE_QUALIFIER_DESCRIPTOR DeviceQualifierDescriptor;// Offset=0x7ea Size=0xa
+    unsigned char MsOsVendorCode;// Offset=0x7f4 Size=0x1
+    struct _USB_BOS_DESCRIPTOR * BOSDescriptor;// Offset=0x7f8 Size=0x8
+    struct _GUID ContainerId;// Offset=0x800 Size=0x10
+    struct _OS_STRING MsOsDescriptor;// Offset=0x810 Size=0x12
+    struct _MS_EXT_CONFIG_DESC * MsExtConfigDesc;// Offset=0x828 Size=0x8
+    struct _MS_EXT_PROP_DESC * MsExtPropertyDesc;// Offset=0x830 Size=0x8
+    struct _UNICODE_STRING UxdId;// Offset=0x838 Size=0x10
+    struct WDFSTRING__ * SymbolicLinkName;// Offset=0x848 Size=0x8
+    struct _USB_ID_STRING SerialNumberId;// Offset=0x850 Size=0x10
+    struct _USB_ID_STRING FriendlyNameIdString;// Offset=0x860 Size=0x10
+    struct _GUID WdfActivityId;// Offset=0x870 Size=0x10
+    unsigned short U1ExitLatency;// Offset=0x880 Size=0x2
+    unsigned short U2ExitLatency;// Offset=0x882 Size=0x2
+    struct _USB_SEL_INFO UsbSelInfo;// Offset=0x884 Size=0x6
+    unsigned short HostInitiatedU1ExitLatency;// Offset=0x88a Size=0x2
+    unsigned short HostInitiatedU2ExitLatency;// Offset=0x88c Size=0x2
+    unsigned char LatencyAdjustmentPercentForNoPingError;// Offset=0x88e Size=0x1
+    unsigned short EffectiveExitLatency;// Offset=0x890 Size=0x2
+    unsigned short TargetEffectiveExitLatency;// Offset=0x892 Size=0x2
+    unsigned char U1Timeout;// Offset=0x894 Size=0x1
+    unsigned char U2Timeout;// Offset=0x895 Size=0x1
+    unsigned char TargetU1Timeout;// Offset=0x896 Size=0x1
+    unsigned char TargetU2Timeout;// Offset=0x897 Size=0x1
+    union _DEVICE_LPM_STATE_FLAGS LPMStateFlags;// Offset=0x898 Size=0x4
+    union _LPM_POLICY LpmPolicy;// Offset=0x89c Size=0x4
+    enum _USB_20_LPM_STATUS Usb20LpmStatus;// Offset=0x8a0 Size=0x4
+    void * BootDeviceHandle;// Offset=0x8a8 Size=0x8
+    long BootDeviceReportedMissing;// Offset=0x8b0 Size=0x4
+    struct _CONTROL_REQUEST ControlRequestForBootDevice;// Offset=0x8b8 Size=0xa8
+    struct WDFTIMER__ * OutOfBandwidthTimer;// Offset=0x960 Size=0x8
+    union _LARGE_INTEGER LastResetTimeStamp;// Offset=0x968 Size=0x8
+    unsigned long EnumMsgId;// Offset=0x970 Size=0x4
+    unsigned long HardwareVerifierFlags;// Offset=0x974 Size=0x4
+    struct _DEVICE_20_LPM_ATTRIBUTES Lpm20Attributes;// Offset=0x978 Size=0x4
+    struct _ALTERNATE_SETTING_FILTER * AlternateSettingFilter;// Offset=0x980 Size=0x8
+    unsigned char DuplicateSerialNumberRetryCount;// Offset=0x988 Size=0x1
+    enum _DEVICE_POWER_STATE DevicePowerState;// Offset=0x98c Size=0x4
+    struct _MSOS20_INFO MsOs20Info;// Offset=0x990 Size=0x60
+    union _USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED * SublinkSpeedAttr;// Offset=0x9f0 Size=0x8
+    unsigned long SublinkSpeedAttrCount;// Offset=0x9f8 Size=0x4
+    unsigned short RxTpDelay;// Offset=0x9fc Size=0x2
+    unsigned short TxTpDelay;// Offset=0x9fe Size=0x2
+    unsigned long MaxExitLatencyBasedOnEld;// Offset=0xa00 Size=0x4
+    struct _RTL_BITMAP DescriptorValidationBitmapHeader;// Offset=0xa08 Size=0x10
+    unsigned long DescriptorValidationBitmap[8];// Offset=0xa18 Size=0x20
+    struct _BILLBOARD_INFO * BillboardInfo;// Offset=0xa38 Size=0x8
+    union _USB_DUAL_ROLE_FEATURES UsbDualRoleLocalFeatures;// Offset=0xa40 Size=0x4
+    union _USB_DUAL_ROLE_FEATURES UsbDualRolePartnerFeatures;// Offset=0xa44 Size=0x4
+    unsigned char DualRoleVendorCommand;// Offset=0xa48 Size=0x1
+    long ClientInitiatedRecoveryEvents[5];// Offset=0xa4c Size=0x14
+};

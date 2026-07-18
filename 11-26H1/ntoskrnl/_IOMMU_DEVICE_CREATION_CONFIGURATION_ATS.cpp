@@ -1,0 +1,4 @@
+struct _IOMMU_DEVICE_CREATION_CONFIGURATION_ATS// Size=0x8 (Id=2483)
+{
+    unsigned long long Reserved;// Offset=0x0 Size=0x8
+};

@@ -1,0 +1,29 @@
+struct _unnamed_73// Size=0x8 (Id=73)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=74)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_73 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _PNP_REPLACE_MEMORY_LIST// Size=0x20 (Id=2484)
+{
+    union // Size=0x10 (Id=0)
+    {
+        unsigned long AllocatedCount;// Offset=0x0 Size=0x4
+        unsigned long Count;// Offset=0x4 Size=0x4
+        unsigned long long TotalLength;// Offset=0x8 Size=0x8
+        struct <unnamed-type-Ranges>// Size=0x10 (Id=11710)
+        {
+            union _LARGE_INTEGER Address;// Offset=0x0 Size=0x8
+            unsigned long long Length;// Offset=0x8 Size=0x8
+        };
+    };
+    struct _PNP_REPLACE_MEMORY_LIST::<unnamed-type-Ranges> Ranges[1];// Offset=0x10 Size=0x10
+};

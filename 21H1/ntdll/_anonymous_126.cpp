@@ -1,0 +1,7 @@
+struct _anonymous_126// Size=0x10 (Id=126)
+{
+    unsigned long Length;// Offset=0x0 Size=0x4
+    void * EaList;// Offset=0x4 Size=0x4
+    unsigned long EaListLength;// Offset=0x8 Size=0x4
+    unsigned long EaIndex;// Offset=0xc Size=0x4
+};

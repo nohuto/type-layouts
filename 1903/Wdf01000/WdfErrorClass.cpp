@@ -1,0 +1,23 @@
+enum WdfErrorClass
+{
+    WdfErrorClass_Undefined=0,
+    WdfErrorClass_BadArgument=1,
+    WdfErrorClass_BadState=2,
+    WdfErrorClass_BadResponse=3,
+    WdfErrorClass_BadAction=4,
+    WdfErrorClass_LostReference=5,
+    WdfErrorClass_DDIFunctionTableMismatched=6,
+    WdfErrorClass_GlobalMax=7,
+    WdfErrorClass_PlatformStart=7,
+    WdfErrorClass_PlatformMax=8,
+    WdfErrorClass_RdStart=7,
+    WdfErrorClass_RdMax=8,
+    WdfErrorClass_DmStart=7,
+    WdfErrorClass_DmMax=8,
+    WdfErrorClass_HostStart=7,
+    WdfErrorClass_HostMax=8,
+    WdfErrorClass_FxStart=7,
+    WdfErrorClass_FxMax=8,
+    WdfErrorClass_TestStart=7,
+    WdfErrorClass_TestMax=8
+};

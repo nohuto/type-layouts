@@ -1,0 +1,26 @@
+enum DEVICE_REGISTRY_PROPERTY
+{
+    DevicePropertyDeviceDescription=0,
+    DevicePropertyHardwareID=1,
+    DevicePropertyCompatibleIDs=2,
+    DevicePropertyBootConfiguration=3,
+    DevicePropertyBootConfigurationTranslated=4,
+    DevicePropertyClassName=5,
+    DevicePropertyClassGuid=6,
+    DevicePropertyDriverKeyName=7,
+    DevicePropertyManufacturer=8,
+    DevicePropertyFriendlyName=9,
+    DevicePropertyLocationInformation=10,
+    DevicePropertyPhysicalDeviceObjectName=11,
+    DevicePropertyBusTypeGuid=12,
+    DevicePropertyLegacyBusType=13,
+    DevicePropertyBusNumber=14,
+    DevicePropertyEnumeratorName=15,
+    DevicePropertyAddress=16,
+    DevicePropertyUINumber=17,
+    DevicePropertyInstallState=18,
+    DevicePropertyRemovalPolicy=19,
+    DevicePropertyResourceRequirements=20,
+    DevicePropertyAllocatedResources=21,
+    DevicePropertyContainerID=22
+};

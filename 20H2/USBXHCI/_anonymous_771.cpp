@@ -1,0 +1,4 @@
+struct _anonymous_771// Size=0x8 (Id=771)
+{
+    struct WDFMEMORY__ * Buffer;// Offset=0x0 Size=0x8
+};

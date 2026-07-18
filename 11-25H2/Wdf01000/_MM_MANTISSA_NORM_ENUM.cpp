@@ -1,0 +1,7 @@
+enum _MM_MANTISSA_NORM_ENUM
+{
+    _MM_MANT_NORM_1_2=0,
+    _MM_MANT_NORM_p5_2=1,
+    _MM_MANT_NORM_p5_1=2,
+    _MM_MANT_NORM_p75_1p5=3
+};

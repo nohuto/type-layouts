@@ -1,0 +1,70 @@
+struct _anonymous_441// Size=0x8 (Id=441)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long Type_Never_Present:1;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x1
+        unsigned long long Type_Not_Present:1;// Offset=0x0 Size=0x8 BitOffset=0x1 BitSize=0x1
+        unsigned long long Type_Removed:1;// Offset=0x0 Size=0x8 BitOffset=0x2 BitSize=0x1
+        unsigned long long Type_Not_Found:1;// Offset=0x0 Size=0x8 BitOffset=0x3 BitSize=0x1
+        unsigned long long Type_Fdo:1;// Offset=0x0 Size=0x8 BitOffset=0x4 BitSize=0x1
+        unsigned long long Type_Pdo:1;// Offset=0x0 Size=0x8 BitOffset=0x5 BitSize=0x1
+        unsigned long long Type_Filter:1;// Offset=0x0 Size=0x8 BitOffset=0x6 BitSize=0x1
+        unsigned long long Type_Surprise_Removed:1;// Offset=0x0 Size=0x8 BitOffset=0x7 BitSize=0x1
+        unsigned long long Type_Not_Enumerated:1;// Offset=0x0 Size=0x8 BitOffset=0x8 BitSize=0x1
+        unsigned long long Type_Valid_Pnp:1;// Offset=0x0 Size=0x8 BitOffset=0x9 BitSize=0x1
+        unsigned long long Type_Started_Pnp:1;// Offset=0x0 Size=0x8 BitOffset=0xa BitSize=0x1
+        unsigned long long Prop_D3_Means_D3hot:1;// Offset=0x0 Size=0x8 BitOffset=0xb BitSize=0x1
+        unsigned long long Cap_IPMI:1;// Offset=0x0 Size=0x8 BitOffset=0xc BitSize=0x1
+        unsigned long long Cap_ExperienceButton:1;// Offset=0x0 Size=0x8 BitOffset=0xd BitSize=0x1
+        unsigned long long Cap_Spare:1;// Offset=0x0 Size=0x8 BitOffset=0xe BitSize=0x1
+        unsigned long long Cap_Allow_Reserved_Idt:1;// Offset=0x0 Size=0x8 BitOffset=0xf BitSize=0x1
+        unsigned long long Cap_Wake:1;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x1
+        unsigned long long Cap_Raw:1;// Offset=0x0 Size=0x8 BitOffset=0x11 BitSize=0x1
+        unsigned long long Cap_Button:1;// Offset=0x0 Size=0x8 BitOffset=0x12 BitSize=0x1
+        unsigned long long Cap_Always_PS0:1;// Offset=0x0 Size=0x8 BitOffset=0x13 BitSize=0x1
+        unsigned long long Cap_No_Filter:1;// Offset=0x0 Size=0x8 BitOffset=0x14 BitSize=0x1
+        unsigned long long Cap_No_Stop:1;// Offset=0x0 Size=0x8 BitOffset=0x15 BitSize=0x1
+        unsigned long long Cap_No_Override:1;// Offset=0x0 Size=0x8 BitOffset=0x16 BitSize=0x1
+        unsigned long long Cap_ISA:1;// Offset=0x0 Size=0x8 BitOffset=0x17 BitSize=0x1
+        unsigned long long Cap_EIO:1;// Offset=0x0 Size=0x8 BitOffset=0x18 BitSize=0x1
+        unsigned long long Cap_PCI:1;// Offset=0x0 Size=0x8 BitOffset=0x19 BitSize=0x1
+        unsigned long long Cap_Serial:1;// Offset=0x0 Size=0x8 BitOffset=0x1a BitSize=0x1
+        unsigned long long Cap_Thermal_Zone:1;// Offset=0x0 Size=0x8 BitOffset=0x1b BitSize=0x1
+        unsigned long long Cap_LinkNode:1;// Offset=0x0 Size=0x8 BitOffset=0x1c BitSize=0x1
+        unsigned long long Cap_No_Show_in_UI:1;// Offset=0x0 Size=0x8 BitOffset=0x1d BitSize=0x1
+        unsigned long long Cap_Never_show_in_UI:1;// Offset=0x0 Size=0x8 BitOffset=0x1e BitSize=0x1
+        unsigned long long Cap_Start_in_D3:1;// Offset=0x0 Size=0x8 BitOffset=0x1f BitSize=0x1
+        unsigned long long Cap_PCI_Device:1;// Offset=0x0 Size=0x8 BitOffset=0x20 BitSize=0x1
+        unsigned long long Cap_PIC_Device:1;// Offset=0x0 Size=0x8 BitOffset=0x21 BitSize=0x1
+        unsigned long long Cap_Unattached_Dock:1;// Offset=0x0 Size=0x8 BitOffset=0x22 BitSize=0x1
+        unsigned long long Cap_No_Disable_Wake:1;// Offset=0x0 Size=0x8 BitOffset=0x23 BitSize=0x1
+        unsigned long long Cap_Processor:1;// Offset=0x0 Size=0x8 BitOffset=0x24 BitSize=0x1
+        unsigned long long Cap_Container:1;// Offset=0x0 Size=0x8 BitOffset=0x25 BitSize=0x1
+        unsigned long long Cap_PCI_Bar_Target:1;// Offset=0x0 Size=0x8 BitOffset=0x26 BitSize=0x1
+        unsigned long long Cap_No_Remove_or_Eject:1;// Offset=0x0 Size=0x8 BitOffset=0x27 BitSize=0x1
+        unsigned long long Cap_MemoryDevice:1;// Offset=0x0 Size=0x8 BitOffset=0x28 BitSize=0x1
+        unsigned long long Prop_Rebuild_Children:1;// Offset=0x0 Size=0x8 BitOffset=0x29 BitSize=0x1
+        unsigned long long Prop_Invalid_Relations:1;// Offset=0x0 Size=0x8 BitOffset=0x2a BitSize=0x1
+        unsigned long long Prop_Unloading:1;// Offset=0x0 Size=0x8 BitOffset=0x2b BitSize=0x1
+        unsigned long long Prop_Address:1;// Offset=0x0 Size=0x8 BitOffset=0x2c BitSize=0x1
+        unsigned long long Prop_HID:1;// Offset=0x0 Size=0x8 BitOffset=0x2d BitSize=0x1
+        unsigned long long Prop_UID:1;// Offset=0x0 Size=0x8 BitOffset=0x2e BitSize=0x1
+        unsigned long long Prop_Fixed_HID:1;// Offset=0x0 Size=0x8 BitOffset=0x2f BitSize=0x1
+        unsigned long long Prop_Fixed_UID:1;// Offset=0x0 Size=0x8 BitOffset=0x30 BitSize=0x1
+        unsigned long long Prop_Failed_Init:1;// Offset=0x0 Size=0x8 BitOffset=0x31 BitSize=0x1
+        unsigned long long Prop_Srs_Present:1;// Offset=0x0 Size=0x8 BitOffset=0x32 BitSize=0x1
+        unsigned long long Prop_No_Object:1;// Offset=0x0 Size=0x8 BitOffset=0x33 BitSize=0x1
+        unsigned long long Prop_Exclusive:1;// Offset=0x0 Size=0x8 BitOffset=0x34 BitSize=0x1
+        unsigned long long Prop_Ran_INI:1;// Offset=0x0 Size=0x8 BitOffset=0x35 BitSize=0x1
+        unsigned long long Prop_Device_Enabled:1;// Offset=0x0 Size=0x8 BitOffset=0x36 BitSize=0x1
+        unsigned long long Prop_Device_Failed:1;// Offset=0x0 Size=0x8 BitOffset=0x37 BitSize=0x1
+        unsigned long long Prop_Acpi_Power:1;// Offset=0x0 Size=0x8 BitOffset=0x38 BitSize=0x1
+        unsigned long long Prop_Dock:1;// Offset=0x0 Size=0x8 BitOffset=0x39 BitSize=0x1
+        unsigned long long Prop_Built_Power_Table:1;// Offset=0x0 Size=0x8 BitOffset=0x3a BitSize=0x1
+        unsigned long long Prop_Has_PME:1;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x1
+        unsigned long long Prop_No_Lid_Action:1;// Offset=0x0 Size=0x8 BitOffset=0x3c BitSize=0x1
+        unsigned long long Prop_Fixed_Address:1;// Offset=0x0 Size=0x8 BitOffset=0x3d BitSize=0x1
+        unsigned long long Prop_Callback:1;// Offset=0x0 Size=0x8 BitOffset=0x3e BitSize=0x1
+        unsigned long long Prop_Fixed_CiD:1;// Offset=0x0 Size=0x8 BitOffset=0x3f BitSize=0x1
+    };
+};

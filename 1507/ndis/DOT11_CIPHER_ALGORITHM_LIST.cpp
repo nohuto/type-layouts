@@ -1,0 +1,29 @@
+struct _NDIS_OBJECT_HEADER// Size=0x4 (Id=313)
+{
+    unsigned char Type;// Offset=0x0 Size=0x1
+    unsigned char Revision;// Offset=0x1 Size=0x1
+    unsigned short Size;// Offset=0x2 Size=0x2
+};
+
+enum _DOT11_CIPHER_ALGORITHM
+{
+    DOT11_CIPHER_ALGO_NONE=0,
+    DOT11_CIPHER_ALGO_WEP40=1,
+    DOT11_CIPHER_ALGO_TKIP=2,
+    DOT11_CIPHER_ALGO_CCMP=4,
+    DOT11_CIPHER_ALGO_WEP104=5,
+    DOT11_CIPHER_ALGO_BIP=6,
+    DOT11_CIPHER_ALGO_WPA_USE_GROUP=256,
+    DOT11_CIPHER_ALGO_RSN_USE_GROUP=256,
+    DOT11_CIPHER_ALGO_WEP=257,
+    DOT11_CIPHER_ALGO_IHV_START=-2147483648,
+    DOT11_CIPHER_ALGO_IHV_END=-1
+};
+
+struct DOT11_CIPHER_ALGORITHM_LIST// Size=0x10 (Id=1103)
+{
+    struct _NDIS_OBJECT_HEADER Header;// Offset=0x0 Size=0x4
+    unsigned long uNumOfEntries;// Offset=0x4 Size=0x4
+    unsigned long uTotalNumOfEntries;// Offset=0x8 Size=0x4
+    enum _DOT11_CIPHER_ALGORITHM AlgorithmIds[1];// Offset=0xc Size=0x4
+};

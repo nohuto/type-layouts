@@ -1,0 +1,15 @@
+enum _DEVICE_RELATION_TYPE
+{
+    BusRelations=0,
+    EjectionRelations=1,
+    PowerRelations=2,
+    RemovalRelations=3,
+    TargetDeviceRelation=4,
+    SingleBusRelations=5,
+    TransportRelations=6
+};
+
+struct _unnamed_121// Size=0x4 (Id=121)
+{
+    enum _DEVICE_RELATION_TYPE Type;// Offset=0x0 Size=0x4
+};

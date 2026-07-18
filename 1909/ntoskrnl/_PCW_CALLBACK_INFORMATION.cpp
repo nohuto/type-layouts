@@ -1,0 +1,23 @@
+struct _PCW_COUNTER_INFORMATION// Size=0x10 (Id=1088)
+{
+    unsigned long long CounterMask;// Offset=0x0 Size=0x8
+    struct _UNICODE_STRING * InstanceMask;// Offset=0x8 Size=0x8
+};
+
+struct _PCW_MASK_INFORMATION// Size=0x28 (Id=773)
+{
+    unsigned long long CounterMask;// Offset=0x0 Size=0x8
+    struct _UNICODE_STRING * InstanceMask;// Offset=0x8 Size=0x8
+    unsigned long InstanceId;// Offset=0x10 Size=0x4
+    unsigned char CollectMultiple;// Offset=0x14 Size=0x1
+    struct _PCW_BUFFER * Buffer;// Offset=0x18 Size=0x8
+    struct _KEVENT * CancelEvent;// Offset=0x20 Size=0x8
+};
+
+union _PCW_CALLBACK_INFORMATION// Size=0x28 (Id=651)
+{
+    struct _PCW_COUNTER_INFORMATION AddCounter;// Offset=0x0 Size=0x10
+    struct _PCW_COUNTER_INFORMATION RemoveCounter;// Offset=0x0 Size=0x10
+    struct _PCW_MASK_INFORMATION EnumerateInstances;// Offset=0x0 Size=0x28
+    struct _PCW_MASK_INFORMATION CollectData;// Offset=0x0 Size=0x28
+};

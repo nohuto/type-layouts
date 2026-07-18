@@ -1,0 +1,19 @@
+enum _DSM_SUBSM_FLAGS
+{
+    DsmSubSmFlagNone=0,
+    DsmSubSmFlagVersion10=1,
+    DsmSubSmFlagVersion1X=2,
+    DsmSubSmFlagVersion20=4,
+    DsmSubSmFlagVersion2X=8,
+    DsmSubSmFlagVersion3X=16,
+    DsmSubSmFlagVersionAny=255,
+    DsmSubSmFlagSpeedHigh=256,
+    DsmSubSmFlagSpeedFull=512,
+    DsmSubSmFlagSpeedLow=1024,
+    DsmSubSmFlagSpeedSuper=2048,
+    DsmSubSmFlagSpeedAny=65280,
+    DsmSubSmFlagPort20=65536,
+    DsmSubSmFlagPort30=131072,
+    DsmSubSmFlagPortAny=16711680,
+    DsmSubSmFlagAny=16777215
+};

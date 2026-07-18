@@ -1,0 +1,6 @@
+struct FxCxPnpPowerCallbackContext::<unnamed-type-u>::<unnamed-type-SmIoRestartEx>// Size=0x18 (Id=1445)
+{
+    long  ( * PreCallback)(struct WDFDEVICE__ * ,enum _WDF_POWER_DEVICE_STATE );// Offset=0x0 Size=0x8
+    long  ( * PostCallback)(struct WDFDEVICE__ * ,enum _WDF_POWER_DEVICE_STATE );// Offset=0x8 Size=0x8
+    void  ( * CleanupCallback)(struct WDFDEVICE__ * ,enum _WDF_POWER_DEVICE_STATE );// Offset=0x10 Size=0x8
+};

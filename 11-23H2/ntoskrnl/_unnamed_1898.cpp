@@ -1,0 +1,9 @@
+struct _unnamed_1898// Size=0x1 (Id=1898)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char Age:4;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x4
+        unsigned char Protection:3;// Offset=0x0 Size=0x1 BitOffset=0x4 BitSize=0x3
+        unsigned char Reserved:1;// Offset=0x0 Size=0x1 BitOffset=0x7 BitSize=0x1
+    };
+};

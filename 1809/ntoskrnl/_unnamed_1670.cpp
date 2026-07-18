@@ -1,0 +1,10 @@
+union _unnamed_1670// Size=0x8 (Id=1670)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long NumberOfEntries:10;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0xa
+        unsigned long long PageSize:2;// Offset=0x0 Size=0x8 BitOffset=0xa BitSize=0x2
+    };
+    void * Va;// Offset=0x0 Size=0x8
+    unsigned long long VaLong;// Offset=0x0 Size=0x8
+};

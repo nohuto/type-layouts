@@ -1,0 +1,3 @@
+struct _KPROCESS_AVAILABLE_CPU_STATE// Size=0x0 (Id=93)
+{
+};

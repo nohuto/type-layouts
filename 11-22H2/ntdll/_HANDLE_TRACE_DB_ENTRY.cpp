@@ -1,0 +1,13 @@
+struct _CLIENT_ID// Size=0x10 (Id=338)
+{
+    void * UniqueProcess;// Offset=0x0 Size=0x8
+    void * UniqueThread;// Offset=0x8 Size=0x8
+};
+
+struct _HANDLE_TRACE_DB_ENTRY// Size=0xa0 (Id=629)
+{
+    struct _CLIENT_ID ClientId;// Offset=0x0 Size=0x10
+    void * Handle;// Offset=0x10 Size=0x8
+    unsigned long Type;// Offset=0x18 Size=0x4
+    void * StackTrace[16];// Offset=0x20 Size=0x80
+};

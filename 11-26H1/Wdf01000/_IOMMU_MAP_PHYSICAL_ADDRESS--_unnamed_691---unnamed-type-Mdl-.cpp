@@ -1,0 +1,4 @@
+struct _IOMMU_MAP_PHYSICAL_ADDRESS::_unnamed_691::<unnamed-type-Mdl>// Size=0x8 (Id=691)
+{
+    struct _MDL * Mdl;// Offset=0x0 Size=0x8
+};

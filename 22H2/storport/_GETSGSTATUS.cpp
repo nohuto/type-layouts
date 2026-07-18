@@ -1,0 +1,5 @@
+enum _GETSGSTATUS
+{
+    SG_ALLOCATED=0,
+    SG_BUFFER_TOO_SMALL=1
+};

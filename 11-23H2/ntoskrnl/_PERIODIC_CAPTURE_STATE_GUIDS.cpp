@@ -1,0 +1,5 @@
+struct _PERIODIC_CAPTURE_STATE_GUIDS// Size=0x10 (Id=1646)
+{
+    unsigned short ProviderCount;// Offset=0x0 Size=0x2
+    struct _GUID * Providers;// Offset=0x8 Size=0x8
+};

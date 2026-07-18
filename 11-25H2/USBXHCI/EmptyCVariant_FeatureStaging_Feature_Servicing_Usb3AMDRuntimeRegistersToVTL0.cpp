@@ -1,0 +1,4 @@
+enum EmptyCVariant_FeatureStaging_Feature_Servicing_Usb3AMDRuntimeRegistersToVTL0
+{
+    CVariant_FeatureStaging_Feature_Servicing_Usb3AMDRuntimeRegistersToVTL0_Empty=0
+};

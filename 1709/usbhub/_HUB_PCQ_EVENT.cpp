@@ -1,0 +1,26 @@
+enum _HUB_PCQ_EVENT
+{
+    PCE_Enable=1,
+    PCE_Disable=2,
+    PCE_Resume=3,
+    PCE_QueueChange=4,
+    PCE_wRun=5,
+    PCE_wDone=6,
+    PCE_wBusy=7,
+    PCE_SoftDisconnect=8,
+    PCE_BusReset=9,
+    PCE_Suspend=10,
+    PCE_BusDisconnect=11,
+    PCE_HardwareWake=12,
+    PCE_SD_Resume=13,
+    PCE_ResumeTimeout=14,
+    PCE_QueueDriverReset=15,
+    PCE_wChange=16,
+    PCE_HW_Stop=17,
+    PCE_psSUSPEND=18,
+    PCE_psPAUSED=19,
+    PCE_Check=20,
+    PCE_ResumeDone=21,
+    PCE_Close=22,
+    PCE_wChangeERROR=23
+};

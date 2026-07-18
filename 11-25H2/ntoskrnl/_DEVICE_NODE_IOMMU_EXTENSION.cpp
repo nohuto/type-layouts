@@ -1,0 +1,3 @@
+struct _DEVICE_NODE_IOMMU_EXTENSION// Size=0x0 (Id=764)
+{
+};

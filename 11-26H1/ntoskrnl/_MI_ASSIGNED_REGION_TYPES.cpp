@@ -1,0 +1,22 @@
+enum _MI_ASSIGNED_REGION_TYPES
+{
+    AssignedRegionPfnDatabase=0,
+    AssignedRegionMemoryTagging=1,
+    AssignedRegionNonPagedPool=2,
+    AssignedRegionPagedPool=3,
+    AssignedRegionSystemCache=4,
+    AssignedRegionSystemPtes=5,
+    AssignedRegionKasan=6,
+    AssignedRegionUltraZero=7,
+    AssignedRegionCfg=8,
+    AssignedRegionHyperSpace=9,
+    AssignedRegionKernelStacks=10,
+    AssignedRegionNonCachedMappings=11,
+    AssignedRegionSoftWsles=12,
+    AssignedRegionPageTables=13,
+    AssignedRegionSecureNonPagedPool=14,
+    AssignedRegionKernelShadowStacks=15,
+    AssignedRegionSystemDataViews=16,
+    AssignedRegionSystemImages=17,
+    AssignedRegionMaximum=18
+};

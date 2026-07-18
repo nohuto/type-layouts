@@ -1,0 +1,7 @@
+enum _WDF_POWER_POLICY_S0_IDLE_CAPABILITIES
+{
+    IdleCapsInvalid=0,
+    IdleCannotWakeFromS0=1,
+    IdleCanWakeFromS0=2,
+    IdleUsbSelectiveSuspend=3
+};

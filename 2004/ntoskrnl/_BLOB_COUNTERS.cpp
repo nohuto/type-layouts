@@ -1,0 +1,5 @@
+struct _BLOB_COUNTERS// Size=0x8 (Id=1563)
+{
+    unsigned long CreatedObjects;// Offset=0x0 Size=0x4
+    unsigned long DeletedObjects;// Offset=0x4 Size=0x4
+};

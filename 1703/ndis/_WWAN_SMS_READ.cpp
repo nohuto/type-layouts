@@ -1,0 +1,32 @@
+enum _WWAN_SMS_FORMAT
+{
+    WwanSmsFormatPdu=0,
+    WwanSmsFormatReserved0=1,
+    WwanSmsFormatReserved1=2,
+    WwanSmsFormatReserved2=3,
+    WwanSmsFormatCdma=4,
+    WwanSmsFormatMax=5
+};
+
+enum _WWAN_SMS_FLAG
+{
+    WwanSmsFlagAll=0,
+    WwanSmsFlagIndex=1,
+    WwanSmsFlagNew=2,
+    WwanSmsFlagOld=3,
+    WwanSmsFlagSent=4,
+    WwanSmsFlagDraft=5,
+    WwanSmsFlagMax=6
+};
+
+struct _WWAN_SMS_FILTER// Size=0x8 (Id=831)
+{
+    enum _WWAN_SMS_FLAG Flag;// Offset=0x0 Size=0x4
+    unsigned long MessageIndex;// Offset=0x4 Size=0x4
+};
+
+struct _WWAN_SMS_READ// Size=0xc (Id=666)
+{
+    enum _WWAN_SMS_FORMAT SmsFormat;// Offset=0x0 Size=0x4
+    struct _WWAN_SMS_FILTER ReadFilter;// Offset=0x4 Size=0x8
+};

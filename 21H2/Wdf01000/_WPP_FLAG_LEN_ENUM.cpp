@@ -1,0 +1,4 @@
+enum _WPP_FLAG_LEN_ENUM
+{
+    WPP_FLAG_LEN=1
+};

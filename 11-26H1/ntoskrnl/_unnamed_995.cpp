@@ -1,0 +1,11 @@
+struct _unnamed_994// Size=0x4 (Id=994)
+{
+    short DataLength;// Offset=0x0 Size=0x2
+    short TotalLength;// Offset=0x2 Size=0x2
+};
+
+union _unnamed_995// Size=0x4 (Id=995)
+{
+    struct _unnamed_994 s1;// Offset=0x0 Size=0x4
+    unsigned long Length;// Offset=0x0 Size=0x4
+};

@@ -1,0 +1,12 @@
+struct _HEAP_EXTENDED_ENTRY// Size=0x8 (Id=626)
+{
+    union // Size=0x4 (Id=0)
+    {
+        unsigned short FunctionIndex;// Offset=0x0 Size=0x2
+        unsigned short ContextValue;// Offset=0x2 Size=0x2
+        unsigned long InterceptorValue;// Offset=0x0 Size=0x4
+    };
+    unsigned short UnusedBytesLength;// Offset=0x4 Size=0x2
+    unsigned char EntryOffset;// Offset=0x6 Size=0x1
+    unsigned char ExtendedBlockSignature;// Offset=0x7 Size=0x1
+};

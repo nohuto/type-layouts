@@ -1,0 +1,11 @@
+union _DXGK_DIAG_HEADER::_anonymous_314// Size=0x8 (Id=314)
+{
+    struct <unnamed-type-u>// Size=0x8 (Id=2395)
+    {
+        unsigned int ThreadId;// Offset=0x0 Size=0x4
+        unsigned int SessionId:31;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x1f
+        unsigned int AllSession:1;// Offset=0x4 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+    struct _DXGK_DIAG_HEADER::_anonymous_315::<unnamed-type-u> u;// Offset=0x0 Size=0x8
+    unsigned long long ThreadId;// Offset=0x0 Size=0x8
+};

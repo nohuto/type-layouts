@@ -1,0 +1,32 @@
+enum _NT_IORING_OP_FLAGS
+{
+    NT_IORING_OP_FLAG_NONE=0,
+    NT_IORING_OP_FLAG_REGISTERED_FILE_0=1,
+    NT_IORING_OP_FLAG_REGISTERED_FILE=1,
+    NT_IORING_OP_FLAG_REGISTERED_BUFFER_0=2,
+    NT_IORING_OP_FLAG_REGISTERED_BUFFER=2
+};
+
+enum _NT_IORING_REG_FILES_REQ_FLAGS
+{
+    NT_IORING_REG_FILES_REQ_FLAG_NONE=0
+};
+
+enum _NT_IORING_REG_FILES_ADV_FLAGS
+{
+    NT_IORING_REG_FILES_ADV_FLAG_NONE=0
+};
+
+struct _NT_IORING_REG_FILES_FLAGS// Size=0x8 (Id=2532)
+{
+    enum _NT_IORING_REG_FILES_REQ_FLAGS Required;// Offset=0x0 Size=0x4
+    enum _NT_IORING_REG_FILES_ADV_FLAGS Advisory;// Offset=0x4 Size=0x4
+};
+
+struct _NT_IORING_OP_REGISTER_FILES// Size=0x18 (Id=2410)
+{
+    enum _NT_IORING_OP_FLAGS CommonOpFlags;// Offset=0x0 Size=0x4
+    struct _NT_IORING_REG_FILES_FLAGS Flags;// Offset=0x4 Size=0x8
+    unsigned int Count;// Offset=0xc Size=0x4
+    void ** Handles;// Offset=0x10 Size=0x8
+};

@@ -1,0 +1,8 @@
+enum _ENDPOINT_STATE
+{
+    ES_DISABLED=0,
+    ES_RUNNING=1,
+    ES_HALTED=2,
+    ES_STOPPED=3,
+    ES_ERROR=4
+};

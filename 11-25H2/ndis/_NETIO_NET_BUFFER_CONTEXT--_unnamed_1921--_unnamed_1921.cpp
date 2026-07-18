@@ -1,0 +1,16 @@
+struct _NETIO_NET_BUFFER_CONTEXT::_unnamed_1921::_unnamed_1921// Size=0x4 (Id=1921)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long EcnField:2;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x2
+        unsigned long EcnForceNotEct:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long NdPriority:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long IpsnpiForwardInjection:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long IpsnpiForwardInjectionCopy:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long SecondMdlAllocatedByTransport:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long LastMdlAllocatedForEspTrailer:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long ReachedTCP:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long FlsnpiMdlAllocated:1;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x1
+        unsigned long TransportHdrSize:6;// Offset=0x0 Size=0x4 BitOffset=0xa BitSize=0x6
+    };
+};

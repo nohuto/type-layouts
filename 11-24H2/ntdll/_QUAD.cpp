@@ -1,0 +1,8 @@
+struct _QUAD// Size=0x8 (Id=110)
+{
+    union // Size=0x8 (Id=0)
+    {
+        long long UseThisFieldToCopy;// Offset=0x0 Size=0x8
+        float DoNotUseThisField;// Offset=0x0 Size=0x8
+    };
+};

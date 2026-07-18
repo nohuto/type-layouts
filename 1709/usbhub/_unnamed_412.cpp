@@ -1,0 +1,23 @@
+struct _unnamed_411// Size=0x10 (Id=411)
+{
+    unsigned short Reserved;// Offset=0x0 Size=0x2
+    unsigned short MessageCount;// Offset=0x2 Size=0x2
+    unsigned long Vector;// Offset=0x4 Size=0x4
+    unsigned long long Affinity;// Offset=0x8 Size=0x8
+};
+
+struct _unnamed_410// Size=0x10 (Id=410)
+{
+    unsigned long Level;// Offset=0x0 Size=0x4
+    unsigned long Vector;// Offset=0x4 Size=0x4
+    unsigned long long Affinity;// Offset=0x8 Size=0x8
+};
+
+struct _unnamed_412// Size=0x10 (Id=412)
+{
+    union // Size=0x10 (Id=0)
+    {
+        struct _unnamed_411 Raw;// Offset=0x0 Size=0x10
+        struct _unnamed_410 Translated;// Offset=0x0 Size=0x10
+    };
+};

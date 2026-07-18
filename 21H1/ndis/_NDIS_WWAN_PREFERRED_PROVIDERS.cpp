@@ -1,0 +1,50 @@
+struct _NDIS_OBJECT_HEADER// Size=0x4 (Id=211)
+{
+    unsigned char Type;// Offset=0x0 Size=0x1
+    unsigned char Revision;// Offset=0x1 Size=0x1
+    unsigned short Size;// Offset=0x2 Size=0x2
+};
+
+enum _WWAN_STRUCT_TYPE
+{
+    WwanStructTN=0,
+    WwanStructContext=1,
+    WwanStructProvider=2,
+    WwanStructSmsPdu=3,
+    WwanStructReserved0=4,
+    WwanStructReserved1=5,
+    WwanStructReserved2=6,
+    WwanStructSmsCdma=7,
+    WwanStructReserved3=8,
+    WwanStructDeviceServiceEntry=9,
+    WwanStructProvider2=10,
+    WwanStructDeviceServiceGuid=11,
+    WwanStructDeviceServiceCommandId=12,
+    WwanStructCellularClass=13,
+    WwanStructDeviceSlotMap=14,
+    WwanStructUiccApplication=15,
+    WwanStructRegisterAcquisitionOrder=16,
+    WwanStructRegistrationState=17,
+    WwanStructSignalState=18,
+    WwanStructUiccTerminalCapability=19,
+    WwanStructSarConfig=20,
+    WwanStructContextV2=21,
+    WwanStructNetworkBlacklistProvider=22,
+    WwanStructMPDPChildInterface=23,
+    WwantStructSNSSAI=24,
+    WwantStructTAI=25,
+    WwanStructMax=26
+};
+
+struct _WWAN_LIST_HEADER// Size=0x8 (Id=717)
+{
+    enum _WWAN_STRUCT_TYPE ElementType;// Offset=0x0 Size=0x4
+    unsigned long ElementCount;// Offset=0x4 Size=0x4
+};
+
+struct _NDIS_WWAN_PREFERRED_PROVIDERS// Size=0x10 (Id=709)
+{
+    struct _NDIS_OBJECT_HEADER Header;// Offset=0x0 Size=0x4
+    unsigned long uStatus;// Offset=0x4 Size=0x4
+    struct _WWAN_LIST_HEADER PreferredListHeader;// Offset=0x8 Size=0x8
+};

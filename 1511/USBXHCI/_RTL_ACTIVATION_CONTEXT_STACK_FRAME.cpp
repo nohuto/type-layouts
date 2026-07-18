@@ -1,0 +1,3 @@
+struct _RTL_ACTIVATION_CONTEXT_STACK_FRAME// Size=0x0 (Id=765)
+{
+};

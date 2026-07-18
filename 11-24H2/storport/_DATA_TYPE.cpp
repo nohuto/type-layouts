@@ -1,0 +1,20 @@
+enum _DATA_TYPE
+{
+    DataTypeGuid=0,
+    DataTypeBoolean=1,
+    DataTypeUnicodeString=2,
+    DataTypeAnsiString=3,
+    DataTypeInt8=4,
+    DataTypeInt16=5,
+    DataTypeInt32=6,
+    DataTypeInt64=7,
+    DataTypeUInt8=8,
+    DataTypeUInt16=9,
+    DataTypeUInt32=10,
+    DataTypeUInt64=11,
+    DataTypeHex8=12,
+    DataTypeHex16=13,
+    DataTypeHex32=14,
+    DataTypeHex64=15,
+    DataTypeByteArray=16
+};

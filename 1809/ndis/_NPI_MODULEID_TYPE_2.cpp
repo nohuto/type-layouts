@@ -1,0 +1,5 @@
+enum _NPI_MODULEID_TYPE
+{
+    MIT_GUID=1,
+    MIT_IF_LUID=2
+};

@@ -1,0 +1,26 @@
+struct _unnamed_28// Size=0x8 (Id=28)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=29)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_28 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _SEGMENT_OBJECT// Size=0x40 (Id=677)
+{
+    void * BaseAddress;// Offset=0x0 Size=0x8
+    unsigned long TotalNumberOfPtes;// Offset=0x8 Size=0x4
+    union _LARGE_INTEGER SizeOfSegment;// Offset=0x10 Size=0x8
+    unsigned long NonExtendedPtes;// Offset=0x18 Size=0x4
+    unsigned long ImageCommitment;// Offset=0x1c Size=0x4
+    struct _CONTROL_AREA * ControlArea;// Offset=0x20 Size=0x8
+    struct _SUBSECTION * Subsection;// Offset=0x28 Size=0x8
+    struct _MMSECTION_FLAGS * MmSectionFlags;// Offset=0x30 Size=0x8
+    struct _MMSUBSECTION_FLAGS * MmSubSectionFlags;// Offset=0x38 Size=0x8
+};

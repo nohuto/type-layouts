@@ -1,0 +1,64 @@
+struct _unnamed_28// Size=0x8 (Id=28)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=29)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_28 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _CHILD_LIST// Size=0x8 (Id=870)
+{
+    unsigned long Count;// Offset=0x0 Size=0x4
+    unsigned long List;// Offset=0x4 Size=0x4
+};
+
+struct _CM_KEY_REFERENCE// Size=0x10 (Id=1444)
+{
+    unsigned long KeyCell;// Offset=0x0 Size=0x4
+    struct _HHIVE * KeyHive;// Offset=0x8 Size=0x8
+};
+
+struct _CM_KEY_NODE// Size=0x50 (Id=1367)
+{
+    unsigned short Signature;// Offset=0x0 Size=0x2
+    unsigned short Flags;// Offset=0x2 Size=0x2
+    union _LARGE_INTEGER LastWriteTime;// Offset=0x4 Size=0x8
+    unsigned char AccessBits;// Offset=0xc Size=0x1
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char LayerSemantics:2;// Offset=0xd Size=0x1 BitOffset=0x0 BitSize=0x2
+        unsigned char Spare1:5;// Offset=0xd Size=0x1 BitOffset=0x2 BitSize=0x5
+        unsigned char InheritClass:1;// Offset=0xd Size=0x1 BitOffset=0x7 BitSize=0x1
+    };
+    unsigned short Spare2;// Offset=0xe Size=0x2
+    unsigned long Parent;// Offset=0x10 Size=0x4
+    unsigned long SubKeyCounts[2];// Offset=0x14 Size=0x8
+    union // Size=0x2c (Id=0)
+    {
+        unsigned long SubKeyLists[2];// Offset=0x1c Size=0x8
+        struct _CHILD_LIST ValueList;// Offset=0x24 Size=0x8
+        struct _CM_KEY_REFERENCE ChildHiveReference;// Offset=0x1c Size=0x10
+    };
+    unsigned long Security;// Offset=0x2c Size=0x4
+    unsigned long Class;// Offset=0x30 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long MaxNameLen:16;// Offset=0x34 Size=0x4 BitOffset=0x0 BitSize=0x10
+        unsigned long UserFlags:4;// Offset=0x34 Size=0x4 BitOffset=0x10 BitSize=0x4
+        unsigned long VirtControlFlags:4;// Offset=0x34 Size=0x4 BitOffset=0x14 BitSize=0x4
+        unsigned long Debug:8;// Offset=0x34 Size=0x4 BitOffset=0x18 BitSize=0x8
+    };
+    unsigned long MaxClassLen;// Offset=0x38 Size=0x4
+    unsigned long MaxValueNameLen;// Offset=0x3c Size=0x4
+    unsigned long MaxValueDataLen;// Offset=0x40 Size=0x4
+    unsigned long WorkVar;// Offset=0x44 Size=0x4
+    unsigned short NameLength;// Offset=0x48 Size=0x2
+    unsigned short ClassLength;// Offset=0x4a Size=0x2
+    wchar_t Name[1];// Offset=0x4c Size=0x2
+};

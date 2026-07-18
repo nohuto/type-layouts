@@ -1,0 +1,3 @@
+enum _STORAGE_ICE_KEY_TYPE
+{
+};

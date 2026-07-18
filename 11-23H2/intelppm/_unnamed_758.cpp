@@ -1,0 +1,9 @@
+union _unnamed_758// Size=0x4 (Id=758)
+{
+    unsigned long AsUlong;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Enabled:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long Reserved:31;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1f
+    };
+};

@@ -1,0 +1,9 @@
+struct _unnamed_1358// Size=0x8 (Id=1358)
+{
+    unsigned long Gsiv;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long WakeInterrupt:1;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long ReservedFlags:31;// Offset=0x4 Size=0x4 BitOffset=0x1 BitSize=0x1f
+    };
+};

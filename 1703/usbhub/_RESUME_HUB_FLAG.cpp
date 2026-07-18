@@ -1,0 +1,5 @@
+enum _RESUME_HUB_FLAG
+{
+    NO_RESUME_HUB=0,
+    RESUME_HUB=1
+};

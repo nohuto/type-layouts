@@ -1,0 +1,3 @@
+struct _IO_REMOVE_LOCK_TRACKING_BLOCK// Size=0x0 (Id=2768)
+{
+};

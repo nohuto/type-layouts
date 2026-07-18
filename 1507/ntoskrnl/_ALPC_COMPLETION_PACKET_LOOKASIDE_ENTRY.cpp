@@ -1,0 +1,11 @@
+struct _SINGLE_LIST_ENTRY// Size=0x8 (Id=47)
+{
+    struct _SINGLE_LIST_ENTRY * Next;// Offset=0x0 Size=0x8
+};
+
+struct _ALPC_COMPLETION_PACKET_LOOKASIDE_ENTRY// Size=0x18 (Id=1132)
+{
+    struct _SINGLE_LIST_ENTRY ListEntry;// Offset=0x0 Size=0x8
+    struct _IO_MINI_COMPLETION_PACKET_USER * Packet;// Offset=0x8 Size=0x8
+    struct _ALPC_COMPLETION_PACKET_LOOKASIDE * Lookaside;// Offset=0x10 Size=0x8
+};

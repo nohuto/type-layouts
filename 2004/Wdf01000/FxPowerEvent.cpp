@@ -1,0 +1,21 @@
+enum FxPowerEvent
+{
+    PowerEventInvalid=0,
+    PowerD0=1,
+    PowerDx=2,
+    PowerWakeArrival=4,
+    PowerWakeSucceeded=8,
+    PowerWakeFailed=16,
+    PowerWakeCanceled=32,
+    PowerImplicitD0=64,
+    PowerImplicitD3=128,
+    PowerParentToD0=256,
+    PowerMarkPageable=512,
+    PowerMarkNonpageable=1024,
+    PowerCompleteD0=2048,
+    PowerCompleteDx=4096,
+    PowerWakeInterruptCompleteTransition=8192,
+    PowerPriorityEventsMask=14592,
+    PowerSingularEventMask=256,
+    PowerEventMaximum=-1
+};

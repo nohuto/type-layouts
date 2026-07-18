@@ -1,0 +1,13 @@
+struct _unnamed_2163// Size=0x8 (Id=2163)
+{
+    unsigned char Pch;// Offset=0x0 Size=0x1
+    unsigned char EmbeddedController;// Offset=0x1 Size=0x1
+    unsigned char Reserved[6];// Offset=0x2 Size=0x6
+};
+
+union _unnamed_2164// Size=0x8 (Id=2164)
+{
+    struct _unnamed_2163 Component;// Offset=0x0 Size=0x8
+    unsigned long long AsULONG64;// Offset=0x0 Size=0x8
+    unsigned char AsBytes[8];// Offset=0x0 Size=0x8
+};

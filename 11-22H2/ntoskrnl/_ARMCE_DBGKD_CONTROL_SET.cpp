@@ -1,0 +1,6 @@
+struct _ARMCE_DBGKD_CONTROL_SET// Size=0xc (Id=1191)
+{
+    unsigned long Continue;// Offset=0x0 Size=0x4
+    unsigned long CurrentSymbolStart;// Offset=0x4 Size=0x4
+    unsigned long CurrentSymbolEnd;// Offset=0x8 Size=0x4
+};

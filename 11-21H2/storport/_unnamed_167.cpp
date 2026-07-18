@@ -1,0 +1,12 @@
+struct _unnamed_167// Size=0x10 (Id=167)
+{
+    struct // Size=0x10 (Id=0)
+    {
+        unsigned long long Depth:16;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x10
+        unsigned long long Sequence:48;// Offset=0x0 Size=0x8 BitOffset=0x10 BitSize=0x30
+        unsigned long long HeaderType:1;// Offset=0x8 Size=0x8 BitOffset=0x0 BitSize=0x1
+        unsigned long long Init:1;// Offset=0x8 Size=0x8 BitOffset=0x1 BitSize=0x1
+        unsigned long long Reserved:2;// Offset=0x8 Size=0x8 BitOffset=0x2 BitSize=0x2
+        unsigned long long NextEntry:60;// Offset=0x8 Size=0x8 BitOffset=0x4 BitSize=0x3c
+    };
+};

@@ -1,0 +1,13 @@
+struct _LIST_ENTRY// Size=0x10 (Id=20)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _PPM_VETO_ACCOUNTING// Size=0x28 (Id=574)
+{
+    long VetoPresent;// Offset=0x0 Size=0x4
+    struct _LIST_ENTRY VetoListHead;// Offset=0x8 Size=0x10
+    unsigned long PreallocatedVetoCount;// Offset=0x18 Size=0x4
+    struct _PPM_VETO_ENTRY * PreallocatedVetoList;// Offset=0x20 Size=0x8
+};

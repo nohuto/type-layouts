@@ -1,0 +1,59 @@
+struct _LIST_ENTRY// Size=0x10 (Id=22)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _NDIS_OBJECT_HEADER// Size=0x4 (Id=316)
+{
+    unsigned char Type;// Offset=0x0 Size=0x1
+    unsigned char Revision;// Offset=0x1 Size=0x1
+    unsigned short Size;// Offset=0x2 Size=0x2
+};
+
+enum _NDIS_NIC_SWITCH_TYPE
+{
+    NdisNicSwitchTypeUnspecified=0,
+    NdisNicSwitchTypeExternal=1,
+    NdisNicSwitchTypeMax=2
+};
+
+struct _IF_COUNTED_STRING_LH// Size=0x204 (Id=666)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    wchar_t String[257];// Offset=0x2 Size=0x202
+};
+
+struct _NDIS_NIC_SWITCH_PARAMETERS// Size=0x228 (Id=1689)
+{
+    struct _NDIS_OBJECT_HEADER Header;// Offset=0x0 Size=0x4
+    unsigned long Flags;// Offset=0x4 Size=0x4
+    enum _NDIS_NIC_SWITCH_TYPE SwitchType;// Offset=0x8 Size=0x4
+    unsigned long SwitchId;// Offset=0xc Size=0x4
+    struct _IF_COUNTED_STRING_LH SwitchFriendlyName;// Offset=0x10 Size=0x204
+    unsigned long NumVFs;// Offset=0x214 Size=0x4
+    unsigned long NdisReserved1;// Offset=0x218 Size=0x4
+    unsigned long NdisReserved2;// Offset=0x21c Size=0x4
+    unsigned long NdisReserved3;// Offset=0x220 Size=0x4
+    unsigned long NumQueuePairsForDefaultVPort;// Offset=0x224 Size=0x4
+};
+
+struct _NDIS_NIC_SWITCH_BLOCK// Size=0x2a0 (Id=1570)
+{
+    struct _LIST_ENTRY AdapterLink;// Offset=0x0 Size=0x10
+    struct _NDIS_MINIPORT_BLOCK * Miniport;// Offset=0x10 Size=0x8
+    struct _NDIS_OPEN_BLOCK * Open;// Offset=0x18 Size=0x8
+    long Reference;// Offset=0x20 Size=0x4
+    unsigned long SwitchId;// Offset=0x24 Size=0x4
+    struct _NDIS_PF_BLOCK * PFBlock;// Offset=0x28 Size=0x8
+    unsigned long NumActiveVPorts;// Offset=0x30 Size=0x4
+    struct _LIST_ENTRY VPortList;// Offset=0x38 Size=0x10
+    unsigned long NumAllocatedVFs;// Offset=0x48 Size=0x4
+    struct _LIST_ENTRY VFList;// Offset=0x50 Size=0x10
+    unsigned long NonDefaultQueuePairsInUse;// Offset=0x60 Size=0x4
+    struct _NDIS_NIC_SWITCH_PARAMETERS SwitchParameters;// Offset=0x64 Size=0x228
+    unsigned long NumActiveDefaultVPortMacAddresses;// Offset=0x28c Size=0x4
+    unsigned long NumActiveNonDefaultVPortMacAddresses;// Offset=0x290 Size=0x4
+    unsigned long NumActiveDefaultVPortVlanIds;// Offset=0x294 Size=0x4
+    unsigned long NumActiveNonDefaultVPortVlanIds;// Offset=0x298 Size=0x4
+};

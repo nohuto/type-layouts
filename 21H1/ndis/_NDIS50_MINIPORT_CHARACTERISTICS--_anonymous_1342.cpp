@@ -1,0 +1,5 @@
+union _NDIS50_MINIPORT_CHARACTERISTICS::_anonymous_1342// Size=0x8 (Id=1342)
+{
+    int  ( * TransferDataHandler)(struct _NDIS_PACKET * ,unsigned int * ,void * ,void * ,unsigned int ,unsigned int );// Offset=0x0 Size=0x8
+    int  ( * WanTransferDataHandler)();// Offset=0x0 Size=0x8
+};

@@ -1,0 +1,146 @@
+struct _LIST_ENTRY// Size=0x10 (Id=35)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+struct _UNICODE_STRING// Size=0x10 (Id=41)
+{
+    unsigned short Length;// Offset=0x0 Size=0x2
+    unsigned short MaximumLength;// Offset=0x2 Size=0x2
+    wchar_t * Buffer;// Offset=0x8 Size=0x8
+};
+
+struct _RTL_BALANCED_NODE// Size=0x18 (Id=51)
+{
+    union // Size=0x10 (Id=0)
+    {
+        struct _RTL_BALANCED_NODE * Children[2];// Offset=0x0 Size=0x10
+        struct _RTL_BALANCED_NODE * Left;// Offset=0x0 Size=0x8
+        struct _RTL_BALANCED_NODE * Right;// Offset=0x8 Size=0x8
+    };
+    union // Size=0x1 (Id=0)
+    {
+        struct // Size=0x1 (Id=0)
+        {
+            union // Size=0x1 (Id=0)
+            {
+                unsigned char Red:1;// Offset=0x10 Size=0x1 BitOffset=0x0 BitSize=0x1
+                unsigned char Balance:2;// Offset=0x10 Size=0x1 BitOffset=0x0 BitSize=0x2
+            };
+        };
+        unsigned long long ParentValue;// Offset=0x10 Size=0x8
+    };
+};
+
+struct _unnamed_43// Size=0x8 (Id=43)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=353)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_43 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+enum _LDR_DLL_LOAD_REASON
+{
+    LoadReasonStaticDependency=0,
+    LoadReasonStaticForwarderDependency=1,
+    LoadReasonDynamicForwarderDependency=2,
+    LoadReasonDelayloadDependency=3,
+    LoadReasonDynamicLoad=4,
+    LoadReasonAsImageLoad=5,
+    LoadReasonAsDataLoad=6,
+    LoadReasonEnclavePrimary=7,
+    LoadReasonEnclaveDependency=8,
+    LoadReasonPatchImage=9,
+    LoadReasonUnknown=-1
+};
+
+enum _LDR_HOT_PATCH_STATE
+{
+    LdrHotPatchBaseImage=0,
+    LdrHotPatchNotApplied=1,
+    LdrHotPatchAppliedReverse=2,
+    LdrHotPatchAppliedForward=3,
+    LdrHotPatchFailedToPatch=4,
+    LdrHotPatchStateMax=5
+};
+
+struct _LDR_DATA_TABLE_ENTRY// Size=0x138 (Id=264)
+{
+    struct _LIST_ENTRY InLoadOrderLinks;// Offset=0x0 Size=0x10
+    struct _LIST_ENTRY InMemoryOrderLinks;// Offset=0x10 Size=0x10
+    struct _LIST_ENTRY InInitializationOrderLinks;// Offset=0x20 Size=0x10
+    void * DllBase;// Offset=0x30 Size=0x8
+    void * EntryPoint;// Offset=0x38 Size=0x8
+    unsigned long SizeOfImage;// Offset=0x40 Size=0x4
+    struct _UNICODE_STRING FullDllName;// Offset=0x48 Size=0x10
+    struct _UNICODE_STRING BaseDllName;// Offset=0x58 Size=0x10
+    union // Size=0x6c (Id=0)
+    {
+        unsigned char FlagGroup[4];// Offset=0x68 Size=0x4
+        unsigned long Flags;// Offset=0x68 Size=0x4
+        struct // Size=0x4 (Id=0)
+        {
+            unsigned long PackagedBinary:1;// Offset=0x68 Size=0x4 BitOffset=0x0 BitSize=0x1
+            unsigned long MarkedForRemoval:1;// Offset=0x68 Size=0x4 BitOffset=0x1 BitSize=0x1
+            unsigned long ImageDll:1;// Offset=0x68 Size=0x4 BitOffset=0x2 BitSize=0x1
+            unsigned long LoadNotificationsSent:1;// Offset=0x68 Size=0x4 BitOffset=0x3 BitSize=0x1
+            unsigned long TelemetryEntryProcessed:1;// Offset=0x68 Size=0x4 BitOffset=0x4 BitSize=0x1
+            unsigned long ProcessStaticImport:1;// Offset=0x68 Size=0x4 BitOffset=0x5 BitSize=0x1
+            unsigned long InLegacyLists:1;// Offset=0x68 Size=0x4 BitOffset=0x6 BitSize=0x1
+            unsigned long InIndexes:1;// Offset=0x68 Size=0x4 BitOffset=0x7 BitSize=0x1
+            unsigned long ShimDll:1;// Offset=0x68 Size=0x4 BitOffset=0x8 BitSize=0x1
+            unsigned long InExceptionTable:1;// Offset=0x68 Size=0x4 BitOffset=0x9 BitSize=0x1
+            unsigned long ReservedFlags1:2;// Offset=0x68 Size=0x4 BitOffset=0xa BitSize=0x2
+            unsigned long LoadInProgress:1;// Offset=0x68 Size=0x4 BitOffset=0xc BitSize=0x1
+            unsigned long LoadConfigProcessed:1;// Offset=0x68 Size=0x4 BitOffset=0xd BitSize=0x1
+            unsigned long EntryProcessed:1;// Offset=0x68 Size=0x4 BitOffset=0xe BitSize=0x1
+            unsigned long ProtectDelayLoad:1;// Offset=0x68 Size=0x4 BitOffset=0xf BitSize=0x1
+            unsigned long ReservedFlags3:2;// Offset=0x68 Size=0x4 BitOffset=0x10 BitSize=0x2
+            unsigned long DontCallForThreads:1;// Offset=0x68 Size=0x4 BitOffset=0x12 BitSize=0x1
+            unsigned long ProcessAttachCalled:1;// Offset=0x68 Size=0x4 BitOffset=0x13 BitSize=0x1
+            unsigned long ProcessAttachFailed:1;// Offset=0x68 Size=0x4 BitOffset=0x14 BitSize=0x1
+            unsigned long CorDeferredValidate:1;// Offset=0x68 Size=0x4 BitOffset=0x15 BitSize=0x1
+            unsigned long CorImage:1;// Offset=0x68 Size=0x4 BitOffset=0x16 BitSize=0x1
+            unsigned long DontRelocate:1;// Offset=0x68 Size=0x4 BitOffset=0x17 BitSize=0x1
+            unsigned long CorILOnly:1;// Offset=0x68 Size=0x4 BitOffset=0x18 BitSize=0x1
+            unsigned long ChpeImage:1;// Offset=0x68 Size=0x4 BitOffset=0x19 BitSize=0x1
+            unsigned long ChpeEmulatorImage:1;// Offset=0x68 Size=0x4 BitOffset=0x1a BitSize=0x1
+            unsigned long ReservedFlags5:1;// Offset=0x68 Size=0x4 BitOffset=0x1b BitSize=0x1
+            unsigned long Redirected:1;// Offset=0x68 Size=0x4 BitOffset=0x1c BitSize=0x1
+            unsigned long ReservedFlags6:2;// Offset=0x68 Size=0x4 BitOffset=0x1d BitSize=0x2
+            unsigned long CompatDatabaseProcessed:1;// Offset=0x68 Size=0x4 BitOffset=0x1f BitSize=0x1
+        };
+    };
+    unsigned short ObsoleteLoadCount;// Offset=0x6c Size=0x2
+    unsigned short TlsIndex;// Offset=0x6e Size=0x2
+    struct _LIST_ENTRY HashLinks;// Offset=0x70 Size=0x10
+    unsigned long TimeDateStamp;// Offset=0x80 Size=0x4
+    struct _ACTIVATION_CONTEXT * EntryPointActivationContext;// Offset=0x88 Size=0x8
+    void * Lock;// Offset=0x90 Size=0x8
+    struct _LDR_DDAG_NODE * DdagNode;// Offset=0x98 Size=0x8
+    struct _LIST_ENTRY NodeModuleLink;// Offset=0xa0 Size=0x10
+    struct _LDRP_LOAD_CONTEXT * LoadContext;// Offset=0xb0 Size=0x8
+    void * ParentDllBase;// Offset=0xb8 Size=0x8
+    void * SwitchBackContext;// Offset=0xc0 Size=0x8
+    struct _RTL_BALANCED_NODE BaseAddressIndexNode;// Offset=0xc8 Size=0x18
+    struct _RTL_BALANCED_NODE MappingInfoIndexNode;// Offset=0xe0 Size=0x18
+    unsigned long long OriginalBase;// Offset=0xf8 Size=0x8
+    union _LARGE_INTEGER LoadTime;// Offset=0x100 Size=0x8
+    unsigned long BaseNameHashValue;// Offset=0x108 Size=0x4
+    enum _LDR_DLL_LOAD_REASON LoadReason;// Offset=0x10c Size=0x4
+    unsigned long ImplicitPathOptions;// Offset=0x110 Size=0x4
+    unsigned long ReferenceCount;// Offset=0x114 Size=0x4
+    unsigned long DependentLoadFlags;// Offset=0x118 Size=0x4
+    unsigned char SigningLevel;// Offset=0x11c Size=0x1
+    unsigned long CheckSum;// Offset=0x120 Size=0x4
+    void * ActivePatchImageBase;// Offset=0x128 Size=0x8
+    enum _LDR_HOT_PATCH_STATE HotPatchState;// Offset=0x130 Size=0x4
+};

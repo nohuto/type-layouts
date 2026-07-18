@@ -1,0 +1,11 @@
+struct _KBUGCHECK_TRIAGE_DUMP_DATA// Size=0x38 (Id=5356)
+{
+    struct _KTRIAGE_DUMP_DATA_ARRAY * DataArray;// Offset=0x0 Size=0x8
+    unsigned long Flags;// Offset=0x8 Size=0x4
+    unsigned long MaxVirtMemSize;// Offset=0xc Size=0x4
+    unsigned long BugCheckCode;// Offset=0x10 Size=0x4
+    unsigned long long BugCheckParameter1;// Offset=0x18 Size=0x8
+    unsigned long long BugCheckParameter2;// Offset=0x20 Size=0x8
+    unsigned long long BugCheckParameter3;// Offset=0x28 Size=0x8
+    unsigned long long BugCheckParameter4;// Offset=0x30 Size=0x8
+};

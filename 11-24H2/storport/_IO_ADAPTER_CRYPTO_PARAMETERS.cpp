@@ -1,0 +1,3 @@
+struct _IO_ADAPTER_CRYPTO_PARAMETERS// Size=0x0 (Id=1033)
+{
+};

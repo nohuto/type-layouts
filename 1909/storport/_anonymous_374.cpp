@@ -1,0 +1,4 @@
+struct _anonymous_374// Size=0x8 (Id=374)
+{
+    struct _STOR_ASYNC_NOTIFY_CONTEXT * StorAsyncNotify;// Offset=0x0 Size=0x8
+};

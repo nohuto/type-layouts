@@ -1,0 +1,4 @@
+enum EmptyCVariant_FeatureStaging_BasePlatformTechnologies_CD
+{
+    CVariant_FeatureStaging_BasePlatformTechnologies_CD_Empty=0
+};

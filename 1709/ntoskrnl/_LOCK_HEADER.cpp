@@ -1,0 +1,13 @@
+struct _RTL_AVL_TREE// Size=0x8 (Id=39)
+{
+    struct _RTL_BALANCED_NODE * Root;// Offset=0x0 Size=0x8
+};
+
+struct _LOCK_HEADER// Size=0x28 (Id=604)
+{
+    struct _RTL_AVL_TREE LockTree;// Offset=0x0 Size=0x8
+    struct _RTL_AVL_TREE LockMdlSwitchedTree;// Offset=0x8 Size=0x8
+    unsigned long long Count;// Offset=0x10 Size=0x8
+    unsigned long long Lock;// Offset=0x18 Size=0x8
+    unsigned long Valid;// Offset=0x20 Size=0x4
+};

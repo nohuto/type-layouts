@@ -1,0 +1,4 @@
+struct NDIS_WDF_CX_DRIVER_CONTEXT__// Size=0x4 (Id=539)
+{
+    int unused;// Offset=0x0 Size=0x4
+};

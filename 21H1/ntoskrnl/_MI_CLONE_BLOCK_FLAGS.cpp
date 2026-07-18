@@ -1,0 +1,8 @@
+struct _MI_CLONE_BLOCK_FLAGS// Size=0x8 (Id=1488)
+{
+    struct // Size=0x8 (Id=0)
+    {
+        unsigned long long ActualCloneCommit:59;// Offset=0x0 Size=0x8 BitOffset=0x0 BitSize=0x3b
+        unsigned long long CloneProtection:5;// Offset=0x0 Size=0x8 BitOffset=0x3b BitSize=0x5
+    };
+};

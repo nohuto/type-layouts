@@ -1,0 +1,143 @@
+enum _POWER_INFORMATION_LEVEL_INTERNAL
+{
+    PowerInternalAcpiInterfaceRegister=0,
+    PowerInternalS0LowPowerIdleInfo=1,
+    PowerInternalReapplyBrightnessSettings=2,
+    PowerInternalUserAbsencePrediction=3,
+    PowerInternalUserAbsencePredictionCapability=4,
+    PowerInternalPoProcessorLatencyHint=5,
+    PowerInternalStandbyNetworkRequest=6,
+    PowerInternalDirtyTransitionInformation=7,
+    PowerInternalSetBackgroundTaskState=8,
+    PowerInternalReservedDoNotUseEnum9=9,
+    PowerInternalReservedDoNotUseEnum10=10,
+    PowerInternalReservedDoNotUseEnum11=11,
+    PowerInternalReservedDoNotUseEnum12=12,
+    PowerInternalReservedDoNotUseEnum13=13,
+    PowerInternalReservedDoNotUseEnum14=14,
+    PowerInternalReservedDoNotUseEnum15=15,
+    PowerInternalReservedDoNotUseEnum16=16,
+    PowerInternalReservedDoNotUseEnum17=17,
+    PowerInternalBootSessionStandbyActivationInformation=18,
+    PowerInternalSessionPowerState=19,
+    PowerInternalSessionTerminalInput=20,
+    PowerInternalSetWatchdog=21,
+    PowerInternalPhysicalPowerButtonPressInfoAtBoot=22,
+    PowerInternalExternalMonitorConnected=23,
+    PowerInternalHighPrecisionBrightnessSettings=24,
+    PowerInternalWinrtScreenToggle=25,
+    PowerInternalPpmQosDisable=26,
+    PowerInternalTransitionCheckpoint=27,
+    PowerInternalInputControllerState=28,
+    PowerInternalFirmwareResetReason=29,
+    PowerInternalPpmSchedulerQosSupport=30,
+    PowerInternalBootStatGet=31,
+    PowerInternalBootStatSet=32,
+    PowerInternalCallHasNotReturnedWatchdog=33,
+    PowerInternalBootStatCheckIntegrity=34,
+    PowerInternalBootStatRestoreDefaults=35,
+    PowerInternalHostEsStateUpdate=36,
+    PowerInternalGetPowerActionState=37,
+    PowerInternalBootStatUnlock=38,
+    PowerInternalWakeOnVoiceState=39,
+    PowerInternalDeepSleepBlock=40,
+    PowerInternalIsPoFxDevice=41,
+    PowerInternalPowerTransitionExtensionAtBoot=42,
+    PowerInternalProcessorBrandedFrequency=43,
+    PowerInternalTimeBrokerExpirationReason=44,
+    PowerInternalNotifyUserShutdownStatus=45,
+    PowerInternalPowerRequestTerminalCoreWindow=46,
+    PowerInternalProcessorIdleVeto=47,
+    PowerInternalPlatformIdleVeto=48,
+    PowerInternalIsLongPowerButtonBugcheckEnabled=49,
+    PowerInternalAutoChkCausedReboot=50,
+    PowerInternalSetWakeAlarmOverride=51,
+    PowerInternalDirectedFxAddTestDevice=53,
+    PowerInternalDirectedFxRemoveTestDevice=54,
+    PowerInternalDirectedFxSetMode=56,
+    PowerInternalRegisterPowerPlane=57,
+    PowerInternalSetDirectedDripsFlags=58,
+    PowerInternalClearDirectedDripsFlags=59,
+    PowerInternalRetrieveHiberFileResumeContext=60,
+    PowerInternalReadHiberFilePage=61,
+    PowerInternalLastBootSucceeded=62,
+    PowerInternalQuerySleepStudyHelperRoutineBlock=63,
+    PowerInternalDirectedDripsQueryCapabilities=64,
+    PowerInternalClearConstraints=65,
+    PowerInternalSoftParkVelocityEnabled=66,
+    PowerInternalQueryIntelPepCapabilities=67,
+    PowerInternalGetSystemIdleLoopEnablement=68,
+    PowerInternalGetVmPerfControlSupport=69,
+    PowerInternalGetVmPerfControlConfig=70,
+    PowerInternalSleepDetailedDiagUpdate=71,
+    PowerInternalProcessorClassFrequencyBandsStats=72,
+    PowerInternalHostGlobalUserPresenceStateUpdate=73,
+    PowerInternalCpuNodeIdleIntervalStats=74,
+    PowerInternalClassIdleIntervalStats=75,
+    PowerInternalCpuNodeConcurrencyStats=76,
+    PowerInternalClassConcurrencyStats=77,
+    PowerInternalQueryProcMeasurementCapabilities=78,
+    PowerInternalQueryProcMeasurementValues=79,
+    PowerInternalPrepareForSystemInitiatedReboot=80,
+    PowerInternalGetAdaptiveSessionState=81,
+    PowerInternalSetConsoleLockedState=82,
+    PowerInternalOverrideSystemInitiatedRebootState=83,
+    PowerInternalFanImpactStats=84,
+    PowerInternalFanRpmBuckets=85,
+    PowerInternalPowerBootAppDiagInfo=86,
+    PowerInternalUnregisterShutdownNotification=87,
+    PowerInternalManageTransitionStateRecord=88,
+    PowerInternalGetAcpiTimeAndAlarmCapabilities=89,
+    PowerInternalSuspendResumeRequest=90,
+    PowerInternalEnergyEstimationInfo=91,
+    PowerInternalProvSocIdentifierOperation=92,
+    PowerInternalGetVmPerfPrioritySupport=93,
+    PowerInternalGetVmPerfPriorityConfig=94,
+    PowerInternalNotifyWin32kPowerRequestQueued=95,
+    PowerInternalNotifyWin32kPowerRequestCompleted=96,
+    PowerInternalQueryVelocityFeatureEnablement=97,
+    PowerInternalNotifyWin32kSessionConnect=98,
+    PowerInternalSetBatteryTestExempt=99,
+    PowerInformationInternalMaximum=100
+};
+
+struct _POWER_INFORMATION_INTERNAL_HEADER// Size=0x8 (Id=596)
+{
+    enum _POWER_INFORMATION_LEVEL_INTERNAL InternalType;// Offset=0x0 Size=0x4
+    unsigned long Version;// Offset=0x4 Size=0x4
+};
+
+enum _PO_TRANSITION_RECORD_REQUEST_OPERATION
+{
+    AddTransitionRecord=0,
+    RemoveTransitionRecord=1,
+    TransitionRecordMax=2
+};
+
+enum _PO_TRANSITION_BLOCKER_RECORD_TYPE
+{
+    PoTransitionRecordDefault=0,
+    PoTransitionRecordWithResolverCallback=1,
+    PoTransitionRecordWithBugCheckCallback=2,
+    PoTransitionRecordTypeMax=3
+};
+
+struct _PO_TRANSITION_RECORD_REQUEST// Size=0x38 (Id=609)
+{
+    union // Size=0x2c (Id=0)
+    {
+        struct _POWER_INFORMATION_INTERNAL_HEADER Header;// Offset=0x0 Size=0x8
+        enum _PO_TRANSITION_RECORD_REQUEST_OPERATION Operation;// Offset=0x8 Size=0x4
+        void * Process;// Offset=0x10 Size=0x8
+        void * Thread;// Offset=0x18 Size=0x8
+        void * Context;// Offset=0x20 Size=0x8
+        enum _PO_TRANSITION_BLOCKER_RECORD_TYPE RecordType;// Offset=0x28 Size=0x4
+        union <unnamed-type-u>// Size=0x8 (Id=16621)
+        {
+            void  ( * ResolverCallback)(unsigned long ,void ** ,void ** ,void * );// Offset=0x0 Size=0x8
+            void  ( * BugcheckCallback)(unsigned long ,void * );// Offset=0x0 Size=0x8
+            void * Callback;// Offset=0x0 Size=0x8
+        };
+        union _PO_TRANSITION_RECORD_REQUEST::<unnamed-type-u> u;// Offset=0x30 Size=0x8
+    };
+};

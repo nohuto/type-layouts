@@ -1,0 +1,6 @@
+enum _MI_SHARED_USER_PAGE_TYPES
+{
+    MiSharedUserPageKernel=0,
+    MiSharedUserPageHypervisor=1,
+    MiSharedUserPageMaximum=2
+};

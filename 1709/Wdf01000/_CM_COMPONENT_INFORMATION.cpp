@@ -1,0 +1,21 @@
+struct _DEVICE_FLAGS// Size=0x4 (Id=3330)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Failed:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long ReadOnly:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long Removable:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+        unsigned long ConsoleIn:1;// Offset=0x0 Size=0x4 BitOffset=0x3 BitSize=0x1
+        unsigned long ConsoleOut:1;// Offset=0x0 Size=0x4 BitOffset=0x4 BitSize=0x1
+        unsigned long Input:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long Output:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+    };
+};
+
+struct _CM_COMPONENT_INFORMATION// Size=0x18 (Id=2784)
+{
+    struct _DEVICE_FLAGS Flags;// Offset=0x0 Size=0x4
+    unsigned long Version;// Offset=0x4 Size=0x4
+    unsigned long Key;// Offset=0x8 Size=0x4
+    unsigned long long AffinityMask;// Offset=0x10 Size=0x8
+};

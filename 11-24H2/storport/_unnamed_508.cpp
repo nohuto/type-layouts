@@ -1,0 +1,15 @@
+union _unnamed_508// Size=0x1 (Id=508)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char Outstanding:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char InternalCommand:1;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x1
+        unsigned char ZeroCommandEntry:1;// Offset=0x0 Size=0x1 BitOffset=0x2 BitSize=0x1
+        unsigned char SplitCommand:1;// Offset=0x0 Size=0x1 BitOffset=0x3 BitSize=0x1
+        unsigned char Polling:1;// Offset=0x0 Size=0x1 BitOffset=0x4 BitSize=0x1
+        unsigned char ExecuteInIsolation:1;// Offset=0x0 Size=0x1 BitOffset=0x5 BitSize=0x1
+        unsigned char UntimedCommand:1;// Offset=0x0 Size=0x1 BitOffset=0x6 BitSize=0x1
+        unsigned char SglUsed:1;// Offset=0x0 Size=0x1 BitOffset=0x7 BitSize=0x1
+    };
+    unsigned char AsUCHAR;// Offset=0x0 Size=0x1
+};

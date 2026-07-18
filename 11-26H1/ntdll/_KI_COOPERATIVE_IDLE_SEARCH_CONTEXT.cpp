@@ -1,0 +1,3 @@
+struct _KI_COOPERATIVE_IDLE_SEARCH_CONTEXT// Size=0x0 (Id=62)
+{
+};

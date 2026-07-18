@@ -1,0 +1,3 @@
+struct std::nothrow_t// Size=0x1 (Id=235)
+{
+};

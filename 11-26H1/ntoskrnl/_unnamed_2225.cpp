@@ -1,0 +1,20 @@
+struct _I386_LOADER_BLOCK// Size=0x10 (Id=2465)
+{
+    void * CommonDataArea;// Offset=0x0 Size=0x8
+    unsigned long MachineType;// Offset=0x8 Size=0x4
+    unsigned long VirtualBias;// Offset=0xc Size=0x4
+};
+
+struct _ARM_LOADER_BLOCK// Size=0x4 (Id=2551)
+{
+    unsigned long PlaceHolder;// Offset=0x0 Size=0x4
+};
+
+union _unnamed_2225// Size=0x10 (Id=2225)
+{
+    union // Size=0x10 (Id=0)
+    {
+        struct _I386_LOADER_BLOCK I386;// Offset=0x0 Size=0x10
+        struct _ARM_LOADER_BLOCK Arm;// Offset=0x0 Size=0x4
+    };
+};

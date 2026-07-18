@@ -1,0 +1,10 @@
+struct _PCI_EXPRESS_LINK_QUIESCENT_INTERFACE// Size=0x30 (Id=4134)
+{
+    unsigned short Size;// Offset=0x0 Size=0x2
+    unsigned short Version;// Offset=0x2 Size=0x2
+    void * Context;// Offset=0x8 Size=0x8
+    void  ( * InterfaceReference)(void * );// Offset=0x10 Size=0x8
+    void  ( * InterfaceDereference)(void * );// Offset=0x18 Size=0x8
+    long  ( * PciExpressEnterLinkQuiescentMode)(void * );// Offset=0x20 Size=0x8
+    long  ( * PciExpressExitLinkQuiescentMode)(void * );// Offset=0x28 Size=0x8
+};

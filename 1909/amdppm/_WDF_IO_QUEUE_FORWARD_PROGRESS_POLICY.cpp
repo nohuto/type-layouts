@@ -1,0 +1,32 @@
+enum _WDF_IO_FORWARD_PROGRESS_RESERVED_POLICY
+{
+    WdfIoForwardProgressInvalidPolicy=0,
+    WdfIoForwardProgressReservedPolicyAlwaysUseReservedRequest=1,
+    WdfIoForwardProgressReservedPolicyUseExamine=2,
+    WdfIoForwardProgressReservedPolicyPagingIO=3
+};
+
+struct _anonymous_647// Size=0x8 (Id=647)
+{
+    enum _WDF_IO_FORWARD_PROGRESS_ACTION  ( * EvtIoWdmIrpForForwardProgress)(struct WDFQUEUE__ * ,struct _IRP * );// Offset=0x0 Size=0x8
+};
+
+union _anonymous_648// Size=0x8 (Id=648)
+{
+    struct _anonymous_647 ExaminePolicy;// Offset=0x0 Size=0x8
+};
+
+struct _WDF_IO_FORWARD_PROGRESS_RESERVED_POLICY_SETTINGS// Size=0x8 (Id=649)
+{
+    union _anonymous_648 Policy;// Offset=0x0 Size=0x8
+};
+
+struct _WDF_IO_QUEUE_FORWARD_PROGRESS_POLICY// Size=0x28 (Id=327)
+{
+    unsigned long Size;// Offset=0x0 Size=0x4
+    unsigned long TotalForwardProgressRequests;// Offset=0x4 Size=0x4
+    enum _WDF_IO_FORWARD_PROGRESS_RESERVED_POLICY ForwardProgressReservedPolicy;// Offset=0x8 Size=0x4
+    struct _WDF_IO_FORWARD_PROGRESS_RESERVED_POLICY_SETTINGS ForwardProgressReservePolicySettings;// Offset=0x10 Size=0x8
+    long  ( * EvtIoAllocateResourcesForReservedRequest)(struct WDFQUEUE__ * ,struct WDFREQUEST__ * );// Offset=0x18 Size=0x8
+    long  ( * EvtIoAllocateRequestResources)(struct WDFQUEUE__ * ,struct WDFREQUEST__ * );// Offset=0x20 Size=0x8
+};

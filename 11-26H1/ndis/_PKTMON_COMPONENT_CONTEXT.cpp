@@ -1,0 +1,55 @@
+struct _LIST_ENTRY// Size=0x10 (Id=52)
+{
+    struct _LIST_ENTRY * Flink;// Offset=0x0 Size=0x8
+    struct _LIST_ENTRY * Blink;// Offset=0x8 Size=0x8
+};
+
+enum _PKTMON_COMPONENT_TYPE
+{
+    PktMonComp_Ndis=1,
+    PktMonComp_Miniport=2,
+    PktMonComp_Filter=3,
+    PktMonComp_Protocol=4,
+    PktMonComp_VmsVmNic=5,
+    PktMonComp_VmsMiniport=6,
+    PktMonComp_VmsExtMiniport=7,
+    PktMonComp_VmsProtocolNic=8,
+    PktMonComp_NetVsc=9,
+    PktMonComp_HTTP=10,
+    PktMonComp_IpInterface=11,
+    PktMonComp_Slbmux=12,
+    PktMonComp_Ipsec=13,
+    PktMonComp_NetCx=14,
+    PktMonComp_HTTPMessage=15
+};
+
+enum _PKTMON_PACKET_TYPE
+{
+    PktMonPayload_Unknown=0,
+    PktMonPayload_Ethernet=1,
+    PktMonPayload_WiFi=2,
+    PktMonPayload_IP=3,
+    PktMonPayload_HTTP=4,
+    PktMonPayload_TCP=5,
+    PktMonPayload_UDP=6,
+    PktMonPayload_ARP=7,
+    PktMonPayload_ICMP=8,
+    PktMonPayload_ESP=9,
+    PktMonPayload_AH=10,
+    PktMonPayload_L4Payload=11
+};
+
+struct _PKTMON_COMPONENT_CONTEXT// Size=0x40 (Id=624)
+{
+    struct _LIST_ENTRY ListLink;// Offset=0x0 Size=0x10
+    struct _LIST_ENTRY EdgeList;// Offset=0x10 Size=0x10
+    long EdgeCount;// Offset=0x20 Size=0x4
+    void * CompHandle;// Offset=0x28 Size=0x8
+    enum _PKTMON_COMPONENT_TYPE CompType;// Offset=0x30 Size=0x4
+    enum _PKTMON_PACKET_TYPE PacketType;// Offset=0x34 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        int FlowEnabled:1;// Offset=0x38 Size=0x4 BitOffset=0x0 BitSize=0x1
+        int DropEnabled:1;// Offset=0x38 Size=0x4 BitOffset=0x1 BitSize=0x1
+    };
+};

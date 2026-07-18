@@ -1,0 +1,10 @@
+struct _HEAP_ENTRY_EXTRA// Size=0x8 (Id=471)
+{
+    union // Size=0x8 (Id=0)
+    {
+        unsigned short AllocatorBackTraceIndex;// Offset=0x0 Size=0x2
+        unsigned short TagIndex;// Offset=0x2 Size=0x2
+        unsigned long Settable;// Offset=0x4 Size=0x4
+        unsigned long long ZeroInit;// Offset=0x0 Size=0x8
+    };
+};

@@ -1,0 +1,11 @@
+struct _GDI_TEB_BATCH// Size=0x4e8 (Id=1182)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long Offset:30;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1e
+        unsigned long InProcessing:1;// Offset=0x0 Size=0x4 BitOffset=0x1e BitSize=0x1
+        unsigned long HasRenderingCommand:1;// Offset=0x0 Size=0x4 BitOffset=0x1f BitSize=0x1
+    };
+    unsigned long long HDC;// Offset=0x8 Size=0x8
+    unsigned long Buffer[310];// Offset=0x10 Size=0x4d8
+};

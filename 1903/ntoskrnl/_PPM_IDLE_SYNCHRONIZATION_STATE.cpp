@@ -1,0 +1,9 @@
+union _PPM_IDLE_SYNCHRONIZATION_STATE// Size=0x4 (Id=1475)
+{
+    long AsLong;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        long RefCount:24;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x18
+        unsigned long State:8;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x8
+    };
+};

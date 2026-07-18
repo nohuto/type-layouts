@@ -1,0 +1,4 @@
+struct _IO_STACK_LOCATION::<unnamed-type-Parameters>::<unnamed-type-SetQuota>// Size=0x4 (Id=917)
+{
+    unsigned long Length;// Offset=0x0 Size=0x4
+};

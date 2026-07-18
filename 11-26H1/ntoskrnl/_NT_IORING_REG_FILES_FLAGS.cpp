@@ -1,0 +1,15 @@
+enum _NT_IORING_REG_FILES_REQ_FLAGS
+{
+    NT_IORING_REG_FILES_REQ_FLAG_NONE=0
+};
+
+enum _NT_IORING_REG_FILES_ADV_FLAGS
+{
+    NT_IORING_REG_FILES_ADV_FLAG_NONE=0
+};
+
+struct _NT_IORING_REG_FILES_FLAGS// Size=0x8 (Id=2532)
+{
+    enum _NT_IORING_REG_FILES_REQ_FLAGS Required;// Offset=0x0 Size=0x4
+    enum _NT_IORING_REG_FILES_ADV_FLAGS Advisory;// Offset=0x4 Size=0x4
+};

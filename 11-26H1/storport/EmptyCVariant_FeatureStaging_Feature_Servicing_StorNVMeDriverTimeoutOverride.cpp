@@ -1,0 +1,4 @@
+enum EmptyCVariant_FeatureStaging_Feature_Servicing_StorNVMeDriverTimeoutOverride
+{
+    CVariant_FeatureStaging_Feature_Servicing_StorNVMeDriverTimeoutOverride_Empty=0
+};

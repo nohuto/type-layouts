@@ -1,0 +1,21 @@
+enum MI_TRIM_REASON
+{
+    TrimReasonNone=0,
+    TrimReasonLowPages=1,
+    TrimReasonSlowStandby=2,
+    TrimReasonFastStandby=3,
+    TrimReasonForce=4,
+    TrimReasonForceSwaps=5,
+    TrimReasonExternal=6,
+    AgeReasonLowAvailable=7,
+    AgeReasonSlowStandby=8,
+    AgeReasonFastStandby=9,
+    AgeReasonOwedStandby=10,
+    AgeReasonLowClaim=11,
+    AgeReasonRequiredMinimum=12,
+    AgeReasonHardLimit=13,
+    TrimReasonHardLimit=14,
+    AgeReasonClearAccessed=15,
+    ThreadFaultClusterAging=16,
+    TrimReasonMaximum=17
+};

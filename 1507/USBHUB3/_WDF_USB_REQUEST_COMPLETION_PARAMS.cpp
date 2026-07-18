@@ -1,0 +1,3 @@
+struct _WDF_USB_REQUEST_COMPLETION_PARAMS// Size=0x0 (Id=255)
+{
+};

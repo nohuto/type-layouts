@@ -1,0 +1,40 @@
+struct _MFND_CHILD_PF_SQ_STATE// Size=0x8 (Id=549)
+{
+    unsigned short QueueID;// Offset=0x0 Size=0x2
+    unsigned short HeadPointer;// Offset=0x2 Size=0x2
+    unsigned short TailPointer;// Offset=0x4 Size=0x2
+    unsigned short Reserved;// Offset=0x6 Size=0x2
+};
+
+union _unnamed_617// Size=0x1 (Id=617)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char CompletionPhaseTag:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char Reserved:7;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x7
+    };
+    unsigned char AsUCHAR;// Offset=0x0 Size=0x1
+};
+
+struct _MFND_CHILD_PF_CQ_STATE// Size=0x8 (Id=618)
+{
+    unsigned short QueueID;// Offset=0x0 Size=0x2
+    unsigned short HeadPointer;// Offset=0x2 Size=0x2
+    unsigned short TailPointer;// Offset=0x4 Size=0x2
+    union _unnamed_617 Flags;// Offset=0x6 Size=0x1
+    unsigned char Reserved;// Offset=0x7 Size=0x1
+};
+
+struct _MFND_CHILD_PF_QUEUE_STATE// Size=0x18 (Id=463)
+{
+    unsigned short Version;// Offset=0x0 Size=0x2
+    unsigned char Reserved0[2];// Offset=0x2 Size=0x2
+    unsigned long Size;// Offset=0x4 Size=0x4
+    unsigned char QueueType;// Offset=0x8 Size=0x1
+    unsigned char Reserved1[7];// Offset=0x9 Size=0x7
+    union // Size=0x8 (Id=0)
+    {
+        struct _MFND_CHILD_PF_SQ_STATE SQState;// Offset=0x10 Size=0x8
+        struct _MFND_CHILD_PF_CQ_STATE CQState;// Offset=0x10 Size=0x8
+    };
+};

@@ -1,0 +1,23 @@
+enum _HUB_PCQ_STATE
+{
+    Pcq_Pause=1,
+    Pcq_Run_Idle=2,
+    Pcq_Run_wBusy=3,
+    Pcq_Run_wQueued=4,
+    Pcq_Stop_wQueued=5,
+    Pcq_Stop=6,
+    Pcq_PortSuspended=7,
+    Pcq_Suspend_wBusy=8,
+    Pcq_Suspend_wQueued=9,
+    Pcq_Suspend_wBusy_Signal=10,
+    Pcq_Stop_Suspended=11,
+    Pcq_Stop_wBusy=12,
+    Pcq_Stop_wBusy_Signal=13,
+    Pcq_Run_wBusy_Signal=14,
+    Pcq_HW_Stop=15,
+    Pcq_HW_Stop_wQueued=16,
+    Pcq_HW_Stop_wBusy=17,
+    Pcq_Wait_Resume=18,
+    Pcq_Error=19,
+    Pcq_Closed=20
+};

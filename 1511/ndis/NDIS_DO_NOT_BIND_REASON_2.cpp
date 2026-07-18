@@ -1,0 +1,25 @@
+enum NDIS_DO_NOT_BIND_REASON
+{
+    Reason_NoBindSourceWantsThisBinding=1,
+    Reason_DriverNotReady=2,
+    Reason_LastBindAttemptFailed=4,
+    Reason_LastRestartAttemptFailed=8,
+    Reason_DriverRejectedBinding=16,
+    Reason_MissingMandatoryFilter=32,
+    Reason_MissingOptionalFilter=64,
+    Reason_MissingModifyingFilter=128,
+    Reason_MandatoryMissingDuringBoot=256,
+    Reason_UnbindOnAttach=512,
+    Reason_UnbindOnDetach=1024,
+    Reason_MiniportLowPower=2048,
+    Reason_RemovingMiniport=4096,
+    Reason_RebindNeeded=8192,
+    Reason_DefaultPortNotActive=32768,
+    Reason_SecondaryMiniport=65536,
+    Reason_MiniportNotReady=131072,
+    Reason_DisabledByLegacyIoctl=262144,
+    Reason_MiniportDeviceNotStarted=524288,
+    Reason_NetEventInhibitBindsAbove=1048576,
+    Reason_ProtocolDependsOnVBus=2097152,
+    Reason_IncompatibleWithNotification=4194304
+};

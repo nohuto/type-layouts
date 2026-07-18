@@ -1,0 +1,10 @@
+union _PCI_EXPRESS_SRIOV_CAPS// Size=0x4 (Id=2923)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long VFMigrationCapable:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long Reserved1:20;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x14
+        unsigned long VFMigrationInterruptNumber:11;// Offset=0x0 Size=0x4 BitOffset=0x15 BitSize=0xb
+    };
+    unsigned long AsULONG;// Offset=0x0 Size=0x4
+};

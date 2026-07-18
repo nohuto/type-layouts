@@ -1,0 +1,3 @@
+struct _PSP_CRITICAL_PROCESS_DEATH_DUMP_DATA// Size=0x0 (Id=1432)
+{
+};

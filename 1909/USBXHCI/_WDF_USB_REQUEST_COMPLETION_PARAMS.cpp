@@ -1,0 +1,109 @@
+enum _WDF_USB_REQUEST_TYPE
+{
+    WdfUsbRequestTypeInvalid=0,
+    WdfUsbRequestTypeNoFormat=1,
+    WdfUsbRequestTypeDeviceString=2,
+    WdfUsbRequestTypeDeviceControlTransfer=3,
+    WdfUsbRequestTypeDeviceUrb=4,
+    WdfUsbRequestTypePipeWrite=5,
+    WdfUsbRequestTypePipeRead=6,
+    WdfUsbRequestTypePipeAbort=7,
+    WdfUsbRequestTypePipeReset=8,
+    WdfUsbRequestTypePipeUrb=9
+};
+
+struct _anonymous_696// Size=0x10 (Id=696)
+{
+    struct WDFMEMORY__ * Buffer;// Offset=0x0 Size=0x8
+    unsigned short LangID;// Offset=0x8 Size=0x2
+    unsigned char StringIndex;// Offset=0xa Size=0x1
+    unsigned char RequiredSize;// Offset=0xb Size=0x1
+};
+
+struct _anonymous_351// Size=0x1 (Id=351)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char Recipient:2;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x2
+        unsigned char Reserved:3;// Offset=0x0 Size=0x1 BitOffset=0x2 BitSize=0x3
+        unsigned char Type:2;// Offset=0x0 Size=0x1 BitOffset=0x5 BitSize=0x2
+        unsigned char Dir:1;// Offset=0x0 Size=0x1 BitOffset=0x7 BitSize=0x1
+    };
+};
+
+union _anonymous_352// Size=0x1 (Id=352)
+{
+    struct _anonymous_351 Request;// Offset=0x0 Size=0x1
+    unsigned char Byte;// Offset=0x0 Size=0x1
+};
+
+struct _anonymous_353// Size=0x2 (Id=353)
+{
+    unsigned char LowByte;// Offset=0x0 Size=0x1
+    unsigned char HiByte;// Offset=0x1 Size=0x1
+};
+
+union _anonymous_354// Size=0x2 (Id=354)
+{
+    struct _anonymous_353 Bytes;// Offset=0x0 Size=0x2
+    unsigned short Value;// Offset=0x0 Size=0x2
+};
+
+struct _anonymous_355// Size=0x8 (Id=355)
+{
+    union _anonymous_352 bm;// Offset=0x0 Size=0x1
+    unsigned char bRequest;// Offset=0x1 Size=0x1
+    union _anonymous_354 wValue;// Offset=0x2 Size=0x2
+    union _anonymous_354 wIndex;// Offset=0x4 Size=0x2
+    unsigned short wLength;// Offset=0x6 Size=0x2
+};
+
+struct _anonymous_356// Size=0x8 (Id=356)
+{
+    unsigned char Bytes[8];// Offset=0x0 Size=0x8
+};
+
+union _WDF_USB_CONTROL_SETUP_PACKET// Size=0x8 (Id=357)
+{
+    struct _anonymous_355 Packet;// Offset=0x0 Size=0x8
+    struct _anonymous_356 Generic;// Offset=0x0 Size=0x8
+};
+
+struct _anonymous_697// Size=0x18 (Id=697)
+{
+    struct WDFMEMORY__ * Buffer;// Offset=0x0 Size=0x8
+    union _WDF_USB_CONTROL_SETUP_PACKET SetupPacket;// Offset=0x8 Size=0x8
+    unsigned long Length;// Offset=0x10 Size=0x4
+};
+
+struct _anonymous_698// Size=0x8 (Id=698)
+{
+    struct WDFMEMORY__ * Buffer;// Offset=0x0 Size=0x8
+};
+
+struct _anonymous_299// Size=0x18 (Id=299)
+{
+    struct WDFMEMORY__ * Buffer;// Offset=0x0 Size=0x8
+    unsigned long long Length;// Offset=0x8 Size=0x8
+    unsigned long long Offset;// Offset=0x10 Size=0x8
+};
+
+union _anonymous_699// Size=0x18 (Id=699)
+{
+    union // Size=0x18 (Id=0)
+    {
+        struct _anonymous_696 DeviceString;// Offset=0x0 Size=0x10
+        struct _anonymous_697 DeviceControlTransfer;// Offset=0x0 Size=0x18
+        struct _anonymous_698 DeviceUrb;// Offset=0x0 Size=0x8
+        struct _anonymous_299 PipeWrite;// Offset=0x0 Size=0x18
+        struct _anonymous_299 PipeRead;// Offset=0x0 Size=0x18
+        struct _anonymous_698 PipeUrb;// Offset=0x0 Size=0x8
+    };
+};
+
+struct _WDF_USB_REQUEST_COMPLETION_PARAMS// Size=0x20 (Id=700)
+{
+    long UsbdStatus;// Offset=0x0 Size=0x4
+    enum _WDF_USB_REQUEST_TYPE Type;// Offset=0x4 Size=0x4
+    union _anonymous_699 Parameters;// Offset=0x8 Size=0x18
+};

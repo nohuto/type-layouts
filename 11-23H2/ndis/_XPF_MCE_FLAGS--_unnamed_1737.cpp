@@ -1,0 +1,9 @@
+struct _XPF_MCE_FLAGS::_unnamed_1737// Size=0x4 (Id=1737)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long MCG_CapabilityRW:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long MCG_GlobalControlRW:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long Reserved:30;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1e
+    };
+};

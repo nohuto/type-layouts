@@ -1,0 +1,25 @@
+struct _RTL_FEATURE_CONFIGURATION_INTERNAL// Size=0x10 (Id=3488)
+{
+    unsigned int FeatureId;// Offset=0x0 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned int Priority:4;// Offset=0x4 Size=0x4 BitOffset=0x0 BitSize=0x4
+        unsigned int EnabledState:2;// Offset=0x4 Size=0x4 BitOffset=0x4 BitSize=0x2
+        unsigned int IsWexpConfiguration:1;// Offset=0x4 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned int HasSubscriptions:1;// Offset=0x4 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned int Variant:6;// Offset=0x4 Size=0x4 BitOffset=0x8 BitSize=0x6
+        unsigned int VariantPayloadKind:2;// Offset=0x4 Size=0x4 BitOffset=0xe BitSize=0x2
+    };
+    unsigned int VariantPayload;// Offset=0x8 Size=0x4
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned int ChangeTimeUpgrade:1;// Offset=0xc Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned int HasGroupBypass:1;// Offset=0xc Size=0x4 BitOffset=0x1 BitSize=0x1
+    };
+};
+
+struct _RTL_FEATURE_CONFIGURATION_TABLE// Size=0x14 (Id=3940)
+{
+    unsigned long FeatureCount;// Offset=0x0 Size=0x4
+    struct _RTL_FEATURE_CONFIGURATION_INTERNAL Features[1];// Offset=0x4 Size=0x10
+};

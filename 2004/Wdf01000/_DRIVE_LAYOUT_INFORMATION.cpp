@@ -1,0 +1,3 @@
+struct _DRIVE_LAYOUT_INFORMATION// Size=0x0 (Id=2660)
+{
+};

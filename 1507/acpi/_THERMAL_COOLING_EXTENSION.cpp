@@ -1,0 +1,3 @@
+struct _THERMAL_COOLING_EXTENSION// Size=0x0 (Id=354)
+{
+};

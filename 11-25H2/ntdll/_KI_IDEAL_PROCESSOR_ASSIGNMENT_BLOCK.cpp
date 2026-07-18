@@ -1,0 +1,3 @@
+struct _KI_IDEAL_PROCESSOR_ASSIGNMENT_BLOCK// Size=0x0 (Id=87)
+{
+};

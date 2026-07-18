@@ -1,0 +1,70 @@
+struct _anonymous_9// Size=0x8 (Id=9)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=977)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _anonymous_9 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _anonymous_1955// Size=0x8 (Id=1955)
+{
+    unsigned long Signature;// Offset=0x0 Size=0x4
+    unsigned long CheckSum;// Offset=0x4 Size=0x4
+};
+
+struct _GUID// Size=0x10 (Id=475)
+{
+    unsigned long Data1;// Offset=0x0 Size=0x4
+    unsigned short Data2;// Offset=0x4 Size=0x2
+    unsigned short Data3;// Offset=0x6 Size=0x2
+    unsigned char Data4[8];// Offset=0x8 Size=0x8
+};
+
+struct _anonymous_1956// Size=0x10 (Id=1956)
+{
+    struct _GUID DiskId;// Offset=0x0 Size=0x10
+};
+
+union _anonymous_1957// Size=0x10 (Id=1957)
+{
+    struct _anonymous_1955 Mbr;// Offset=0x0 Size=0x8
+    struct _anonymous_1956 Gpt;// Offset=0x0 Size=0x10
+};
+
+struct _DUMP_INITIALIZATION_CONTEXT// Size=0x108 (Id=1959)
+{
+    unsigned long Length;// Offset=0x0 Size=0x4
+    unsigned long Reserved;// Offset=0x4 Size=0x4
+    void * MemoryBlock;// Offset=0x8 Size=0x8
+    void * CommonBuffer[2];// Offset=0x10 Size=0x10
+    union _LARGE_INTEGER PhysicalAddress[2];// Offset=0x20 Size=0x10
+    void  ( * StallRoutine)(unsigned long );// Offset=0x30 Size=0x8
+    unsigned char  ( * OpenRoutine)(union _LARGE_INTEGER );// Offset=0x38 Size=0x8
+    long  ( * WriteRoutine)(union _LARGE_INTEGER * ,struct _MDL * );// Offset=0x40 Size=0x8
+    void  ( * FinishRoutine)();// Offset=0x48 Size=0x8
+    struct _ADAPTER_OBJECT * AdapterObject;// Offset=0x50 Size=0x8
+    void * MappedRegisterBase;// Offset=0x58 Size=0x8
+    void * PortConfiguration;// Offset=0x60 Size=0x8
+    unsigned char CrashDump;// Offset=0x68 Size=0x1
+    unsigned char MarkMemoryOnly;// Offset=0x69 Size=0x1
+    unsigned char HiberResume;// Offset=0x6a Size=0x1
+    unsigned char Reserved1;// Offset=0x6b Size=0x1
+    unsigned long MaximumTransferSize;// Offset=0x6c Size=0x4
+    unsigned long CommonBufferSize;// Offset=0x70 Size=0x4
+    void * TargetAddress;// Offset=0x78 Size=0x8
+    long  ( * WritePendingRoutine)(long ,union _LARGE_INTEGER * ,struct _MDL * ,void * );// Offset=0x80 Size=0x8
+    unsigned long PartitionStyle;// Offset=0x88 Size=0x4
+    union _anonymous_1957 DiskInfo;// Offset=0x8c Size=0x10
+    long  ( * ReadRoutine)(long ,union _LARGE_INTEGER * ,struct _MDL * );// Offset=0xa0 Size=0x8
+    long  ( * GetDriveTelemetryRoutine)(unsigned long ,unsigned long ,void * ,unsigned long );// Offset=0xa8 Size=0x8
+    unsigned long LogSectionTruncateSize;// Offset=0xb0 Size=0x4
+    unsigned long Parameters[16];// Offset=0xb4 Size=0x40
+    void  ( * GetTransferSizesRoutine)(unsigned long * ,unsigned long * );// Offset=0xf8 Size=0x8
+    void  ( * DumpNotifyRoutine)(enum _DUMP_EVENTS ,void * ,unsigned long );// Offset=0x100 Size=0x8
+};

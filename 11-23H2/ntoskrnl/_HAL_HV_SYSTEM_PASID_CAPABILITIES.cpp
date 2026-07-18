@@ -1,0 +1,14 @@
+struct _HAL_HV_SYSTEM_PASID_CAPABILITIES// Size=0x18 (Id=357)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long SvmSupported:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long GpaAlwaysValid:1;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1
+        unsigned long PasidSupported:1;// Offset=0x0 Size=0x4 BitOffset=0x2 BitSize=0x1
+    };
+    unsigned long MaxPasidSpaceCount;// Offset=0x4 Size=0x4
+    unsigned long MaxPasidSpacePasidCount;// Offset=0x8 Size=0x4
+    unsigned long MaxPrqSize;// Offset=0xc Size=0x4
+    unsigned long SvmIommuCount;// Offset=0x10 Size=0x4
+    unsigned long MinIommuPasidCount;// Offset=0x14 Size=0x4
+};

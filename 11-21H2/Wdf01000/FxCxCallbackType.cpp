@@ -1,0 +1,25 @@
+enum FxCxCallbackType
+{
+    FxCxCallbackPrepareHardware=0,
+    FxCxCallbackD0Entry=1,
+    FxCxCallbackSmIoInit=2,
+    FxCxCallbackSmIoRestart=3,
+    FxCxCallbackSmIoRestartEx=4,
+    FxCxCallbackArmWakeFromS0=5,
+    FxCxCallbackArmWakeFromSx=6,
+    FxCxCallbackArmWakeFromSxWithReason=7,
+    FxCxCallbackD0EntryPostHwEnabled=8,
+    FxCxCallbackReleaseHardware=9,
+    FxCxCallbackD0Exit=10,
+    FxCxCallbackSmIoSuspend=11,
+    FxCxCallbackSmIoSuspendEx=12,
+    FxCxCallbackSmIoFlush=13,
+    FxCxCallbackSmIoCleanup=14,
+    FxCxCallbackSurpriseRemoval=15,
+    FxCxCallbackDisarmWakeFromS0=16,
+    FxCxCallbackDisarmWakeFromSx=17,
+    FxCxCallbackWakeFromS0Triggered=18,
+    FxCxCallbackWakeFromSxTriggered=19,
+    FxCxCallbackD0ExitPreHwDisabled=20,
+    FxCxCallbackMax=21
+};

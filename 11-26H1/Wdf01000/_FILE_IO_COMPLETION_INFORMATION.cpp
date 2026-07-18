@@ -1,0 +1,16 @@
+struct _IO_STATUS_BLOCK// Size=0x10 (Id=146)
+{
+    union // Size=0x4 (Id=0)
+    {
+        long Status;// Offset=0x0 Size=0x4
+        void * Pointer;// Offset=0x0 Size=0x8
+    };
+    unsigned long long Information;// Offset=0x8 Size=0x8
+};
+
+struct _FILE_IO_COMPLETION_INFORMATION// Size=0x20 (Id=3818)
+{
+    void * KeyContext;// Offset=0x0 Size=0x8
+    void * ApcContext;// Offset=0x8 Size=0x8
+    struct _IO_STATUS_BLOCK IoStatusBlock;// Offset=0x10 Size=0x10
+};

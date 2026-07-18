@@ -1,0 +1,86 @@
+union _STORAGE_CRYPTO_KEY_TYPE// Size=0x1 (Id=829)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char DirectKey:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char PlatformWrappedKey:1;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x1
+        unsigned char PlutonWrappedKey:1;// Offset=0x0 Size=0x1 BitOffset=0x2 BitSize=0x1
+        unsigned char Reserved:5;// Offset=0x0 Size=0x1 BitOffset=0x3 BitSize=0x5
+    };
+    unsigned char AsUchar;// Offset=0x0 Size=0x1
+};
+
+union _STORAGE_SECURITY_COMPLIANCE_BITMASK// Size=0x1 (Id=1050)
+{
+    struct // Size=0x1 (Id=0)
+    {
+        unsigned char FIPS:1;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x1
+        unsigned char Reserved:7;// Offset=0x0 Size=0x1 BitOffset=0x1 BitSize=0x7
+    };
+    unsigned char AsUchar;// Offset=0x0 Size=0x1
+};
+
+union _unnamed_429// Size=0x4 (Id=429)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long KeyLostOnS3:1;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x1
+        unsigned long Reserved:31;// Offset=0x0 Size=0x4 BitOffset=0x1 BitSize=0x1f
+    };
+    unsigned long AsUlong;// Offset=0x0 Size=0x4
+};
+
+enum _STORAGE_CRYPTO_ALGORITHM_ID
+{
+    StorageCryptoAlgorithmUnknown=0,
+    StorageCryptoAlgorithmXTSAES=1,
+    StorageCryptoAlgorithmBitlockerAESCBC=2,
+    StorageCryptoAlgorithmAESECB=3,
+    StorageCryptoAlgorithmESSIVAESCBC=4,
+    StorageCryptoAlgorithmMax=5,
+    StorCryptoAlgorithmUnknown=0,
+    StorCryptoAlgorithmXTSAES=1,
+    StorCryptoAlgorithmBitlockerAESCBC=2,
+    StorCryptoAlgorithmAESECB=3,
+    StorCryptoAlgorithmESSIVAESCBC=4
+};
+
+enum _STORAGE_CRYPTO_KEY_SIZE
+{
+    StorageCryptoKeySizeUnknown=0,
+    StorageCryptoKeySize128Bits=1,
+    StorageCryptoKeySize192Bits=2,
+    StorageCryptoKeySize256Bits=3,
+    StorageCryptoKeySize512Bits=4,
+    StorageCryptoKeySizeMax=5,
+    StorCryptoKeySizeUnknown=0,
+    StorCryptoKeySize128Bits=1,
+    StorCryptoKeySize192Bits=2,
+    StorCryptoKeySize256Bits=3,
+    StorCryptoKeySize512Bits=4
+};
+
+struct _STOR_CRYPTO_CAPABILITY_INTERNAL// Size=0x10 (Id=1037)
+{
+    unsigned short CryptoCapabilityIndex;// Offset=0x0 Size=0x2
+    unsigned short DataUnitSizeBitmask;// Offset=0x2 Size=0x2
+    enum _STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId;// Offset=0x4 Size=0x4
+    enum _STORAGE_CRYPTO_KEY_SIZE KeySize;// Offset=0x8 Size=0x4
+    unsigned short MaxIVBitSize;// Offset=0xc Size=0x2
+    union _STORAGE_SECURITY_COMPLIANCE_BITMASK SecurityComplianceBitmask;// Offset=0xe Size=0x1
+};
+
+struct _STOR_CRYPTO_CAPABILITIES_DATA_INTERNAL// Size=0x2c (Id=430)
+{
+    unsigned short NumKeysSupported;// Offset=0x0 Size=0x2
+    unsigned short NumCryptoCapabilities;// Offset=0x2 Size=0x2
+    union _STORAGE_CRYPTO_KEY_TYPE KeyTypeBitmask;// Offset=0x4 Size=0x1
+    unsigned char AlignmentRequirement;// Offset=0x5 Size=0x1
+    unsigned short MaxCommandCount;// Offset=0x6 Size=0x2
+    unsigned long MaxTransferSizeBytes;// Offset=0x8 Size=0x4
+    unsigned long HiberMaxTransferSizeBytes;// Offset=0xc Size=0x4
+    unsigned long DumpMaxTransferSizeBytes;// Offset=0x10 Size=0x4
+    union _STORAGE_SECURITY_COMPLIANCE_BITMASK SecurityComplianceBitmask;// Offset=0x14 Size=0x1
+    union _unnamed_429 Flags;// Offset=0x18 Size=0x4
+    struct _STOR_CRYPTO_CAPABILITY_INTERNAL CryptoCapabilities[1];// Offset=0x1c Size=0x10
+};

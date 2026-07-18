@@ -1,0 +1,22 @@
+enum _SCSI_ADAPTER_CONTROL_TYPE
+{
+    ScsiQuerySupportedControlTypes=0,
+    ScsiStopAdapter=1,
+    ScsiRestartAdapter=2,
+    ScsiSetBootConfig=3,
+    ScsiSetRunningConfig=4,
+    ScsiPowerSettingNotification=5,
+    ScsiAdapterPower=6,
+    ScsiAdapterPoFxPowerRequired=7,
+    ScsiAdapterPoFxPowerActive=8,
+    ScsiAdapterPoFxPowerSetFState=9,
+    ScsiAdapterPoFxPowerControl=10,
+    ScsiAdapterPrepareForBusReScan=11,
+    ScsiAdapterSystemPowerHints=12,
+    ScsiAdapterFilterResourceRequirements=13,
+    ScsiAdapterPoFxMaxOperationalPower=14,
+    ScsiAdapterPoFxSetPerfState=15,
+    ScsiAdapterSurpriseRemoval=16,
+    ScsiAdapterControlMax=17,
+    MakeAdapterControlTypeSizeOfUlong=-1
+};

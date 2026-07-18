@@ -1,0 +1,3 @@
+struct KnobState// Size=0x0 (Id=581)
+{
+};

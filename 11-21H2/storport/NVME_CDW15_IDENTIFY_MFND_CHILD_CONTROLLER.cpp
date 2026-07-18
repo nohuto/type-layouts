@@ -1,0 +1,10 @@
+union NVME_CDW15_IDENTIFY_MFND_CHILD_CONTROLLER// Size=0x4 (Id=415)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long MCID:8;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x8
+        unsigned long CCID:16;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x10
+        unsigned long Reserved:8;// Offset=0x0 Size=0x4 BitOffset=0x18 BitSize=0x8
+    };
+    unsigned long AsUlong;// Offset=0x0 Size=0x4
+};

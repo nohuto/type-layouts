@@ -1,0 +1,42 @@
+struct _MI_SEGMENT_SIGNATURE_FLAGS// Size=0x1 (Id=2320)
+{
+    union // Size=0x1 (Id=0)
+    {
+        struct // Size=0x1 (Id=0)
+        {
+            unsigned char ImageSigningLevel:4;// Offset=0x0 Size=0x1 BitOffset=0x0 BitSize=0x4
+            unsigned char ImageSigningType:3;// Offset=0x0 Size=0x1 BitOffset=0x4 BitSize=0x3
+            unsigned char Spare:1;// Offset=0x0 Size=0x1 BitOffset=0x7 BitSize=0x1
+        };
+        unsigned char EntireField;// Offset=0x0 Size=0x1
+    };
+};
+
+struct _SEGMENT_FLAGS// Size=0x4 (Id=2222)
+{
+    union // Size=0x2 (Id=0)
+    {
+        struct // Size=0x2 (Id=0)
+        {
+            unsigned short TotalNumberOfPtes4132:10;// Offset=0x0 Size=0x2 BitOffset=0x0 BitSize=0xa
+            unsigned short LargePages:1;// Offset=0x0 Size=0x2 BitOffset=0xa BitSize=0x1
+            unsigned short DebugSymbolsLoaded:1;// Offset=0x0 Size=0x2 BitOffset=0xb BitSize=0x1
+            unsigned short WriteCombined:1;// Offset=0x0 Size=0x2 BitOffset=0xc BitSize=0x1
+            unsigned short NoCache:1;// Offset=0x0 Size=0x2 BitOffset=0xd BitSize=0x1
+            unsigned short ForceCollision:1;// Offset=0x0 Size=0x2 BitOffset=0xe BitSize=0x1
+            unsigned short Binary32:1;// Offset=0x0 Size=0x2 BitOffset=0xf BitSize=0x1
+        };
+        unsigned short Short0;// Offset=0x0 Size=0x2
+    };
+    union // Size=0x1 (Id=0)
+    {
+        struct // Size=0x1 (Id=0)
+        {
+            unsigned char DefaultProtectionMask:5;// Offset=0x2 Size=0x1 BitOffset=0x0 BitSize=0x5
+            unsigned char ContainsDebug:1;// Offset=0x2 Size=0x1 BitOffset=0x5 BitSize=0x1
+            unsigned char Spare:2;// Offset=0x2 Size=0x1 BitOffset=0x6 BitSize=0x2
+        };
+        unsigned char UChar1;// Offset=0x2 Size=0x1
+    };
+    struct _MI_SEGMENT_SIGNATURE_FLAGS Signature;// Offset=0x3 Size=0x1
+};

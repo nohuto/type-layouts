@@ -1,0 +1,6 @@
+enum _TCG_SSC_TYPE
+{
+    OPTICAL_SSC=80,
+    ENTERPRISE_SSC=256,
+    OPAL_SSC=512
+};

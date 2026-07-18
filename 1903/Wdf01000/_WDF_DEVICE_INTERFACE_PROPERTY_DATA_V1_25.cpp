@@ -1,0 +1,3 @@
+struct _WDF_DEVICE_INTERFACE_PROPERTY_DATA_V1_25// Size=0x0 (Id=4788)
+{
+};

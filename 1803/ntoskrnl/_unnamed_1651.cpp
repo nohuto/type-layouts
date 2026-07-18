@@ -1,0 +1,12 @@
+struct _unnamed_1651// Size=0x4 (Id=1651)
+{
+    struct // Size=0x4 (Id=0)
+    {
+        unsigned long PasidMaxWidth:5;// Offset=0x0 Size=0x4 BitOffset=0x0 BitSize=0x5
+        unsigned long PasidExePerm:1;// Offset=0x0 Size=0x4 BitOffset=0x5 BitSize=0x1
+        unsigned long PasidPrivMode:1;// Offset=0x0 Size=0x4 BitOffset=0x6 BitSize=0x1
+        unsigned long AtsPageAlignedRequest:1;// Offset=0x0 Size=0x4 BitOffset=0x7 BitSize=0x1
+        unsigned long AtsGlobalInvalidate:1;// Offset=0x0 Size=0x4 BitOffset=0x8 BitSize=0x1
+        unsigned long AtsInvalidateQueueDepth:5;// Offset=0x0 Size=0x4 BitOffset=0x9 BitSize=0x5
+    };
+};

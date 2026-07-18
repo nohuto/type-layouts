@@ -1,0 +1,5 @@
+enum _PORT_BUSY_STATE
+{
+    PORT_IDLE=1,
+    PORT_BUSY=2
+};

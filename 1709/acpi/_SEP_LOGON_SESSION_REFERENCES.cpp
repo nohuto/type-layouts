@@ -1,0 +1,3 @@
+struct _SEP_LOGON_SESSION_REFERENCES// Size=0x0 (Id=499)
+{
+};

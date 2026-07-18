@@ -1,0 +1,5 @@
+struct _anonymous_57// Size=0x10 (Id=57)
+{
+    unsigned long SecurityInformation;// Offset=0x0 Size=0x4
+    unsigned long Length;// Offset=0x8 Size=0x4
+};

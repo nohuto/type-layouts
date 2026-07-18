@@ -1,0 +1,110 @@
+struct _GUID// Size=0x10 (Id=55)
+{
+    unsigned long Data1;// Offset=0x0 Size=0x4
+    unsigned short Data2;// Offset=0x4 Size=0x2
+    unsigned short Data3;// Offset=0x6 Size=0x2
+    unsigned char Data4[8];// Offset=0x8 Size=0x8
+};
+
+enum _TRUSTLET_OPCODE
+{
+    TrustletOpcodeInvalid=0,
+    ControllerCreate=1,
+    ControllerDestroy=2,
+    ControllerRequestDebugBreak=3,
+    SecureDmaEnablerCreate=4,
+    SecureDmaEnablerMapExposedSection=5,
+    SecureDmaEnablerUnmap=6,
+    RegisterCreate=7,
+    RegisterMapMmio=8,
+    RegisterUnmapMmio=9,
+    RegisterReadMmio=10,
+    RegisterWriteMmio=11,
+    CommandCreate=12,
+    CommandAllocateResources=13,
+    CommandFreeResources=14,
+    CommandInitialize=15,
+    CommandAbortRing=16,
+    CommandAdvanceDequeuePointer=17,
+    CommandQueryIsRingRunning=18,
+    CommandAddCommandTRBToRing=19,
+    CommandRingDoorbell=20,
+    DeviceSlotCreate=21,
+    DeviceSlotAllocateResources=22,
+    DeviceSlotFreeResources=23,
+    DeviceSlotInitialize=24,
+    DeviceSlotInitializeScratchpadBuffers=25,
+    DeviceSlotSetDeviceContext=26,
+    DeviceSlotClearDeviceContext=27,
+    DeviceSlotQueryInfoFromSlotContext=28,
+    DeviceSlotQueryInfoFromEndpointContext=29,
+    UsbDeviceCreate=30,
+    UsbDeviceDestroy=31,
+    UsbDeviceRingDoorbell=32,
+    EndpointCreate=33,
+    EndpointDestroy=34,
+    StreamContextArrayCreate=35,
+    StreamContextArrayGet=36,
+    StreamContextArraySet=37,
+    StreamContextArrayDestroy=38,
+    TransferRingCreate=39,
+    TransferRingAllocateSegments=40,
+    TransferRingFreeSegments=41,
+    TransferRingInitializeSegment=42,
+    TransferRingStageComplete=43,
+    TransferRingAddTRBRange=44,
+    UsbDeviceQueryAttributes=45,
+    TrustletOpCodeMax=46
+};
+
+struct _TRUSTLET_REQUEST_HEADER// Size=0x28 (Id=778)
+{
+    struct _GUID ActivityId;// Offset=0x0 Size=0x10
+    unsigned long OutstandingRequestsAtSendTime;// Offset=0x10 Size=0x4
+    struct TRUSTLET_OBJECT_HANDLE__ * TargetObjectHandle;// Offset=0x18 Size=0x8
+    enum _TRUSTLET_OPCODE OpCode;// Offset=0x20 Size=0x4
+};
+
+enum _SECURE_DMA_RESOURCE_TYPE
+{
+    DmaNoBuffer=0,
+    DmaExposedSection=1,
+    DmaSecureSectionGuid=2
+};
+
+struct _SECURE_DMA_RESOURCE// Size=0x20 (Id=705)
+{
+    enum _SECURE_DMA_RESOURCE_TYPE Type;// Offset=0x0 Size=0x4
+    unsigned long Offset;// Offset=0x4 Size=0x4
+    unsigned long Length;// Offset=0x8 Size=0x4
+    unsigned long StageId;// Offset=0xc Size=0x4
+    union // Size=0x8 (Id=0)
+    {
+        void * ExposedSectionHandle;// Offset=0x10 Size=0x8
+        struct _GUID SecureSectionGuid;// Offset=0x10 Size=0x10
+    };
+};
+
+struct _unnamed_45// Size=0x8 (Id=45)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+};
+
+union _LARGE_INTEGER// Size=0x8 (Id=46)
+{
+    unsigned long LowPart;// Offset=0x0 Size=0x4
+    long HighPart;// Offset=0x4 Size=0x4
+    struct _unnamed_45 u;// Offset=0x0 Size=0x8
+    long long QuadPart;// Offset=0x0 Size=0x8
+};
+
+struct _TR_ADD_TRB_RANGE_IN// Size=0x58 (Id=683)
+{
+    struct _TRUSTLET_REQUEST_HEADER Header;// Offset=0x0 Size=0x28
+    struct _SECURE_DMA_RESOURCE SecureDmaResource;// Offset=0x28 Size=0x20
+    union _LARGE_INTEGER FirstSegmentStartAddress;// Offset=0x48 Size=0x8
+    unsigned long FirstSegmentStartIndex;// Offset=0x50 Size=0x4
+    unsigned long NumberOfTRBs;// Offset=0x54 Size=0x4
+    struct _TRB Trb[0];
+};
