@@ -1,6 +1,6 @@
 # Type Layouts
 
-Used for [bin-diff](https://noverse.dev/bin-diff) & based on output of [PDBRipper]().
+Used for the [diff](https://noverse.dev/diff) section, based on output of [PDBRipper](https://github.com/horsicq/PDBRipper).
 
 ## Versions & Build Reference
 
